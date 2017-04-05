@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+
+	<property name="LOG_DESTINATION" value="logs" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+      		<pattern>%-5level [%thread]  %logger{10} - %msg%n</pattern>
+    	</encoder>
+	</appender>
+
+	<appender name="FILE_BUSINESS"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_DESTINATION}/projectica.log</file>
+		<append>true</append>
+		<encoder>
+      		<pattern>%d{HH:mm:ss.SSS} %-5level [%thread]  %logger{10} - %msg%n</pattern>
+    	</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${LOG_DESTINATION}/archived/dao.%d{yyyy-MM-dd}.%i.log
+                        </fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>10MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+
+	</appender>
+
+	<appender name="FILE_FRAMEWORKS" class="ch.qos.logback.core.FileAppender">
+	    <file>${LOG_DESTINATION}/frameworks.log</file>
+	    <append>false</append>
+	    <encoder>
+	      <pattern>%d{HH:mm:ss.SSS} %-5level [%thread]  %logger - %msg%n</pattern>
+	    </encoder>
+	</appender>
+
+	<!-- Send logs to both console and file audit -->
+	<logger name="com.vetalzloy" level="TRACE" additivity="false">
+		<appender-ref ref="FILE_BUSINESS" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="org.springframework" level="INFO" additivity="false">
+		<appender-ref ref="FILE_FRAMEWORKS" />
+		<appender-ref ref="STDOUT" />
+	</logger>
+	
+	<logger name="org.hibernate" level="INFO" additivity="false">
+		<appender-ref ref="FILE_FRAMEWORKS" />
+	</logger>
+
+<!--  
+	<logger name="org.hibernate.type" additivity="false" >
+	 <level value="TRACE" />
+	 <appender-ref ref="FILE_FRAMEWORKS" />
+	 <appender-ref ref="STDOUT" />
+	</logger>
+
+-->	
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+	</root>
+
+</configuration>

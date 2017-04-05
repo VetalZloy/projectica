@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300&subset=cyrillic-ext,latin-ext');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+input[type="text"], input[type="password"] {
+  font-size: 20px;
+  padding: 3px;
+  border: 1px solid #A9A9A9;
+  display: inline-block;
+}
+
+input[type="submit"], button[type="submit"] {
+  font-size: 20px;
+  background-color: #EFEFEF;
+  border: 3px solid #61AE73;
+  padding: 2px 8px;
+}
+
+input[type="submit"]:hover, button[type="submit"]:hover {
+  cursor: pointer;
+  background-color: #B8B8B8;
+}
+
+input[type="submit"]:disabled, button[type="submit"]:disabled {
+  cursor: default;
+  background-color: #EFEFEF;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.logo {
+  border-radius: 50%;
+  border: 2px solid;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -45px;
+}
+
+.github {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -95px;
+  padding: 20px;
+  background-image: url(../img/github1.png);
+  background-color: #fff;
+  background-size: cover;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.about {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: 55px;
+  padding: 20px;
+  background-image: url(../img/about1.png);
+  background-color: #fff;
+  background-size: cover;
+  border-radius: 50%;
+  border: 2px solid #000;
+  background-position-y: -2px;
+}
+
+.wrapper p {
+  text-transform: uppercase;
+  position:absolute;
+  top:50%;
+  left:0;
+  right:0;
+  margin-top: -0.625em;
+  text-align: center;
+}
+
+.wrapper > div {
+  position: fixed;
+  width: 50%;
+  height: 100%;
+}
+
+.right {
+  left: 50%;
+}
+
+.wrapper > div > div {
+  font-size: 50px;
+  position: relative;
+  height: 50%;
+}
+
+.login {
+  background-color: #354576;
+}
+
+.signup {
+  background-color: #358D88;
+}
+
+.projects {
+  background-color: #DD8261;
+}
+
+.vacancies {
+  background-color: #53BA4B;
+}
+
+.wrapper>div>div:hover{
+  cursor: pointer;
+}
+
+.close {
+  display: inline-block;
+  float: right;
+  opacity: 1;
+  position: relative;
+  margin-left: 2px;
+  top: 10px;
+  background-image: url(../img/close.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  background-position: 5px 5px;
+  border-radius: 50%;
+  border: 1px solid #B22F2F;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.close:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 1;
+  background-color: #B22F2F;
+  text-decoration: none;
+}
+
+.panel-body {
+  border: 1px solid #A9A9A4;
+  border-top: 0px;
+  background-color: #EFEFEF;
+  padding: 5px;
+}
+
+.panel-title {
+  background-color: #63B175;
+  height: 30px;
+  font-size: 20px;
+}
+
+.panel-title-big {
+  background-color: #0E8167;
+  height: 40px;
+  font-size: 20px;
+  line-height: 40px;
+  color: #fff;
+  padding: 0 5px;
+}
+
+.title {
+  position: absolute;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #308042;
+  color: #fff;
+}
+
+.panel-title-big .add{
+  margin-top: 10px;
+}
+
+.panel-title>.close{
+  top: 0;
+  margin: 5px;
+}
+
+.log-in {
+  display: none;
+  position: fixed;
+  width: 25%;
+  left: 37%;
+  top: 10%;
+}
+
+.log-in .panel-body {
+  padding-right: 20px;
+}
+
+.log-in input[type="text"], .log-in input[type="password"] {
+  width: 100%;
+  font-size: 20px;
+  padding: 5px;
+  margin-top: -1px;
+}
+
+input[type=checkbox].css-checkbox {
+  position:absolute;
+  z-index:-1000;
+  left:-1000px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height:1px;
+  width:1px;
+  margin:-1px;
+  padding:0;
+  border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+  padding-left:26px;
+	height:20px;
+	display:inline-block;
+	line-height:20px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:20px;
+	vertical-align:middle;
+	cursor:pointer;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+	background-position: 0 -20px;
+}
+
+label.css-label {
+  margin-top: 13px;
+  background-image:url(../img/checkbox.png);
+}
+
+.log-in input[type="submit"] {
+  position: absolute;
+  right: 7px;
+  top: 125px;
+  float: right;
+}
+
+.log-in a {
+  margin-top: 5px;
+  padding: 3px;
+  color: #5C5C5C;
+  display: inline-block;
+  text-decoration: underline;
+}
+
+.log-in a:hover {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.sign-up {
+  display: none;
+  position: fixed;
+  width: 40%;
+  left: 30%;
+  top: 10%;
+}
+
+.sign-up .panel-body{
+  padding-right: 40px;
+  padding-bottom: 45px;
+}
+
+.sign-up input[type="text"], .sign-up input[type="password"] {
+  width: 100%;
+  font-size: 20px;
+  padding: 3px;
+  margin-top: -1px;
+}
+
+.sign-up button[type="submit"] {
+  position: absolute;
+  display: inline-block;
+  right: 5px;
+  bottom: 5px;
+}
+
+.sign-up p{
+  width: 70%;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.valid, .invalid {
+  position: absolute;
+  padding: 10px;
+  right: 7px;
+  border-radius: 50%;
+  margin-top: -27px;
+}
+
+.valid {
+  background-color: #63B175;
+}
+
+.invalid {
+  background-color: #B22F2F;
+}
+
+.reset-password {
+  display: none;
+  position: fixed;
+  width: 25%;
+  left: 37%;
+  top: 10%;
+}
+
+.reset-password .panel-body {
+  padding-right: 90px;
+}
+
+.reset-password input[type="text"] {
+  width: 100%;
+}
+
+.reset-password input[type="submit"] {
+  position: absolute;
+  top: 44px;
+  right: 6px;
+}

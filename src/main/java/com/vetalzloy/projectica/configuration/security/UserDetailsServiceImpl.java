@@ -1,0 +1,70 @@
+package com.vetalzloy.projectica.configuration.security;
+
+import java.util.Arrays;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.vetalzloy.projectica.model.User;
+import com.vetalzloy.projectica.service.UserService;
+import com.vetalzloy.projectica.service.exception.UserNotFoundException;
+
+@Service
+public class UserDetailsServiceImpl implements UserDetailsService {
+
+	private static Logger logger = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
+	
+	@Autowired
+	private UserService userService;
+	
+	/* Uncomment for bruteforce defending
+	@Autowired
+	private LoginAttemptService attemptService;*/
+	
+	@Autowired
+	private HttpServletRequest request;
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		/* Uncomment for bruteforce defending, attemptService should be changed
+		String ip = getIP();
+		if(attemptService.isBlocked(ip)){
+			throw new RuntimeException("blocked");
+		}*/
+		
+		logger.debug("Loading user information by username {}, for security providing ...", username);
+		User user = null;
+		try {
+			user = userService.getByUsername(username);
+		} catch (UserNotFoundException e) {
+			logger.warn("Error happened during extracting user.", e);
+		}
+		
+		if(user == null || !user.isEnabled()) {
+			logger.info("User with username {} is not exist or not enable", username);
+			return new org.springframework.security.core.userdetails.User(username, "", 
+					Arrays.asList(new SimpleGrantedAuthority("ROLE_ANONYMOUS")));
+		}
+		
+		logger.info("Loggin in user with username {}", username);		
+		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), 
+				Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
+	}
+	
+	public String getIP(){
+		String xfHeader = request.getHeader("X-Forwarded-For");
+	    if (xfHeader == null){
+	        return request.getRemoteAddr();
+	    }
+	    return xfHeader.split(",")[0];
+	}
+	
+}

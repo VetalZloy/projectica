@@ -1,0 +1,110 @@
+.container-fluid {
+  text-align: justify;
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+h2 {
+  padding: 10px;
+}
+
+.row ol, ul {
+  padding-left: 20px;
+}
+
+.row ul {
+  list-style-type: none;
+}
+
+.row ul li {
+  display: inline-block;
+}
+
+a {
+  font-weight: 600;
+}
+
+.note {
+  background-color: #EFEFEF;
+  padding: 5px 10px;
+  border:1px solid #A9A9A4;
+  margin-top: 10px;
+}
+
+.plus-button {
+  background-image: url(../img/plus-outline.png);
+  background-size: cover;
+  padding: 20px;
+  background-color: #EFEFEF;
+  display: inline-block;
+  border-radius: 50%;
+  position: absolute;
+  margin-top: -5px;
+  margin-left: 5px;
+}
+
+.plus-button:hover {
+  cursor: pointer;
+  background-color: #A9A9A4;
+}
+
+.button {
+  border: 3px solid;
+  padding: 3px 10px;
+  background-color: #EFEFEF;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #A9A9A4;
+}
+
+.good {
+  border-color: #63B175;
+}
+
+.bad {
+  border-color: #AE3532;
+}
+
+.space {
+  padding: 10px;
+}
+
+.my-github {
+  position: relative;
+  top: 13px;
+  padding: 20px;
+  background-color: #EFEFEF;
+  display: inline-block;
+  border-radius: 50%;
+  background-image: url(../img/github.png);
+  background-size: cover;
+  border: 2px solid #000;
+}
+
+.my-github:hover {
+  background-color: #A9A9A4;
+}
+
+.vk {
+  position: relative;
+  top: 13px;
+  padding: 20px;
+  background-color: #EFEFEF;
+  display: inline-block;
+  border-radius: 50%;
+  background-image: url(../img/vk.png);
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: 5px;
+  border: 2px solid #000;
+}
+
+.vk:hover {
+  background-color: #A9A9A4;
+}

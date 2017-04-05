@@ -1,0 +1,519 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300&subset=cyrillic-ext,latin-ext');
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: none;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  color: #5C5C5C;
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: 32px;
+  font-weight: 100;
+}
+
+/* HEADER BEGIN*/
+header * {
+  display: inline;
+}
+
+header {
+  position: absolute;
+  opacity: 1;
+  z-index: 100;
+  background-color: #63B175;
+  width: 100%;
+  padding: 0 12%;
+  height: 55px;
+  min-width: 960px;
+  border-bottom: 1px solid;
+}
+
+.logo {
+  background-image: url(../img/logo.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  color: #000;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid;
+  height: 50px;
+  width: 50px;
+  margin-top: 3px;
+}
+
+.logo:hover {
+  color: #000;
+}
+
+header li a {
+  position: relative;
+  height: 100%;
+  font-size: 25px;
+  line-height: 55px;
+  /*top: 50%;
+  margin-top: -0.625em;*/
+  list-style-type: none;
+  float: right;
+  margin-right: 40px;
+  text-transform: uppercase;
+  color: #5C5C5C;
+}
+
+header li a:hover {
+  color: #5C5C5C;
+  border-bottom: 3px solid;
+}
+
+.new-messages {
+  position: absolute;
+  width: 22px;
+  background-color: #FFDD00;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 600;
+  top: 8px;
+}
+
+.logout {
+  top: 17px;
+  margin-right: 0px;
+  background-image: url(../img/logout.png);
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+}
+
+.logout:hover {
+  border-bottom: 0;
+}
+
+.github {
+  position: absolute;
+  padding: 13px;
+  background-color: #fff;
+  z-index: 999;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background-image: url(../img/github.png);
+  background-size: 36px;
+  background-position: -5px;
+  left: 10px;
+  top: 13px;
+}
+
+.about {
+  position: absolute;
+  padding: 13px;
+  background-color: #fff;
+  z-index: 999;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background-image: url(../img/about.png);
+  background-size: 36px;
+  background-position: -5px;
+  left: 40px;
+  top: 13px;
+}
+/* HEADER END*/
+
+.panel-body {
+  border: 1px solid #A9A9A4;
+  border-top: 0px;
+  background-color: #EFEFEF;
+  padding: 5px;
+}
+
+.panel-title {
+  background-color: #63B175;
+  height: 30px;
+  font-size: 20px;
+}
+
+.panel-title>.close{
+  top: 0;
+  margin: 5px;
+}
+
+.wrapper {
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  min-width: 960px;
+  min-height: 100%;
+  padding: 0 12%;
+  background-color: #EFEFEF;
+}
+
+.row {
+  margin-bottom: 30px;
+}
+
+.container-fluid {
+  padding-top: 20px;
+  background-color: #fff;
+}
+
+.avatar img {
+  width: 100%;
+  height: 200px;
+  border-radius: 50%;
+  height:auto;
+}
+
+.online {
+  padding: 10px;
+  background-color: #63B175;
+  font-size: 0;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 12px;
+  right: 46px;;
+  border: 2px solid #fff;
+}
+
+.edit {
+  position: absolute;
+  background-image: url(../img/edit.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  top: 15px;
+  margin-left: 8px;
+}
+
+.edit:hover {
+  cursor: pointer;
+}
+
+.info .send-message {
+  position: absolute;
+  border: 0;
+  background-image: url(../img/send-message.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 35px;
+  top: 15px;
+  margin-left: 8px;
+}
+
+.send-message:hover {
+  cursor: pointer;
+}
+
+.info p {
+  font-size: 18px;
+  margin: 0;
+}
+
+.info a {
+  position: relative;
+  top: 25px;
+  font-size: 25px;
+  color: #000;
+  border: 3px solid #61AE73;
+  padding: 5px;
+  color: #5C5C5C;
+}
+
+.info a:hover {
+  background-color: #EFEFEF;
+}
+
+.right-side>div {
+	margin-bottom: 10px;
+}
+
+.tags {
+  font-size: 18px;
+}
+
+.list-title {
+  padding: 5px;
+  color: #fff;
+  background-color: #0E8167;
+  font-size: 20px;
+}
+
+.add {
+  position: relative;
+  float: right;
+  background-color: #FFDD00;
+  border-radius: 50%;
+  padding: 10px;
+  margin-top: 5px;
+  background-image: url(../img/add.png);
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+  background-position: 3px 3px;
+}
+
+.add:hover {
+  background-color: #C7AC00;
+  cursor: pointer;
+}
+
+.tag-list div {
+  display: inline-block;
+  //background-color: #BEC5FE;
+  border-radius: 15px;
+  border: 1px solid #61AE73;
+  padding: 0 4px;
+  margin: 1px 0;
+}
+
+.close {
+  display: inline-block;
+  float: right;
+  opacity: 1;
+  position: relative;
+  margin-left: 2px;
+  top: 3px;
+  background-image: url(../img/close.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  background-position: 4px 4px;
+  border-radius: 50%;
+  border: 1px solid #B22F2F;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.close:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 1;
+  background-color: #B22F2F;
+  text-decoration: none;
+}
+
+.comment {
+  margin-bottom: 10px;
+  color: #000;
+}
+
+.comment>.list-title {
+  padding: 0;
+}
+
+.comment a{
+  display: inline-block;
+  padding: 5px;
+  color: #5c5c5c;
+}
+
+.comment .bad {
+  background-color: #D89E9E;
+}
+
+.comment .good {
+  background-color: #63B175;
+}
+
+.comment .good .date {
+  background-color: #308042;
+}
+
+.comment .bad .date {
+  background-color: #BB6262;
+}
+
+.comment .date {
+  float: right;
+  padding: 5px;
+}
+
+.projects .panel-body {
+  padding: 0;
+}
+
+.projects a {
+  display: block;
+  color: #5C5C5C;
+  font-size: 20px;
+  padding: 0 4px;
+  border-bottom: 1px solid #A9A9A4;
+}
+
+.projects a:last-child {
+  border-bottom: 0;
+}
+
+.projects a:hover {
+  background-color: #B8B8B8;
+}
+
+.edit-panel {
+  display: none;
+  width: 50%;
+  position: fixed;
+  left: 25%;
+  top: 75px;
+  z-index: 100;
+}
+
+.update {
+  position: absolute;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #308042;
+  color: #fff;
+}
+
+.update:hover {
+  cursor: pointer;
+  color: #000;
+  font-weight: 500;
+}
+
+.edit-body {
+  padding-bottom: 45px;
+  padding-right: 30px;
+}
+
+.edit-body input {
+  display: inline-block;
+  font-size: 20px;
+  width: 100%;
+  margin-top: -1px;
+  padding: 3px;
+}
+
+.edit-body .valid, .invalid {
+  position: absolute;
+  display: inline-block;
+  margin-top: 8px;
+  margin-left: 5px;
+  float: right;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.valid {
+  background-color: #63B175;
+}
+
+.invalid {
+  background-color: #B22F2F;
+}
+
+.update-button {
+  float: right;
+  top: 5px;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 0px 10px;
+  font-weight: 600;
+  position: relative;
+  border: 3px solid #308042;
+  background-color: #EFEFEF;
+}
+
+.update-button:hover {
+  background-color: #B8B8B8;
+}
+
+.update-button:disabled {
+  cursor: default;
+  background-color: #EFEFEF;
+}
+
+.tag-add-panel {
+  display: none;
+  position: fixed;
+  width: 25%;
+  left: 37%;
+  top: 75px;
+  z-index: 100;
+}
+
+.add-body {
+  padding-right: 75px;
+  height: 50px;
+  max-height: 50px;
+}
+
+.add-body input {
+  display: inline-block;
+  font-size: 20px;
+  width: 100%;
+  margin-top: -1px;
+  padding: 3px;
+}
+
+.add-button {
+  float: right;
+  top: 34px;
+  right: 5px;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 2px 10px;
+  font-weight: 600;
+  position: absolute;
+  border: 3px solid #308042;
+  background-color: #EFEFEF;
+}
+
+.add-button:hover {
+  background-color: #B8B8B8;
+}
+
+.add-button:disabled {
+  cursor: default;
+  background-color: #EFEFEF;
+}
+
+.similarTag {
+  position: relative;
+  width: 100%;
+  background-color: #EFEFEF;
+  margin-right: 75px;
+  margin: 0;
+  border: 1px solid;
+  font-size: 20px;
+  padding: 3px;
+  border-top: 0px;
+}
+
+.similarTag:hover {
+  cursor: pointer;
+  background-color: #B8B8B8;
+}
+
+.title {
+  position: absolute;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #308042;
+  color: #fff;
+}
+
+.title:hover {
+  cursor: pointer;
+  color: #000;
+  font-weight: 500;
+}

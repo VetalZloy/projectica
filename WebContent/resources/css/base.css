@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300&subset=cyrillic-ext,latin-ext');
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a:focus {
+  text-decoration: none;
+}
+
+textarea {
+	resize: none;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #fff;
+  color: #5C5C5C;
+}
+
+h1 {
+  margin: 10px 0;
+  font-size: 50px;
+  font-weight: 100;
+}
+
+/* HEADER BEGIN*/
+header * {
+  display: inline;
+}
+
+header {
+  position: absolute;
+  opacity: 1;
+  z-index: 100;
+  background-color: #63B175;
+  width: 100%;
+  padding: 0 12%;
+  height: 55px;
+  min-width: 960px;
+  border-bottom: 1px solid;
+}
+
+header .active a {
+  border-bottom: 3px solid;
+}
+
+header .active a:hover {
+  cursor: default;
+}
+
+.new-messages {
+  position: absolute;
+  width: 22px;
+  background-color: #FFDD00;
+  font-size: 15px;
+  line-height: 22px;
+  text-align: center;
+  border-radius: 50%;
+  font-weight: 600;
+  top: 8px;
+}
+
+.logo {
+  background-image: url(../img/logo.png);
+  background-repeat: no-repeat;
+  position: absolute;
+  color: #000;
+  background-size: cover;
+  border-radius: 50%;
+  border: 1px solid;
+  height: 50px;
+  width: 50px;
+  margin-top: 3px;
+}
+
+.logo:hover {
+  color: #000;
+}
+
+header li a {
+  position: relative;
+  height: 100%;
+  font-size: 25px;
+  font-weight: 100;
+  line-height: 55px;
+  /*top: 50%;
+  margin-top: -0.625em;*/
+  list-style-type: none;
+  float: right;
+  margin-right: 40px;
+  text-transform: uppercase;
+  color: #5C5C5C;
+}
+
+header li a:hover {
+  color: #5C5C5C;
+  border-bottom: 3px solid;
+}
+
+.logout {
+  top: 17px;
+  margin-right: 0px;
+  background-image: url(../img/logout.png);
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+}
+
+.logout:hover {
+  border-bottom: 0;
+}
+/* HEADER END*/
+
+.close {
+  display: inline-block;
+  float: right;
+  opacity: 1;
+  position: relative;
+  margin-left: 2px;
+  top: 3px;
+  background-image: url(../img/close.png);
+  background-repeat: no-repeat;
+  background-size: 10px 10px;
+  background-position: 4px 4px;
+  border-radius: 50%;
+  border: 1px solid #B22F2F;
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.close:hover {
+  cursor: pointer;
+  border-radius: 50%;
+  opacity: 1;
+  background-color: #B22F2F;
+  text-decoration: none;
+}
+
+.panel-body {
+  border: 1px solid #A9A9A4;
+  border-top: 0px;
+  background-color: #EFEFEF;
+  padding: 5px;
+}
+
+.panel-body a {
+  font-size: 18px;
+  color: #5C5C5C;
+  display: block;
+  margin: 1px 0;
+  border-bottom: 1px solid #A9A9A4;
+  padding: 4px 2px;
+}
+
+.panel-body a:first-child {
+  padding-top: 0;
+}
+
+.panel-body a:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.panel-body a:hover {
+  background-color: #B8B8B8;
+}
+
+.panel-title {
+  background-color: #63B175;
+  height: 30px;
+  font-size: 20px;
+}
+
+.panel-title-big {
+  background-color: #0E8167;
+  height: 40px;
+  font-size: 20px;
+  line-height: 40px;
+  color: #fff;
+  padding: 0 5px;
+}
+
+.title {
+  position: absolute;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #308042;
+  color: #fff;
+}
+
+.panel-title-big .add{
+  margin-top: 10px;
+}
+
+.panel-title>.close{
+  top: 0;
+  margin: 5px;
+}
+
+.add {
+  position: relative;
+  float: right;
+  background-color: #FFDD00;
+  border-radius: 50%;
+  padding: 10px;
+  margin-top: 5px;
+  background-image: url(../img/add.png);
+  background-repeat: no-repeat;
+  background-size: 14px 14px;
+  background-position: 3px 3px;
+}
+
+.add:hover {
+  background-color: #C7AC00;
+  cursor: pointer;
+}
+
+.wrapper {
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  min-width: 960px;
+  min-height: 100%;
+  padding: 0 12%;
+  background-color: #EFEFEF;
+}
+
+.row {
+  margin-bottom: 30px;
+}
+
+.container-fluid {
+  padding-top: 20px;
+  background-color: #fff;
+  min-height: 100%;
+}

@@ -1,0 +1,116 @@
+button {
+  font-size: 20px;
+  background-color: #EFEFEF;
+  border: 3px solid #63B175;
+  padding: 0 5px;
+}
+
+button:hover {
+  background-color: #B8B8B8;
+}
+
+.project {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #AEAEAE;
+}
+
+.project h2{
+  font-size: 35px;
+}
+
+.project h3 {
+  padding-left: 10px;
+}
+
+.project p {
+  text-align: justify;
+  padding: 10px;
+}
+
+.search .panel-body {
+  padding-right: 90px;
+}
+
+.search input {
+  padding: 1px;
+  border: 1px solid #A9A9A9;
+  width: 100%;
+  font-size: 20px;
+}
+
+.search-button {
+  position: absolute;
+  top: 44px;
+  right: 20px;
+}
+
+.create-project {
+  padding: 30px;
+  background-image: url(../img/plus-outline.png);
+  background-size: contain;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-color: #EFEFEF;
+  margin-top: 10px;
+  display: inline-block;
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+.create-project:hover {
+  cursor: pointer;
+  background-color: #A9A9A4;
+}
+
+.create-panel {
+  display: none;
+  position: fixed;
+  top: 65px;
+  left: 30%;
+  width: 40%;
+}
+
+.create-panel .panel-body {
+  padding-bottom: 50px;
+}
+
+.create-panel .panel-title {
+  padding-left: 8px;
+  font-weight: 600px
+}
+
+.create-panel input, .create-panel textarea {
+  width: 100%;
+  border: 1px solid #A9A9A4;
+  font-size: 20px;
+  padding: 4px;
+}
+
+.create-panel input[name="position"] {
+  margin-top: -1px;
+}
+
+.create-panel textarea {
+  height: 300px;
+  margin-top: -1px;
+  resize: none;
+}
+
+.create-panel button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.create-panel button:disabled {
+  background-color: #EFEFEF;
+}
+
+.status {
+  padding-right: 80px;
+  position: absolute;
+  bottom: 5px;
+  left: 15px;
+  font-size: 16px;
+}

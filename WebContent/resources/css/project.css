@@ -1,0 +1,312 @@
+button {
+  background-color: #EFEFEF;
+  padding: 0 10px;
+  font-size: 20px;
+  border: 3px solid #63B175;
+}
+
+button:hover {
+  background-color: #B8B8B8;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+  padding: 5px;
+  font-size: 20px;
+  border: 1px solid #A9A9A4;
+}
+
+input[type=text], input[type="password"], textarea {
+	border: 1px solid #A9A9A4;
+	padding: 3px 5px;
+}
+
+textarea {
+	resize: none;
+}
+
+.info p{
+  font-size: 16px;
+  text-align: justify;
+}
+
+.info .creator {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.positions>div {
+  margin-bottom: 10px;
+}
+
+.participants {
+  margin-top: 10px;
+}
+
+.participants .panel-body {
+  padding: 0px;
+}
+
+.participants a {
+  display: inline-block;
+  font-size: 20px;
+  border: 0px;
+  border-radius: 0;
+}
+
+.user p{
+  font-weight: 600;
+  padding: 0 5px;
+  border-top: 1px solid #B8B8B8;
+  margin: 0;
+}
+
+.user .active{
+  border-top: 1px solid #B8B8B8;
+}
+
+.user-positions {
+  display: none;
+}
+
+.user-positions a{
+  margin: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  border-top: 1px solid #B8B8B8;
+  background-color: #fff;
+  padding-left: 20px;
+  display: block;
+}
+
+.reveal {
+  position: absolute;
+  right: 20px;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 50%;
+  border: 1px solid #686868;
+  background-image: url(../img/reveal.png);
+  background-size: 14px 14px;
+  background-position: 3px 4px;
+  background-repeat: no-repeat;
+}
+
+.reveal:hover {
+  cursor: pointer;
+  background-color: #686868;
+  background-image: url(../img/reveal-white.png);
+}
+
+.user .cover {
+  position: absolute;
+  right: 20px;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 50%;
+  border: 1px solid #686868;
+  background-image: url(../img/cover.png);
+  background-size: 14px 14px;
+  background-position: 3px 3px;
+  background-repeat: no-repeat;
+}
+
+.cover:hover {
+  cursor: pointer;
+  background-color: #686868;
+  background-image: url(../img/cover-white.png);
+}
+
+.add-chatroom {
+  display: none;
+  opacity: 1;
+  width: 30%;
+  position: fixed;
+  left: 35%;
+  top: 30%;
+  height: 150px;
+}
+
+.add-chatroom .panel-body {
+  padding-right: 80px;
+}
+
+.add-chatroom input {
+  width: 100%;
+  font-size: 20px;
+}
+
+.add-chatroom button {
+  position: absolute;
+  right: 5px;
+  top: 35px;
+  font-size: 20px;
+  margin-top: -1px;
+  float: right;
+  padding: 0 10px;
+  width: auto;
+  border: 3px solid #308042;
+  background: #EFEFEF;
+}
+
+.add-chatroom button:hover {
+  background-color: #B8B8B8;
+}
+
+.add-chatroom button:active {
+  background-color: #EFEFEF;
+}
+
+.create-position {
+  display: none;
+  opacity: 1;
+  width: 30%;
+  position: fixed;
+  left: 35%;
+  top: 10%;
+  height: 150px;
+}
+
+.create-position input {
+  width: 100%;
+  font-size: 20px;
+  margin-bottom: -1px;
+}
+
+.create-position textarea {
+  width: 100%;
+  min-height: 100px;
+  font-size: 20px;
+  margin-bottom: -1px;
+}
+
+.create-position button {
+  font-size: 20px;
+  margin-top: 10px;
+  padding: 0 10px;
+  width: auto;
+  border: 3px solid #308042;
+  background: #EFEFEF;
+}
+
+.create-position button:hover {
+  background-color: #B8B8B8;
+}
+
+.create-position button:active {
+  background-color: #EFEFEF;
+}
+
+.tag-block {
+  margin-top: -6px;
+  position: absolute;
+  width: 100%;
+  padding-right: 12px;
+}
+
+.create-position .add-button {
+  position: absolute;
+  right: 12px;
+  top: 1px;
+  font-size: 20px;
+  margin-top: -1px;
+  padding: 1px 10px;
+  width: auto;
+  border: 3px solid #308042;
+  background: #EFEFEF;
+}
+
+.similar-tags {
+  position: absolute;
+  z-index: 1000;
+  width: 100%;
+  padding-right: 68px;
+
+}
+
+.similar-tags p:first-child {
+  margin-top: 1px;
+}
+
+.similarTag {
+  position: relative;
+  width: 100%;
+  background-color: #fff;
+  margin-right: 75px;
+  margin: 0;
+  border: 1px solid;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 3px;
+  border-top: 0px;
+}
+
+.similarTag:hover {
+  cursor: pointer;
+  background-color: #B8B8B8;
+}
+
+.added-tags {
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.added-tags>div {
+  margin-top: 15px;
+  margin-left: 2px;
+  display: inline-block;
+  font-size: 18px;
+  border-radius: 15px;
+  border: 1px solid #61AE73;
+  padding: 0 4px;
+}
+
+.edit {
+	display: inline-block;
+	padding: 12px;
+	background-image: url(../img/edit.png);
+	background-size: contain;
+	margin-bottom: 15px;
+}
+
+.edit:hover {
+	cursor: pointer;
+}
+
+.edit-panel {
+  display: none;
+  position: fixed;
+  width: 40%;
+  left: 30%;
+  top: 75px;
+  z-index: 100;
+}
+
+.edit-panel .panel-body{
+  padding-bottom: 40px;
+}
+
+.edit-panel input {
+  border: 1px solid #A9A9A4;
+  width: 100%;
+  font-size: 20px;
+  padding: 0 5px;
+}
+
+.edit-panel textarea {
+  width: 100%;
+  height: 300px;
+  margin-top: -1px;
+}
+
+.edit-panel button {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.edit-panel .error {
+  font-size: 16px;
+  text-align: justify;
+}
