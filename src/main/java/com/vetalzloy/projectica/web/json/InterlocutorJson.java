@@ -24,8 +24,10 @@ public class InterlocutorJson implements Comparable<InterlocutorJson>{
 		User u = interlocutor.getInterlocutor();
 		String m = interlocutor.getLastDialogMessage().getText();
 		LocalDateTime d = interlocutor.getLastDialogMessage().getDate();
-		if(m.length() > MAX_LENGTH) 
+		if(m.length() > MAX_LENGTH) {
 			m = m.substring(0, MAX_LENGTH);
+			m += "...";
+		}
 		
 		String s = "";
 		if(! interlocutor.getLastDialogMessage().isRead()){
