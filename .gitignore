@@ -1,0 +1,7 @@
+.settings/**
+logs/**
+target/**
+**-private.properties
+**-deploy.properties
+.classpath
+.project
