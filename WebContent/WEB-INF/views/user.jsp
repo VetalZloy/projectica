@@ -42,7 +42,7 @@
             <c:if test='${currentUser}'>
               <span class="edit" onclick="openEditPanel()"></span>
             </c:if>
-            <c:if test='${!currentUser}'>
+            <c:if test='${!currentUser && securityUtil.isLoggedIn()}'>
               <a href='<c:url value="/dialogs/${user.username}" />' class="send-message"></a>
             </c:if>
           </h1>

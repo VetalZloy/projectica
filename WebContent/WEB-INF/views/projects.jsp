@@ -46,7 +46,9 @@
             <input type="text" name="search" placeholder="Project name...">
             <button class="search-button" onclick="search()">Search</button>
           </div>
-          <span class="create-project" onclick="openCreatePanel()" title="Create project"></span>
+          <c:if test="${securityUtil.isLoggedIn()}">
+          	<span class="create-project" onclick="openCreatePanel()" title="Create project"></span>
+          </c:if>
         </div>
       </div>
     </div>

@@ -4,6 +4,7 @@ import javax.websocket.EndpointConfig;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 /**
  * This class gives username of current user. 
@@ -11,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
  * @author VetalZloy
  *
  */
+@Service("securityUtil")
 public class SecurityUtil {
 	
 	/**
@@ -19,6 +21,16 @@ public class SecurityUtil {
 	 */
 	public static String getCurrentUsername(){
 		return SecurityContextHolder.getContext().getAuthentication().getName();
+	}
+	
+	/**
+	 * Checks whether current user is authorized
+	 * @return {@code true} if authorized, else {@code false}
+	 */
+	public static boolean isLoggedIn(){
+		if(getCurrentUsername().equals("anonymousUser"))
+			return false;
+		return true;
 	}
 	
 	/**
