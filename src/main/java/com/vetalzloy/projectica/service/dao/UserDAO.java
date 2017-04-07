@@ -70,7 +70,7 @@ public interface UserDAO {
 	void deleteUsersWithExpiredVerificationToken();
 	
 	/**
-	 * Deletes password token which beongs to {@code user}
+	 * Deletes password token which belongs to {@code user}
 	 * @param user - user who contain password token will be deleted
 	 */
 	void deletePasswordToken(User user);
