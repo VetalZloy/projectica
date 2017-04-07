@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.vetalzloy.projectica.service.UserService;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.UserAlreadyExistsException;
 import com.vetalzloy.projectica.util.SecurityUtil;
 import com.vetalzloy.projectica.web.form.RegistrationForm;
 import com.vetalzloy.projectica.web.validator.RegistrationValidator;
@@ -121,7 +122,7 @@ public class IndexController {
 			model.addAttribute("title", "Registration");
 			model.addAttribute("topic", "Registration complited");
 			return "info";
-		} catch (EntityNotFoundException e) {
+		} catch (EntityNotFoundException | UserAlreadyExistsException e) {
 			logger.warn("Error happened during confirming registration", e);
 			return "error";
 		}

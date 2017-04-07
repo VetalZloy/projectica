@@ -200,8 +200,10 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void activateByVerificationToken(String token) 
-				throws VerificationTokenNotFoundException, UserNotFoundException {
+	public synchronized void activateByVerificationToken(String token) 
+									throws VerificationTokenNotFoundException, 
+										   UserNotFoundException, 
+										   UserAlreadyExistsException {
 		logger.debug("Activating user by verificationToken = {}", token);
 		
 		User user = userDAO.getByVerificationToken(token);
@@ -209,11 +211,14 @@ public class UserServiceImpl implements UserService{
 		if(user == null)
 			throw new VerificationTokenNotFoundException("Verification token " + token + " not exist");
 		
+		if(user.isEnabled()) 
+			throw new UserAlreadyExistsException("User with verification token '" + token + "' is already activated");
+		
 		user.setEnabled(true);
 		userDAO.saveOrUpdate(user);
 		
 		//Send message from admin
-		dialogService.sendAfterRegistrationMessage(user.getUsername());		
+		dialogService.sendAfterRegistrationMessage(user.getUsername());
 		
 	}
 

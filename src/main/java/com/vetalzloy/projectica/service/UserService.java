@@ -118,11 +118,12 @@ public interface UserService {
 	/**
 	 * Retrieves user by {@code token} and makes him enabled.
 	 * @param token - verification token, created before
+	 * @throws UserAlreadyExistsException if user with such verification token is already enabled
 	 * @throws VerificationTokenNotFoundException if such {@code token} doesn't exist
 	 * @throws UserNotFoundException for detail look at 'see' section
 	 * @see com.vetalzloy.projectica.service.DialogService#sendAfterRegistrationMessage()
 	 */
-	void activateByVerificationToken(String token) throws EntityNotFoundException;
+	void activateByVerificationToken(String token) throws EntityNotFoundException, UserAlreadyExistsException;
 	
 	/**
 	 * Retrieve current user and, if it exists, create {@code UserJson} instance. Else throws exception
