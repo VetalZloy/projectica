@@ -67,7 +67,7 @@ public class DialogController {
 			model.addAttribute("interlocutors", interlocutors);
 			return "dialogs";
 		} catch (UserNotFoundException e) {
-			logger.warn("Error happened during retrieving interlocutors for user with username '{}'.", e);
+			logger.warn("Error happened during retrieving interlocutors for user with username.", e);
 			return "error";
 		}
 	}
