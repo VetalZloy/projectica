@@ -31,8 +31,7 @@ public class WebAppConfiguration extends WebMvcConfigurerAdapter {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
-		resolver.setExposedContextBeanNames("onlineUtil");
-		resolver.setExposedContextBeanNames("securityUtil");
+		resolver.setExposedContextBeanNames("onlineUtil", "securityUtil");
 		return resolver;
 	}
 	
