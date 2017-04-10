@@ -157,7 +157,7 @@ function getSimilarTags(){
 	  $(".update-button")[0].disabled = false;
 	  return true;
   }
-  if(! urlRegExp.test($("input[name='cv-link']")[0].value)){
+  if(! urlRegExp.test($("input[name='cv-link']").val())){
     $("input[name='cv-link']:first").next()[0].className = "invalid";
     $(".update-button")[0].disabled = true;
     return false;
