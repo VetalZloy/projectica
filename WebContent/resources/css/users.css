@@ -1,17 +1,6 @@
-button {
-  font-size: 20px;
-  background-color: #EFEFEF;
-  border: 3px solid #63B175;
-  padding: 0 5px;
-}
-
-button:hover {
-  background-color: #B8B8B8;
-}
-
 .user {
   position: relative;
-  padding: 10px 0;
+  padding: 10px 10px;
   border-bottom: 1px solid #AEAEAE;
 }
 
@@ -19,7 +8,7 @@ button:hover {
   position: relative;
   top: 8px;
   padding-left: 10px;
-  font-size: 35px;
+  font-size: 28px;
   font-weight: 600;
 }
 
@@ -40,24 +29,14 @@ button:hover {
 }
 
 .search .panel-body {
-  padding-bottom: 40px;
 }
 
 .search input {
-  padding: 3px 5px;
-  border: 1px solid #A9A9A9;
   width: 100%;
-  font-size: 20px;
 }
 
 .search input[name='tagName'] {
   margin-top: -1px;
-}
-
-.search-button {
-  position: absolute;
-  bottom: 5px;
-  right: 21px;
 }
 
 .add-tag-button {

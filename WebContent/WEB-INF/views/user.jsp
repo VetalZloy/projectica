@@ -13,6 +13,7 @@
   <title>${user.username}</title>
 
   <link rel="stylesheet" href='<c:url value="/css/bootstrap.css" />'>
+  <link rel="stylesheet" href='<c:url value="/css/base.css" />'>
   <link rel="stylesheet" href='<c:url value="/css/user.css" />'>
 </head>
 <body>
@@ -53,8 +54,8 @@
           </c:if>
         </div>
         <div class="right-side col-xs-4">
-          <div class="tags">
-            <div class="list-title">
+          <div class="tags panel">
+            <div class="panel-title-big">
           	  Tags <c:if test="${currentUser}"><span class="add" onclick="openTagAddPanel()"></span></c:if>
             </div>
             <div class="panel-body tag-list">
@@ -66,8 +67,8 @@
             </div>
           </div>
           <c:if test="${currentProjects.size() > 0}">
-          <div class="projects">
-            <div class="list-title">Current projects</div>
+          <div class="projects panel">
+            <div class="panel-title-big">Current projects</div>
             <div class="panel-body">
           	  <c:forEach items="${currentProjects}" var="project">
           	    <a href='<c:url value="/projects/${project.id}"/>'>${project.name}</a>
@@ -80,7 +81,7 @@
       <div class="row">
       	<div class="comments col-xs-7">
           <c:forEach items="${closedPositions}" var="position">
-          	<div class="comment">
+          	<div class="comment panel">
               <div class='list-title ${position.estimation ? "good" : "bad" }'>
               	<a href='<c:url value="/positions/${position.id}"/>'>${position.name}</a>
               	<span class="date">
@@ -91,22 +92,11 @@
             </div>
 		  </c:forEach>
         </div>
-        <!--<div class="comments col-xs-7">
-          <c:forEach items="${comments}" var="comment">
-          	<div class="comment">
-              <div class='list-title ${comment.estimation ? "good" : "bad" }'>
-              	<a href='<c:url value="/projects/${comment.project.id}"/>'>${comment.project.name}</a>
-              	<span class="date">${comment.date }</span>
-              </div>
-              <div class="panel-body">${comment.text}</div>
-            </div>
-		  </c:forEach>
-        </div>  -->
       </div>
     </div>
-    <div class="edit-panel">
+    <div class="edit-panel panel">
       <div class="panel-title">
-        <span class="title" onclick="update()">UPDATE</span>
+        UPDATE
         <span class="close" onclick="closeEditPanel()"></span>
       </div>
       <div class="panel-body edit-body">
@@ -115,20 +105,26 @@
         <input type="text" name="name" placeholder="Name" value="${user.name}"><span class="valid"></span><br>
         <input type="text" name="surname" placeholder="Surname" value="${user.surname}"><span class="valid"></span><br>
         <input type="text" name="cv-link" placeholder="CV link" value="${user.cvLink}"><span class="valid"></span><br>
-        <button class="update-button" onclick="update()">Update</button>
+        <p class="button-wrapper">
+          <button class="update-button" onclick="update()">Update</button>
+        </p>
       </div>
     </div>
-    <div class="tag-add-panel">
+    <div class="tag-add-panel panel">
       <div class="panel-title">
-        <span class="title" onclick="addTagWrapper()">Add tag</span><span class="close" onclick="closeTagAddPanel()"></span>
+        Add tag<span class="close" onclick="closeTagAddPanel()"></span>
       </div>
-      <div class="panel-body add-body">
-        <input type="text" name="tagName" autofocus>
-        <button class="add-button" onclick="addTagWrapper()">Add</button>
+      <div class="panel-body">
+        <input type="text" name="tagName" placeholder="Tag" autofocus>
+        <div class="similar-tags"></div>
+        <p class="button-wrapper">
+          <button class="add-button" onclick="addTagWrapper()">Add</button>
+        </p>
       </div>
     </div>
   </div>
 
+  <script src='<c:url value="/js/jquery.js" />'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src='<c:url value="/js/base.js" />'></script>
   <script src='<c:url value="/js/user.js" />'></script>

@@ -1,109 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:300&subset=cyrillic-ext,latin-ext');
 
-* {
-  margin: 0px;
-  padding: 0px;
-}
-
-a {
-  text-decoration: none;
-}
-
-a:hover, a:focus {
-  text-decoration: none;
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  background-color: #fff;
-  color: #5C5C5C;
-}
-
-h1 {
-  margin: 10px 0;
-  font-size: 32px;
-  font-weight: 100;
-}
-
-/* HEADER BEGIN*/
-header * {
-  display: inline;
-}
-
-header {
-  position: absolute;
-  opacity: 1;
-  z-index: 100;
-  background-color: #63B175;
-  width: 100%;
-  padding: 0 12%;
-  height: 55px;
-  min-width: 960px;
-  border-bottom: 1px solid;
-}
-
-.logo {
-  background-image: url(../img/logo.png);
-  background-repeat: no-repeat;
-  position: absolute;
-  color: #000;
-  background-size: cover;
-  border-radius: 50%;
-  border: 1px solid;
-  height: 50px;
-  width: 50px;
-  margin-top: 3px;
-}
-
-.logo:hover {
-  color: #000;
-}
-
-header li a {
-  position: relative;
-  height: 100%;
-  font-size: 25px;
-  line-height: 55px;
-  /*top: 50%;
-  margin-top: -0.625em;*/
-  list-style-type: none;
-  float: right;
-  margin-right: 40px;
-  text-transform: uppercase;
-  color: #5C5C5C;
-}
-
-header li a:hover {
-  color: #5C5C5C;
-  border-bottom: 3px solid;
-}
-
-.new-messages {
-  position: absolute;
-  width: 22px;
-  background-color: #FFDD00;
-  font-size: 15px;
-  line-height: 22px;
-  text-align: center;
-  border-radius: 50%;
-  font-weight: 600;
-  top: 8px;
-}
-
-.logout {
-  top: 17px;
-  margin-right: 0px;
-  background-image: url(../img/logout.png);
-  background-repeat: no-repeat;
-  width: 20px;
-  height: 20px;
-  background-size: contain;
-}
-
-.logout:hover {
-  border-bottom: 0;
-}
-
+/* HEADER BEGIN */
 .github {
   position: absolute;
   padding: 13px;
@@ -132,24 +29,6 @@ header li a:hover {
   top: 13px;
 }
 /* HEADER END*/
-
-.panel-body {
-  border: 1px solid #A9A9A4;
-  border-top: 0px;
-  background-color: #EFEFEF;
-  padding: 5px;
-}
-
-.panel-title {
-  background-color: #63B175;
-  height: 30px;
-  font-size: 20px;
-}
-
-.panel-title>.close{
-  top: 0;
-  margin: 5px;
-}
 
 .wrapper {
   position: absolute;
@@ -229,7 +108,7 @@ header li a:hover {
   top: 25px;
   font-size: 25px;
   color: #000;
-  border: 3px solid #61AE73;
+  border: 3px solid #27BDCC;
   padding: 5px;
   color: #5C5C5C;
 }
@@ -246,11 +125,16 @@ header li a:hover {
   font-size: 18px;
 }
 
-.list-title {
+.tags .panel-body {
   padding: 5px;
-  color: #fff;
-  background-color: #0E8167;
-  font-size: 20px;
+}
+
+.tags .panel-body div {
+  display: inline-block;
+  border-radius: 15px;
+  border: 1px solid #61AE73;
+  padding: 0 4px;
+  margin: 1px 0;
 }
 
 .add {
@@ -269,15 +153,6 @@ header li a:hover {
 .add:hover {
   background-color: #C7AC00;
   cursor: pointer;
-}
-
-.tag-list div {
-  display: inline-block;
-  //background-color: #BEC5FE;
-  border-radius: 15px;
-  border: 1px solid #61AE73;
-  padding: 0 4px;
-  margin: 1px 0;
 }
 
 .close {
@@ -342,7 +217,7 @@ header li a:hover {
 }
 
 .projects .panel-body {
-  padding: 0;
+  padding: 5px;
 }
 
 .projects a {
@@ -388,26 +263,22 @@ header li a:hover {
 }
 
 .edit-body {
-  padding-bottom: 45px;
-  padding-right: 30px;
+  border: 1px solid #A9A9A4;
+  border-top: 0;
 }
 
 .edit-body input {
-  display: inline-block;
-  font-size: 20px;
   width: 100%;
-  margin-top: -1px;
-  padding: 3px;
 }
 
 .edit-body .valid, .invalid {
   position: absolute;
   display: inline-block;
   margin-top: 8px;
-  margin-left: 5px;
+  margin-left: -22px;
   float: right;
   border-radius: 50%;
-  padding: 10px;
+  padding: 8px;
 }
 
 .valid {
@@ -418,7 +289,7 @@ header li a:hover {
   background-color: #B22F2F;
 }
 
-.update-button {
+/*.update-button {
   float: right;
   top: 5px;
   font-size: 20px;
@@ -437,62 +308,43 @@ header li a:hover {
 .update-button:disabled {
   cursor: default;
   background-color: #EFEFEF;
-}
+}*/
 
 .tag-add-panel {
   display: none;
   position: fixed;
-  width: 25%;
+  width: 310px;
   left: 37%;
   top: 75px;
   z-index: 100;
 }
 
-.add-body {
-  padding-right: 75px;
-  height: 50px;
-  max-height: 50px;
+.tag-add-panel .panel-body {
+  border: 1px solid #A9A9A4;
+  border-top: 0;
 }
 
-.add-body input {
-  display: inline-block;
-  font-size: 20px;
+.tag-add-panel input {
   width: 100%;
-  margin-top: -1px;
-  padding: 3px;
 }
 
 .add-button {
-  float: right;
-  top: 34px;
-  right: 5px;
-  font-size: 20px;
-  text-transform: uppercase;
-  padding: 2px 10px;
+  width: 90px;
+  height: 28px;
+  margin-top: 10px;
+}
+
+.similar-tags {
+  background-color: #fff;
+  color: #6B6B6B;
+  font-size: 15px;
+  margin-top: -10px;
   font-weight: 600;
-  position: absolute;
-  border: 3px solid #308042;
-  background-color: #EFEFEF;
 }
 
-.add-button:hover {
-  background-color: #B8B8B8;
-}
-
-.add-button:disabled {
-  cursor: default;
-  background-color: #EFEFEF;
-}
-
-.similarTag {
-  position: relative;
-  width: 100%;
-  background-color: #EFEFEF;
-  margin-right: 75px;
-  margin: 0;
-  border: 1px solid;
-  font-size: 20px;
-  padding: 3px;
+.similarTag {	
+  padding: 5px;
+  border: 1px solid #A9A9A4;
   border-top: 0px;
 }
 

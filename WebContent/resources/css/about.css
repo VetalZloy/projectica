@@ -4,12 +4,13 @@
   margin-bottom: 30px;
 }
 
-h1, h2 {
+h1 {
   text-align: center;
 }
 
 h2 {
-  padding: 10px;
+  text-align: left;
+  padding: 10px 0;
 }
 
 .row ol, ul {
@@ -31,8 +32,9 @@ a {
 .note {
   background-color: #EFEFEF;
   padding: 5px 10px;
-  border:1px solid #A9A9A4;
-  margin-top: 10px;
+  //border:1px solid #A9A9A4;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .plus-button {

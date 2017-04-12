@@ -1,29 +1,6 @@
-button {
-  background-color: #EFEFEF;
-  padding: 0 10px;
-  font-size: 20px;
-  border: 3px solid #63B175;
-}
-
-button:hover {
-  background-color: #B8B8B8;
-}
-
 textarea {
   width: 100%;
   height: 200px;
-  padding: 5px;
-  font-size: 20px;
-  border: 1px solid #A9A9A4;
-}
-
-input[type=text], input[type="password"], textarea {
-	border: 1px solid #A9A9A4;
-	padding: 3px 5px;
-}
-
-textarea {
-	resize: none;
 }
 
 .info p{
@@ -121,108 +98,62 @@ textarea {
 .add-chatroom {
   display: none;
   opacity: 1;
-  width: 30%;
+  width: 310px;
   position: fixed;
-  left: 35%;
+  left: 50%;
+  margin-left: -155px;
   top: 30%;
-  height: 150px;
 }
 
 .add-chatroom .panel-body {
-  padding-right: 80px;
+  border: 1px solid #A9A9A4;
+  border-top: 0;
 }
 
 .add-chatroom input {
   width: 100%;
-  font-size: 20px;
-}
-
-.add-chatroom button {
-  position: absolute;
-  right: 5px;
-  top: 35px;
-  font-size: 20px;
-  margin-top: -1px;
-  float: right;
-  padding: 0 10px;
-  width: auto;
-  border: 3px solid #308042;
-  background: #EFEFEF;
-}
-
-.add-chatroom button:hover {
-  background-color: #B8B8B8;
-}
-
-.add-chatroom button:active {
-  background-color: #EFEFEF;
 }
 
 .create-position {
   display: none;
   opacity: 1;
-  width: 30%;
+  width: 310px;
   position: fixed;
-  left: 35%;
+  left: 50%;
+  margin-left: -155px;
   top: 10%;
-  height: 150px;
 }
 
 .create-position input {
   width: 100%;
-  font-size: 20px;
-  margin-bottom: -1px;
+  margin-bottom: 10px;
 }
 
 .create-position textarea {
   width: 100%;
   min-height: 100px;
-  font-size: 20px;
-  margin-bottom: -1px;
-}
-
-.create-position button {
-  font-size: 20px;
-  margin-top: 10px;
-  padding: 0 10px;
-  width: auto;
-  border: 3px solid #308042;
-  background: #EFEFEF;
-}
-
-.create-position button:hover {
-  background-color: #B8B8B8;
-}
-
-.create-position button:active {
-  background-color: #EFEFEF;
+  margin-bottom: 10px;
 }
 
 .tag-block {
-  margin-top: -6px;
-  position: absolute;
-  width: 100%;
-  padding-right: 12px;
+  position: relative;
 }
 
 .create-position .add-button {
   position: absolute;
-  right: 12px;
-  top: 1px;
-  font-size: 20px;
-  margin-top: -1px;
-  padding: 1px 10px;
-  width: auto;
-  border: 3px solid #308042;
-  background: #EFEFEF;
+  width: 51px;
+  height: 31px;
+  right: 0;
+}
+
+.create-position .button-wrapper {
+  margin-top: 10px;
 }
 
 .similar-tags {
-  position: absolute;
   z-index: 1000;
   width: 100%;
-  padding-right: 68px;
-
+  margin-top: -11px;
 }
 
 .similar-tags p:first-child {
@@ -230,16 +161,11 @@ textarea {
 }
 
 .similarTag {
-  position: relative;
   width: 100%;
-  background-color: #fff;
-  margin-right: 75px;
-  margin: 0;
-  border: 1px solid;
-  font-size: 20px;
+  border: 1px solid #A9A9A4;
   font-weight: 600;
-  padding: 3px;
   border-top: 0px;
+  padding: 5px;
 }
 
 .similarTag:hover {
@@ -248,8 +174,6 @@ textarea {
 }
 
 .added-tags {
-  margin-top: 25px;
-  margin-bottom: 20px;
 }
 
 .added-tags>div {
@@ -284,14 +208,10 @@ textarea {
 }
 
 .edit-panel .panel-body{
-  padding-bottom: 40px;
 }
 
 .edit-panel input {
-  border: 1px solid #A9A9A4;
   width: 100%;
-  font-size: 20px;
-  padding: 0 5px;
 }
 
 .edit-panel textarea {
@@ -301,9 +221,7 @@ textarea {
 }
 
 .edit-panel button {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
+  margin-top: 10px
 }
 
 .edit-panel .error {

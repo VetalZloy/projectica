@@ -1,26 +1,7 @@
-button {
-  background-color: #EFEFEF;
-  padding: 0 10px;
-  font-size: 20px;
-  border: 3px solid #63B175;
-}
-
-button:hover {
-  background-color: #B8B8B8;
-}
-
 textarea {
   width: 100%;
   height: 200px;
-  padding: 5px;
-  font-size: 20px;
-  border: 1px solid #A9A9A4;
-}
-
-@-moz-document url-prefix() {
-    textarea {
-        margin-bottom: 5px;
-    }
+  margin-bottom: 10px;
 }
 
 p {
@@ -116,21 +97,19 @@ h1 {
 }
 
 .applicants p{	
-  font-size: 20px;
-  padding: 5px;
+  font-size: 15px;
 }
 
 .applicants a{	
   display: inline-block;
+  color: #27BDCC;
   border-radius: 0;
   border: 0;
-  color: #337AB7;
   font-size: 20px;
 }
 
 .applicant a:hover {
   background-color: #EFEFEF;
-  color: #23527c;
 }
 
 .applicants img {
@@ -173,7 +152,7 @@ h1 {
 }
 
 .user-additions {
-  font-size: 16px;
+  padding: 5px;
   text-align: justify;
 }
 
@@ -183,11 +162,16 @@ h1 {
 
 .like {
   float: right;
+  border: 2px solid #63B175;
+  background-color: #efefef;
+  color: #000;
 }
 
 .dislike {
   float: left;
-  border-color: #B22F2F;
+  border: 2px solid #B22F2F;
+  background-color: #efefef;
+  color: #000;
 }
 
 .request button {
@@ -228,48 +212,42 @@ h1 {
 .tag-add-panel {
   display: none;
   position: fixed;
-  width: 25%;
-  left: 37%;
+  width: 310px;
+  left: 50%;
+  margin-left: -155px;
   top: 75px;
   z-index: 100;
 }
 
 .tag-add-panel input {
-  border: 1px solid #A9A9A4;
   width: 100%;
-  font-size: 20px;
-  padding: 0 5px;
 }
 
 .tag-add-panel button {
-  position: absolute;
-  right: 5px;
-  top: 34px;
 }
 
 .tag-add-panel .panel-body {
-  padding-right: 70px;
+}
+
+.tag-add-panel .button-wrapper {
+  margin-top: 10px;
 }
 
 .similar-tags {
-  position: absolute;
+  position: relative;
   z-index: 1000;
   width: 100%;
-  padding-right: 77px;
-
+  margin-top: -10px;
 }
 
 .similar-tags p{
-  position: relative;
   width: 100%;
-  background-color: #fff;
-  margin-right: 75px;
-  margin: 0;
   border: 1px solid #A9A9A4;
-  font-size: 20px;
   font-weight: 600;
-  padding: 3px;
+  padding: 5px;
   border-top: 0px;
+  font-size: 15px;
+  background-color: #fff;
 }
 
 .similar-tags p:hover {
@@ -298,14 +276,10 @@ h1 {
 }
 
 .edit-panel .panel-body{
-  padding-bottom: 40px;
 }
 
 .edit-panel input {
-  border: 1px solid #A9A9A4;
   width: 100%;
-  font-size: 20px;
-  padding: 0 5px;
 }
 
 .edit-panel textarea {
@@ -313,13 +287,6 @@ h1 {
   height: 300px;
   margin-top: -1px;
 }
-
-.edit-panel button {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-}
-
 .edit-panel .error {
   font-size: 16px;
   text-align: justify;

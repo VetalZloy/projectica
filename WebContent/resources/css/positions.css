@@ -1,21 +1,15 @@
-button {
-  font-size: 20px;
-  background-color: #EFEFEF;
-  border: 3px solid #63B175;
-  padding: 0 5px;
-}
-
-button:hover {
-  background-color: #B8B8B8;
+input[type="text"] {
+  width: 100%;
 }
 
 .vacancy {
-  padding-bottom: 10px;
+  padding: 10px;
   border-bottom: 1px solid #AEAEAE;
 }
 
-.vacancy h2{
-  font-size: 35px;
+.vacancy h2 a{
+  font-size: 28px;
+  color: #27BDCC;
 }
 
 .vacancy .project-link {
@@ -30,25 +24,14 @@ button:hover {
   padding: 10px;
 }
 
-.search .panel-body {
-  padding-bottom: 40px;
+.search .search-button {
+  text-align: center;
 }
 
-.search input {
-  padding: 3px 5px;
-  border: 1px solid #A9A9A9;
-  width: 100%;
-  font-size: 20px;
-}
-
-.search input[name='tagName'] {
-  margin-top: -1px;
-}
-
-.search-button {
-  position: absolute;
-  bottom: 5px;
-  right: 20px;
+.search button {
+  margin-top: 10px;
+  height: 28px;
+  width: 90px;
 }
 
 .add-tag-button {
@@ -58,17 +41,19 @@ button:hover {
   font-size: 18px;
 }
 
+input[name="tagName"] {
+  margin-bottom: 0;
+}
+
 .similar-tags {
   z-index: 100;
   width: 100%;
-  position: absolute;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 600;
-  padding-right: 42px;
 }
 
 .similar-tags p {
-  padding: 3px 5px;
+  padding: 5px;
   background-color: #fff;
   border: 1px solid #A9A9A4;
   border-top: 0;

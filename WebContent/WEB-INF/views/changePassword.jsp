@@ -30,7 +30,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-xs-6 col-xs-offset-3">
-          <div class="change-password-panel">
+          <div class="change-password-panel panel">
             <div class="panel-title-big">Change password</div>
             <div class="panel-body">
               <form action="" method="POST">

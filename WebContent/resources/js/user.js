@@ -137,7 +137,8 @@ function addTag(newTag){
 
 function getSimilarTags(){
   var tag = $("input[name='tagName']")[0].value;
-  $('.add-body p').remove();
+  $('.similarTag').remove();
+  if(tag.trim() == "") return;
   
   $.ajax({
     url: getDomainPath() + '/tag/' + tag,
@@ -145,7 +146,7 @@ function getSimilarTags(){
 	type: 'GET',
 	success: function(result) {
 	  for(var i = 0; i < result.length; i++)
-	    $('.add-body').append('<p class="similarTag" onclick="addTag(this.innerText)">' + result[i] + '</p>');
+	    $('.similar-tags').append('<p class="similarTag" onclick="addTag(this.innerText)">' + result[i] + '</p>');
 	}
   });
   

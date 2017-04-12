@@ -41,10 +41,14 @@
           </c:forEach>
         </div>
         <div class="col-xs-5 col-xs-offset-1 search">
-          <div class="panel-title-big">Search</div>
-          <div class="panel-body">
-            <input type="text" name="search" placeholder="Project name...">
-            <button class="search-button" onclick="search()">Search</button>
+          <div class="panel">
+          	<div class="panel-title-big">Search</div>
+          	<div class="panel-body">
+              <input type="text" name="search" placeholder="Project name">
+              <p class="button-wrapper">
+                <button class="search-button" onclick="search()">Search</button>
+              </p>
+          	</div>
           </div>
           <c:if test="${securityUtil.isLoggedIn()}">
           	<span class="create-project" onclick="openCreatePanel()" title="Create project"></span>
@@ -54,7 +58,7 @@
     </div>
   </div>
 
-  <div class="create-panel">
+  <div class="create-panel panel">
     <div class="panel-title">Create your project <span class="close"></span></div>
     <div class="panel-body">
    	  <form method="post">
@@ -62,11 +66,14 @@
         <input type="text" name="position" placeholder="Your position...">
         <textarea name="description" placeholder="Description..."></textarea>
         <p class="status"></p>
-        <button type="submit" onclick="create()" disabled>Create</button>
+        <p class="button-wrapper">
+          <button type="submit" onclick="create()" disabled>Create</button>
+        </p>        
       </form>
     </div>
   </div>
 
+  <script src='<c:url value="/js/jquery.js" />'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src='<c:url value="js/base.js" />'></script>
   <script src='<c:url value="js/projects.js" />'></script>

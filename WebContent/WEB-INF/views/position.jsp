@@ -52,7 +52,7 @@
           	<p>Firing date: ${firingDate}</p>
           </c:if>
           <c:if test='${status eq "Free" || status eq "Requested"}'>
-            <div class="description">
+            <div class="description panel">
               <div class="panel-title-big">Description</div>
               <div class="panel-body">
                 <p class="description">${position.description}</p>
@@ -60,8 +60,8 @@
             </div>
           </c:if>
         </div>
-        <div class="col-xs-6">
-          <div class="tags">
+        <div class="col-xs-4 col-xs-offset-2">
+          <div class="tags panel">
             <div class="panel-title-big">
               Tags 
               <c:if test="${creator}">
@@ -80,9 +80,9 @@
             </div>
           </div>
           <c:if test='${status eq "Closed"}'>
-	          <div class="comment">
+	          <div class="comment panel">
 	            <div class='panel-title-big ${position.estimation ? "good" : "bad"}'>
-	              <span class="title">Comment</span>
+	              Comment
 	            </div>
 	            <div class="panel-body">
 	              <p>${position.comment}</p>
@@ -90,7 +90,7 @@
 	          </div>
           </c:if>
           <c:if test='${status eq "Free" && !creator}'>
-            <div class="request">
+            <div class="request panel">
               <div class="panel-title-big">Create request</div>
               <div class="panel-body">
                 <textarea placeholder="Your additions..."></textarea>
@@ -99,17 +99,17 @@
             </div>
           </c:if>
           <c:if test='${status eq "Active" && creator && !creatorPosition}'>
-            <div class="close-position">
+            <div class="close-position panel">
               <div class="panel-title-big">Close position</div>
               <div class="panel-body">
-                <textarea name="comment" placeholder="Comment..."></textarea>
+                <textarea name="comment" placeholder="Comment"></textarea>
                 <button class="like" onclick="closePosition('true')">Close</button>
                 <button class="dislike" onclick="closePosition('false')">Close</button>
               </div>
             </div>
           </c:if>
           <c:if test='${status eq "Free" && creator}'>
-            <div class="applicants">
+            <div class="applicants panel">
               <div class="panel-title-big">Applicants</div>
               <div class="panel-body">              	
           		<c:if test="${position.requests.size() == 0}">
@@ -134,27 +134,32 @@
     </div>
   </div>
 
-  <div class="edit-panel">
+  <div class="edit-panel panel">
     <div class="panel-title">
-      <span class="title">Edit</span>
+      Edit
       <span class="close" onclick="closeEditPanel()"></span>
     </div>
     <div class="panel-body">
-      <input type="text" name="name" value="${position.name}" placeholder="Posiiton name..."/>
-      <textarea name="description" placeholder="Description...">${position.description}</textarea>
+      <input type="text" name="name" value="${position.name}" placeholder="Posiiton name"/>
+      <textarea name="description" placeholder="Description">${position.description}</textarea>
       <p class="error"></p>
-      <button type="button" name="button" onclick="edit()">Edit</button>
+      <p class="button-wrapper">
+        <button type="button" name="button" onclick="edit()">Edit</button>
+      </p>      
     </div>
   </div>
 
-  <div class="tag-add-panel">
+  <div class="tag-add-panel panel">
     <div class="panel-title">
-      <span class="title" onclick="addTagWrapper()">Add tag</span><span class="close" onclick="closeTagAddPanel()"></span>
+      Add tag
+	  <span class="close" onclick="closeTagAddPanel()"></span>
     </div>
     <div class="panel-body">
-      <input type="text" name="tagName" autofocus>
-      <button class="add-button" onclick="addTagWrapper()">Add</button>
+      <input type="text" name="tagName" placeholder="Tag" autofocus>
       <div class="similar-tags"></div>
+      <p class="button-wrapper">
+        <button class="add-button" onclick="addTagWrapper()">Add</button>
+      </p>
     </div>
   </div>
 

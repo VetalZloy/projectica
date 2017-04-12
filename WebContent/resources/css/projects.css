@@ -1,21 +1,11 @@
-button {
-  font-size: 20px;
-  background-color: #EFEFEF;
-  border: 3px solid #63B175;
-  padding: 0 5px;
-}
-
-button:hover {
-  background-color: #B8B8B8;
-}
-
 .project {
-  padding-bottom: 10px;
+  padding: 10px;
   border-bottom: 1px solid #AEAEAE;
 }
 
-.project h2{
-  font-size: 35px;
+.project h2 a{
+  font-size: 28px;
+  color: #27BDCC;
 }
 
 .project h3 {
@@ -28,20 +18,25 @@ button:hover {
 }
 
 .search .panel-body {
-  padding-right: 90px;
+
 }
 
 .search input {
-  padding: 1px;
-  border: 1px solid #A9A9A9;
+  border: 0;
+  color: #6B6B6B;
+  padding: 5px;
   width: 100%;
-  font-size: 20px;
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.search .button-wrapper {
+  margin-top: 10px;
 }
 
 .search-button {
-  position: absolute;
-  top: 44px;
-  right: 20px;
+  height: 28px;
+  width: 90px;
 }
 
 .create-project {
@@ -56,6 +51,7 @@ button:hover {
   float: right;
   margin-top: 10px;
   margin-right: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
 .create-project:hover {
@@ -72,7 +68,8 @@ button:hover {
 }
 
 .create-panel .panel-body {
-  padding-bottom: 50px;
+  border: 1px solid #A9A9A4;
+  border-top: 0;
 }
 
 .create-panel .panel-title {
@@ -82,9 +79,6 @@ button:hover {
 
 .create-panel input, .create-panel textarea {
   width: 100%;
-  border: 1px solid #A9A9A4;
-  font-size: 20px;
-  padding: 4px;
 }
 
 .create-panel input[name="position"] {
@@ -94,17 +88,19 @@ button:hover {
 .create-panel textarea {
   height: 300px;
   margin-top: -1px;
-  resize: none;
 }
 
 .create-panel button {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
+  height: 28px;
+  width: 90px;
+  margin-top: 10px;
 }
 
 .create-panel button:disabled {
+  cursor: default;
   background-color: #EFEFEF;
+  border: 2px solid #374467;
+  color: #000;
 }
 
 .status {

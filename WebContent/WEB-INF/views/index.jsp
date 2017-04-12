@@ -34,66 +34,54 @@
     <a class="about" href='<c:url value="/about" />'></a>
   </div>
 
-  <div class="log-in">
+  <div class="log-in panel">
     <div class="panel-title-big">Log in <span class="close" onclick="closeLogInPanel()"></span></div>
     <div class="panel-body">
       <p></p>
     	<!-- <c:if test="${param.logout != null}">YOU'VE BEEN LOGOUT SUCCESSFULLY</c:if> -->
       <form action='<c:url value="/login" />' method="POST">
-    	<input type="text" name="username" placeholder="Username ..."/><br/>
-    	<input type="password" name="password" placeholder="Password ..."/><br/>
+    	<input type="text" name="username" placeholder="Username"/><br/>
+    	<input type="password" name="password" placeholder="Password"/><br/>
     	<input id="remember-me" class="css-checkbox" type="checkbox" name="remember-me" checked/>
         <label for="remember-me" class="css-label">Remember me</label><br/>
     	  <!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-    	<input type="submit" value="LOG IN"/>
+    	<input type="submit" value="Log in"/>
         <a onclick="openResetPasswordPanel()">Forgot password</a>
       </form>
     </div>
   </div>
 
-  <div class="sign-up">
-    <div class="panel-title-big">Sign in <span class="close" onclick="closeSignInPanel()"></span></div>
+  <div class="sign-up panel">
+    <div class="panel-title-big">Sign up <span class="close" onclick="closeSignInPanel()"></span></div>
     <div class="panel-body">
       <form:form method="POST" commandName="registrationForm">
-		<form:input path="username" placeholder="Username..." /><span class="invalid"></span>	
-		<form:input path="email" placeholder="Email..." /><span class="invalid"></span>
-		<form:password path="password" placeholder="Password..." /><span class="invalid"></span>		
-		<form:password path="passwordConf" placeholder="Confirmation ..." /><span class="invalid"></span>		
-		<form:button disabled="">SIGN IN</form:button><br>
+		<form:input path="username" placeholder="Username" /><span class="invalid"></span>	
+		<form:input path="email" placeholder="Email" /><span class="invalid"></span>
+		<form:password path="password" placeholder="Password" /><span class="invalid"></span>		
+		<form:password path="passwordConf" placeholder="Confirmation" /><span class="invalid"></span>		
+		<form:button disabled="">Sign up</form:button><br>
 		<p><form:errors path="username" /></p>
         <p><form:errors path="email" /></p>
         <p><form:errors path="password" /></p>
         <p><form:errors path="passwordConf" /></p>
 	  </form:form>
-    
-      <!--  
-      <form action='<c:url value="/registration" />' method="post">
-        <input type="text" name="username" placeholder="Username ..."><span class="invalid"></span>
-        <input type="text" name="email" placeholder="Email ..."><span class="invalid"></span>
-        <input type="password" name="password" placeholder="Password ..."><span class="invalid"></span>
-        <input type="password" name="passwordConf" placeholder="Confirm ..."><span class="invalid"></span>
-        <input type="submit" name="submit" value="SIGN IN" disabled>
-        <form:form commandName="registrationForm">
-          <p><form:errors path="username" /></p>
-          <p><form:errors path="email" /></p>
-          <p><form:errors path="password" /></p>
-          <p><form:errors path="passwordConf" /></p>
-        </form:form>
-      </form>-->
     </div>
   </div>
 
-  <div class="reset-password">
+  <div class="reset-password panel">
     <div class="panel-title-big">Reset password <span class="close" onclick="closeResetPasswordPanel()"></span></div>
     <div class="panel-body">
       <form action='<c:url value="/reset-password" />' method="post">
         <input type="text" name="username" placeholder="Username ...">
-        <input type="submit" value="Reset">
+        <p><input type="submit" value="Reset"></p>
       </form>
     </div>
   </div>
+  
+  
+  <script src='<c:url value="/js/jquery.js" />'></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
   <script src='<c:url value="/js/index.js" />'></script>
 
 </body>

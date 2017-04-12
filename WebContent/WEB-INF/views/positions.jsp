@@ -41,19 +41,24 @@
           </c:forEach>
         </div>
         <div class="col-xs-5 col-xs-offset-1 search">
-          <div class="panel-title-big">Search</div>
-          <div class="panel-body">
-            <input type="text" name="search" placeholder="Position name...">
-            <input type="text" name="tagName" placeholder="Tag...">            
-            <button class="search-button" onclick="search()">Search</button>
-            <div class="similar-tags"></div>
-            <div class="added-tags"></div>
+          <div class="panel">
+            <div class="panel-title-big">Search</div>
+            <div class="panel-body">
+              <input type="text" name="search" placeholder="Position name">
+              <input type="text" name="tagName" placeholder="Tag">
+              <div class="similar-tags"></div>
+              <div class="added-tags"></div>
+              <p class="button-wrapper">
+                <button onclick="search()">Search</button>            
+              </p>
+          </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
+  <script src='<c:url value="/js/jquery.js" />'></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src='<c:url value="js/base.js" />'></script>
   <script src='<c:url value="js/positions.js" />'></script>

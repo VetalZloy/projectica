@@ -41,7 +41,7 @@
             Creator: 
             <a href='<c:url value="/users/${project.creator.username}"/>'>${project.creator.username}</a>
           </p>
-          <div class="participants">
+          <div class="participants panel">
             <div class="panel-title-big">Participants</div>
             <div class="panel-body">          	
           	  <c:forEach items="${participants}" var="entry">
@@ -62,7 +62,7 @@
         </div>
         <div class="positions col-xs-5 col-xs-offset-1">
           <c:if test="${creator || participant}">
-            <div class="chatrooms">
+            <div class="chatrooms panel">
               <div class="panel-title-big">
                 Chatrooms 
                 <c:if test="${creator}">
@@ -76,7 +76,7 @@
               </div>
             </div>
           </c:if>
-          <div class="free-positions">
+          <div class="free-positions panel">
             <div class="panel-title-big">
               Free positions <c:if test="${creator}"><span class="add" onclick="openCreatePositionPanel()"></span></c:if>
             </div>
@@ -86,7 +86,7 @@
 		 	  </c:forEach>
             </div>
           </div>
-          <div class="closed-positions">
+          <div class="closed-positions panel">
             <div class="panel-title-big">
               Closed positions
             </div>
@@ -101,45 +101,51 @@
     </div>
   </div>
 
-  <div class="add-chatroom">
+  <div class="add-chatroom panel">
     <div class="panel-title">
-      <span class="title">Add chatroom</span>
+      Add chatroom
       <span class="close" onclick="closeAddChatroomPanel()"></span>
     </div>
     <div class="panel-body">
       <input type="text" name="chatroomName" placeholder="New chatroom">
-      <button type="button" name="button" onclick="addChatroom()">Add</button>
+      <p class="button-wrapper">
+        <button type="button" name="button" onclick="addChatroom()">Add</button>
+      </p>      
     </div>
   </div>
 
-  <div class="create-position">
+  <div class="create-position panel">
     <div class="panel-title">
-      <span class="title">Add position</span>
+      Add position
       <span class="close" onclick="closeCreatePositionPanel()"></span>
     </div>
     <div class="panel-body">
-      <input type="text" name="positionName" placeholder="Position...">
-      <textarea name="position-description" placeholder="Description..."></textarea>
+      <input type="text" name="positionName" placeholder="Position">
+      <textarea name="position-description" placeholder="Description"></textarea>
       <div class="tag-block">
-        <input class="tag-input" type="text" name="tagName" placeholder="Tag... ">
+        <input class="tag-input" type="text" name="tagName" placeholder="Tag">
         <button class="add-button" type="button" name="button" onclick="addTagWrapper()">Add</button>
         <div class="similar-tags"></div>
       </div>
       <div class="added-tags"></div>
-      <button type="button" name="button" onclick="createPosition()">Create</button>
+      <p class="button-wrapper">
+        <button type="button" name="button" onclick="createPosition()">Create</button>
+      </p>      
     </div>
   </div>
   
-  <div class="edit-panel">
+  <div class="edit-panel panel">
     <div class="panel-title">
-      <span class="title">Edit</span>
+      Edit
       <span class="close" onclick="closeEditPanel()"></span>
     </div>
     <div class="panel-body">
       <input type="text" name="name" value="${project.name}" placeholder="Posiiton name..."/>
       <textarea name="description" placeholder="Description...">${project.description}</textarea>
       <p class="error"></p>
-      <button type="button" name="button" onclick="edit()">Edit</button>
+      <p class="button-wrapper">
+        <button type="button" name="button" onclick="edit()">Edit</button>
+      </p>
     </div>
   </div>
 

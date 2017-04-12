@@ -39,13 +39,17 @@
           </c:forEach>
         </div>
         <div class="col-xs-5 col-xs-offset-1 search">
-          <div class="panel-title-big">Search</div>
-          <div class="panel-body">
-            <input type="text" name="search" placeholder="Username...">
-            <input type="text" name="tagName" placeholder="Tag...">            
-            <button class="search-button" onclick="search()">Search</button>
-            <div class="similar-tags"></div>
-            <div class="added-tags"></div>
+          <div class="panel">
+            <div class="panel-title-big">Search</div>
+            <div class="panel-body">
+              <input type="text" name="search" placeholder="Username...">
+              <input type="text" name="tagName" placeholder="Tag...">
+              <div class="similar-tags"></div>          
+              <div class="added-tags"></div>
+              <p class="button-wrapper">
+                <button class="search-button" onclick="search()">Search</button>
+              </p>            
+            </div>
           </div>
         </div>
       </div>
