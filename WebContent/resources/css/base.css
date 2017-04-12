@@ -181,12 +181,14 @@ header li a:hover {
 }
 
 .panel {  
+  border-top: solid 4px #374467;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .panel-body {
   background-color: #EFEFEF;
   padding: 15px;
+  padding-top: 0;
 }
 
 .panel-body a {
@@ -221,14 +223,16 @@ header li a:hover {
 }
 
 .panel-title-big {
-  background-color: #374467;
+  background-color: #EFEFEF;
   height: 40px;
   font-size: 18px;
   line-height: 40px;
-  color: #fff;
+  color: #374467;
   padding: 0 5px;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
+  padding-left: 15px;
+  font-weight: 600;
 }
 
 .title {
