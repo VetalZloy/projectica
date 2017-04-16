@@ -159,11 +159,9 @@ public class DialogServiceImpl implements DialogService {
 
 	@Override
 	public int getUnreadMessagesAmount() throws UserNotFoundException {
-		//logging on trace level because it will be invoked very often
+		//no logging because it will be invoked very often
 		
 		String currentUsername = SecurityUtil.getCurrentUsername();
-		logger.trace("Getting amount of unread messages for user with username '{}'...",
-						currentUsername);
 		
 		User user = userService.getByUsername(currentUsername);
 		
@@ -174,16 +172,6 @@ public class DialogServiceImpl implements DialogService {
 										.map(m -> m.getReciever().getUsername())
 										.filter(u -> u.equals(currentUsername))
 										.count();
-		
-		user.getInterlocutors()
-			.stream()
-			.map(i -> i.getLastDialogMessage())
-			.filter(m -> !m.isRead())
-			.filter(m -> m.getReciever().getUsername().equals(currentUsername))
-			.forEach(System.out::println);
-		
-		logger.trace("Amount of unread messages for user with username '{}' is {}", 
-						currentUsername, unreadMessagesAmount);
 		
 		return (int) unreadMessagesAmount;
 	}

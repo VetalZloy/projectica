@@ -43,7 +43,7 @@ public class DialogController {
 	private UserService userService;
 	
 	@Autowired
-	private DialogService dialogMessageService;
+	private DialogService dialogService;
 	
 	@Autowired
 	private DialogMessagesEncoder encoder;
@@ -81,11 +81,9 @@ public class DialogController {
 	@RequestMapping(path="", method=RequestMethod.GET, produces="application/json")
 	public ResponseEntity<Integer> getUnreadMessagesAmount(){
 		
-		logger.debug("getUnreadMessagesAmount() method was invoked by user with username '{}'",
-						SecurityUtil.getCurrentUsername());
-		
+		// few logs because of frequency of invoking this method
 		try {
-			int unreadAmount = dialogMessageService.getUnreadMessagesAmount();
+			int unreadAmount = dialogService.getUnreadMessagesAmount();
 			return new ResponseEntity<Integer>(unreadAmount, HttpStatus.OK);
 		} catch (UserNotFoundException e) {
 			logger.warn("Unregistered user '{}' tried to get amount of unread dialog messages", 
@@ -144,7 +142,7 @@ public class DialogController {
 				currentUsername, interlocutor, earliestId);
 				
 		try {
-			List<DialogMessage> list = dialogMessageService.getPageBeforeEarliest(earliestId,
+			List<DialogMessage> list = dialogService.getPageBeforeEarliest(earliestId,
 																				  interlocutor);
 			String json = encoder.encode(new DialogMessagesWrapper(list));
 			return new ResponseEntity<>(json, HttpStatus.OK);
