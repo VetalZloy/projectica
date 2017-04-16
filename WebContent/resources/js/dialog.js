@@ -102,7 +102,7 @@ function processMessage(message){
 	  						 '<div class="right-side">'+
 	  						   '<a href='+userUrl+' class="username">'+message.senderUsername+'</a>'+
 	  						   '<span class="date">'+hours+':'+minutes+'</span>'+
-	  						   '<div class="text"><p>'+message.text+'</p></div>'+
+	  						   '<div class="text">'+message.text.replace(/\n/g, "<br>")+'</div>'+
 	  						 '</div>'+
 	  					    '</div>';
 	  $('.scroll-pane .mCSB_container').append(appendableBlock);
