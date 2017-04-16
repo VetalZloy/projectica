@@ -7,7 +7,7 @@
 
 a {
   text-decoration: none;
-  color: #27BDCC;
+  color: #16ADC1;
 }
 
 a:hover, a:focus {
@@ -29,7 +29,7 @@ h1 {
 button {
   font-size: 15px;
   line-height: 15px;
-  background-color: /*#FF6F6C #374467*/#27BDCC;
+  background-color: /*#FF6F6C #374467*/#16ADC1;
   color: #fff;
   border: 0;
   padding: 5px;
@@ -76,7 +76,7 @@ header * {
 header {
   position: absolute;
   opacity: 1;
-  z-index: 100;
+  z-index: 5;
   background-color: #374467;
   width: 100%;
   padding: 0 12%;
@@ -111,8 +111,6 @@ header .active a:hover {
   position: absolute;
   color: #000;
   background-size: cover;
-  border-radius: 50%;
-  border: 1px solid;
   height: 45px;
   width: 45px;
   margin-top: 6px;
@@ -124,7 +122,7 @@ header .active a:hover {
 
 header li a {
   position: relative;
-  height: 100%;
+  height: 85%;
   font-size: 18px;
   font-weight: 100;
   line-height: 55px;
@@ -182,7 +180,6 @@ header li a:hover {
 
 .panel {  
   border-top: solid 4px #374467;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
 .panel-body {
@@ -235,17 +232,6 @@ header li a:hover {
   font-weight: 600;
 }
 
-.title {
-  position: absolute;
-  height: 30px;
-  line-height: 30px;
-  padding: 0 10px;
-  font-size: 20px;
-  font-weight: 400;
-  background-color: #308042;
-  color: #fff;
-}
-
 .panel-title-big .add{
   margin-top: 10px;
 }
@@ -260,7 +246,6 @@ header li a:hover {
 .add {
   position: relative;
   float: right;
-  background-color: #FFDD00;
   border-radius: 50%;
   padding: 10px;
   margin-top: 5px;
@@ -271,7 +256,7 @@ header li a:hover {
 }
 
 .add:hover {
-  background-color: #C7AC00;
+  background-color: #A9A9A4;
   cursor: pointer;
 }
 
@@ -290,7 +275,22 @@ header li a:hover {
 }
 
 .container-fluid {
-  padding-top: 20px;
+  padding: 20px 40px;
   background-color: #fff;
   min-height: 100%;
+}
+
+.bg_layer {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.openable {
+  z-index: 15;
 }

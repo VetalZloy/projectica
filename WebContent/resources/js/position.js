@@ -47,7 +47,7 @@ function addTag(newTag){
 	contentType: 'text/plain',
 	type: 'PUT',
 	success: function(result) {
-	  $('.tags .panel-body').append('<div>' + newTag + '<span class="close"></span></div>');
+	  $('.tags').append('<div>' + newTag + '<span class="close"></span></div>');
 	  init();
 	},
 	error: function() {

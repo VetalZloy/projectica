@@ -24,8 +24,8 @@
   border-radius: 50%;
   position: absolute;
   border: 2px solid #FFF;
-  left: 64px;
-  top: 69px;
+  left: 59px;
+  top: 59px;
 }
 
 .search .panel-body {
@@ -39,27 +39,22 @@
   margin-top: -1px;
 }
 
-.add-tag-button {
-  position: absolute;
-  top: 76px;
-  right: 106px;
-  font-size: 18px;
+.search button {
+  margin-top: 10px;
 }
 
 .similar-tags {
   z-index: 100;
   width: 100%;
-  padding-right: 42px;
-  position: absolute;
-  font-size: 20px;
   font-weight: 600;
+  margin-top: -7px;
+  position: absolute;
+  padding-right: 60px;
 }
 
 .similar-tags p {  
   background-color: #fff;
   padding: 3px 5px;
-  border: 1px solid #A9A9A4;
-  border-top: 0;
 }
 
 .similar-tags p:first-child {
@@ -75,8 +70,16 @@
   margin-top: 5px;
   margin-left: 2px;
   display: inline-block;
-  font-size: 18px;
-  border-radius: 15px;
-  border: 1px solid #61AE73;
+  font-size: 16px;
+  border: 1px solid #A9A9A4;
   padding: 0 4px;
+}
+
+.added-tags .close {
+  background-image: url(../img/close.png);
+  top: 1px;
+}
+
+.added-tags .close:hover {
+  background-color: inherit;
 }

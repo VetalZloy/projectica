@@ -39,42 +39,34 @@ input[type="submit"]:disabled, button[type="submit"]:disabled {
 }
 
 .logo {
-  border-radius: 50%;
-  border: 2px solid;
   position: fixed;
   top: 50%;
   left: 50%;
   margin-top: -50px;
-  margin-left: -45px;
+  margin-left: -50px;
+  width: 100px;
 }
 
 .github {
+  padding: 20px;
   position: fixed;
   top: 50%;
   left: 50%;
-  margin-top: -20px;
-  margin-left: -95px;
-  padding: 20px;
-  background-image: url(../img/github1.png);
-  background-color: #fff;
+  margin-top: -75px;
+  margin-left: -90px;
+  background-image: url(../img/github-main.png);
   background-size: cover;
-  border-radius: 50%;
-  border: 2px solid #000;
 }
 
 .about {
   position: fixed;
   top: 50%;
   left: 50%;
-  margin-top: -20px;
-  margin-left: 55px;
+  margin-top: -75px;
+  margin-left: 50px;
   padding: 20px;
-  background-image: url(../img/about1.png);
-  background-color: #fff;
+  background-image: url(../img/about-main.png);
   background-size: cover;
-  border-radius: 50%;
-  border: 2px solid #000;
-  background-position-y: -2px;
 }
 
 .wrapper p {
@@ -148,6 +140,10 @@ input[type="submit"]:disabled, button[type="submit"]:disabled {
   text-decoration: none;
 }
 
+.panel {
+  z-index: 15;
+}
+
 .panel-body {
   background-color: #EFEFEF;
   padding: 15px;
@@ -196,7 +192,8 @@ input[type="submit"]:disabled, button[type="submit"]:disabled {
   width: 310px;
   left: 50%;
   margin-left: -155px;
-  top: 10%;
+  top: 50%;
+  margin-top: -96px;
 }
 
 .log-in .panel-body {
@@ -276,12 +273,17 @@ label.css-label {
   width: 310px;
   left: 50%;
   margin-left: -155px;
-  top: 10%;
+  top: 50%;
+  margin-top: -131px;
+  background-color: #EFEFEF;
+  padding-bottom: 10px;
 }
 
 .sign-up .panel-body{
   padding-right: 25px;
-  padding-bottom: 40px;
+}
+
+.sign-up form {
 }
 
 .sign-up input[type="text"], .sign-up input[type="password"] {
@@ -304,10 +306,10 @@ label.css-label {
 
 .valid, .invalid {
   position: absolute;
-  padding: 7px;
-  right: 20px;
+  padding: 4px;
+  right: 26px;
   border-radius: 50%;
-  margin-top: -29px;
+  margin-top: -26px;
 }
 
 .valid {
@@ -324,7 +326,8 @@ label.css-label {
   width: 310px;
   left: 50%;
   margin-left: -155px;
-  top: 10%;
+  top: 50%;
+  margin-top: -64px;
 }
 
 .reset-password .panel-body {
@@ -337,4 +340,15 @@ label.css-label {
 
 .reset-password p{
   text-align: center;
+}
+
+.bg_layer {
+    position: fixed;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    top: 0;
+    left: 0;
+    opacity: 0;
 }

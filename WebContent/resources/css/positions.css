@@ -1,3 +1,7 @@
+.row {
+  padding: 0 40px;
+}
+
 input[type="text"] {
   width: 100%;
 }
@@ -9,7 +13,6 @@ input[type="text"] {
 
 .vacancy h2 a{
   font-size: 28px;
-  color: #27BDCC;
 }
 
 .vacancy .project-link {
@@ -48,15 +51,15 @@ input[name="tagName"] {
 .similar-tags {
   z-index: 100;
   width: 100%;
-  font-size: 15px;
   font-weight: 600;
+  margin-top: 3px;
+  position: absolute;
+  padding-right: 60px;
 }
 
-.similar-tags p {
-  padding: 5px;
+.similar-tags p {  
   background-color: #fff;
-  border: 1px solid #A9A9A4;
-  border-top: 0;
+  padding: 3px 5px;
 }
 
 .similar-tags p:first-child {
@@ -72,8 +75,16 @@ input[name="tagName"] {
   margin-top: 5px;
   margin-left: 2px;
   display: inline-block;
-  font-size: 18px;
-  border-radius: 15px;
-  border: 1px solid #61AE73;
+  font-size: 16px;
+  border: 1px solid #A9A9A4;
   padding: 0 4px;
+}
+
+.added-tags .close {
+  background-image: url(../img/close.png);
+  top: 1px;
+}
+
+.added-tags .close:hover {
+  background-color: inherit;
 }

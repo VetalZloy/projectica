@@ -146,8 +146,15 @@ public class PositionServiceImpl implements PositionService {
 			throw new AccessDeniedException(currentUsername + " tried to close position with id = " + positionId);
 		}
 		
+		//checking whether creator tries to close himself position
+		String positionOwnerUsername = position.getUser().getUsername();
+		if(creatorUsername.equals(positionOwnerUsername)) 
+			throw new AccessDeniedException("Creator '"+creatorUsername+"' tried to close himself position with id = " + positionId);
+		
+		
 		if(position.getFiringDate() == null) 
 			position.setFiringDate(LocalDateTime.now());
+		
 		position.setEstimation(estimation);
 		position.setComment(comment);
 		positionDAO.saveOrUpdate(position);

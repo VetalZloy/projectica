@@ -14,10 +14,10 @@
 <body>
   <div class="wrapper">
     <div class="left">
-      <div class="login" onclick="openLogInPanel()">
+      <div class="login" onclick="openPanel('.log-in')">
         <p>Log in</p>
       </div>
-      <div class="signup" onclick="openSignInPanel()">
+      <div class="signup" onclick="openPanel('.sign-up')">
         <p>Sign up</p>
       </div>
     </div>
@@ -29,13 +29,13 @@
         <p>Vacancies</p>
       </div>
     </div>
-    <img class="logo" src="<c:url value="/img/logo.png"/>" alt="Projectica">
+    <img class="logo" src="<c:url value="/img/logo-main.png"/>" alt="Projectica">
     <a class="github" href="https://github.com/VetalZloy/projectica"></a>
     <a class="about" href='<c:url value="/about" />'></a>
   </div>
 
-  <div class="log-in panel">
-    <div class="panel-title-big">Log in <span class="close" onclick="closeLogInPanel()"></span></div>
+  <div class="log-in panel openable">
+    <div class="panel-title-big">Log in</div>
     <div class="panel-body">
       <p></p>
     	<!-- <c:if test="${param.logout != null}">YOU'VE BEEN LOGOUT SUCCESSFULLY</c:if> -->
@@ -48,11 +48,11 @@
     	<input type="submit" value="Log in"/>
         <a onclick="openResetPasswordPanel()">Forgot password</a>
       </form>
-    </div>
+    </div>    
   </div>
 
-  <div class="sign-up panel">
-    <div class="panel-title-big">Sign up <span class="close" onclick="closeSignInPanel()"></span></div>
+  <div class="sign-up panel openable">
+    <div class="panel-title-big">Sign up</div>
     <div class="panel-body">
       <form:form method="POST" commandName="registrationForm">
 		<form:input path="username" placeholder="Username" /><span class="invalid"></span>	
@@ -68,8 +68,8 @@
     </div>
   </div>
 
-  <div class="reset-password panel">
-    <div class="panel-title-big">Reset password <span class="close" onclick="closeResetPasswordPanel()"></span></div>
+  <div class="reset-password panel openable">
+    <div class="panel-title-big">Reset password</div>
     <div class="panel-body">
       <form action='<c:url value="/reset-password" />' method="post">
         <input type="text" name="username" placeholder="Username ...">
@@ -77,9 +77,8 @@
       </form>
     </div>
   </div>
-  
-  
-  <script src='<c:url value="/js/jquery.js" />'></script>
+
+  <div class="bg_layer"></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>  
   <script src='<c:url value="/js/index.js" />'></script>

@@ -227,7 +227,7 @@ public class PositionController {
 	public ResponseEntity<Void> update(@PathVariable("positionId") long positionId, 
 						 			   @RequestBody UpdatePositionJson body){
 		
-		logger.debug("update() method was invoked by user with username '{}'; for project with id = {}",
+		logger.debug("update() method was invoked by user with username '{}'; for position with id = {}",
 						SecurityUtil.getCurrentUsername(), positionId);		
 		
 		try {

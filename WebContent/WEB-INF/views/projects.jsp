@@ -51,15 +51,15 @@
           	</div>
           </div>
           <c:if test="${securityUtil.isLoggedIn()}">
-          	<span class="create-project" onclick="openCreatePanel()" title="Create project"></span>
+          	<span class="create-project" onclick="openPanel('.create-panel')" title="Create project"></span>
           </c:if>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="create-panel panel">
-    <div class="panel-title">Create your project <span class="close"></span></div>
+  <div class="create-panel panel openable">
+    <div class="panel-title">Create your project</div>
     <div class="panel-body">
    	  <form method="post">
         <input type="text" name="name" placeholder="Project name...">
@@ -73,7 +73,8 @@
     </div>
   </div>
 
-  <script src='<c:url value="/js/jquery.js" />'></script>
+  <div class="bg_layer"></div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src='<c:url value="js/base.js" />'></script>
   <script src='<c:url value="js/projects.js" />'></script>

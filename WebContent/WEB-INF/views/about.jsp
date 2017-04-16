@@ -52,8 +52,8 @@
             <li>Create positions necessary for your project. And periodically check them for new requests. If you find the perfect applicant for your position and there is request created by him, you can join him to project</li>
             <li>
               Also you can close position if it’s no longer needed or position owner doesn’t match with it. You should leave a comment about the position owner and evaluate his job via a positive or negative button
-              <span class="button good">CLOSE</span>
-              <span class="button bad">CLOSE</span>
+              <span class="button good">Close</span>
+              <span class="button bad">Close</span>
             </li>
           </ol>
           <div class="space"></div>

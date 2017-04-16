@@ -43,6 +43,27 @@ function refreshUnreadAmount() {
 		});
 }
 
+function openPanel(className) {
+  $(className).show(500);
+  
+  $('.bg_layer').css("z-index", 10);
+  $('.bg_layer').show();
+  $('.bg_layer').animate({
+    opacity: 0.8
+  }, "slow");
+}
+  
+$('.bg_layer').click(function(){
+  $('.bg_layer').css("z-index", -1);
+  $('.openable, .bg_layer').hide(500);
+});
+
+	function openResetPasswordPanel() {
+	  $(".log-in").hide(500, function(){
+	    $(".reset-password").show(500);
+	  });
+	}
+
 ;(function($){
     $.fn.extend({
         donetyping: function(callback,timeout){

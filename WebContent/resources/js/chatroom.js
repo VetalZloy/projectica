@@ -13,7 +13,16 @@ $(document).ready(function() {
   $("textarea").donetyping(checkTextArea);	
   $("textarea").focusout(checkTextArea);	
   $('textarea').keydown(function (e) {
-	  if (e.ctrlKey && e.keyCode == 13) send();
+	  if (e.ctrlKey && e.keyCode == 13) {
+		$('textarea').val(function(i, text) {
+		  return text + '\n';
+		});		
+		return;
+	  }
+	  if (e.keyCode == 13) {
+		  e.preventDefault();
+		  send();
+	  }
   });
   
   
@@ -29,23 +38,24 @@ function checkTextArea() {
 }
 
 function send() {
-	
-	if($("textarea").val().trim() == '') return;
-	
-	webSocket.send($("textarea").val());
-	$("textarea").val("");
-	$("send").hide();
+  if($("textarea").val().trim() == '') return;
+  
+  webSocket.send($("textarea").val());
+  $(".send").hide();
+  $("textarea").val('');
 }
 
 function scrollBarSetting() {
-	$('.dialog')[0].style.minHeight = $('.wrapper')[0].style.minHeight;
+
+	$(".participants-list").mCustomScrollbar();
+	$(".participants-list").css({height: "254px"});
+	
+	$('.dialog').height($(".wrapper").height()-20);
 	var generalHeight = $('.dialog').height();
 	var interlocutorHeight = $('.name').height();
 	var textareaHeight = $('textarea').height();
-	var scrollPaneHeight = generalHeight - interlocutorHeight - textareaHeight - 20;
+	var scrollPaneHeight = generalHeight - interlocutorHeight - textareaHeight - 35;
 	
-	$(".participants-list").mCustomScrollbar();
-	$(".participants-list").css({height: "263px"});
 
 	
 	$(".scrool-pane").mCustomScrollbar({

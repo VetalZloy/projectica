@@ -31,8 +31,7 @@ a {
 
 .note {
   background-color: #EFEFEF;
-  padding: 5px 10px;
-  //border:1px solid #A9A9A4;
+  padding: 10px 15px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -55,22 +54,32 @@ a {
 }
 
 .button {
-  border: 3px solid;
   padding: 3px 10px;
-  background-color: #EFEFEF;
+  color: #fff;
+  font-weight: 600;
+  width: 110px;
+  display: inline-block;
+  text-align: center;
 }
 
 .button:hover {
   cursor: pointer;
-  background-color: #A9A9A4;
 }
 
 .good {
-  border-color: #63B175;
+  background-color: #37D187;
+}
+
+.good:hover {
+  background-color: #2EAF71;
 }
 
 .bad {
-  border-color: #AE3532;
+  background-color: #FF4D4D;
+}
+
+.bad:hover {
+  background-color: #CA3D3D;
 }
 
 .space {
@@ -81,32 +90,18 @@ a {
   position: relative;
   top: 13px;
   padding: 20px;
-  background-color: #EFEFEF;
   display: inline-block;
-  border-radius: 50%;
-  background-image: url(../img/github.png);
-  background-size: cover;
-  border: 2px solid #000;
-}
-
-.my-github:hover {
-  background-color: #A9A9A4;
+  background-image: url(../img/github-about.png);
+  background-size: 40px;
+  background-repeat: no-repeat;
 }
 
 .vk {
   position: relative;
   top: 13px;
   padding: 20px;
-  background-color: #EFEFEF;
   display: inline-block;
-  border-radius: 50%;
   background-image: url(../img/vk.png);
-  background-size: 30px;
+  background-size: 40px;
   background-repeat: no-repeat;
-  background-position: 5px;
-  border: 2px solid #000;
-}
-
-.vk:hover {
-  background-color: #A9A9A4;
 }

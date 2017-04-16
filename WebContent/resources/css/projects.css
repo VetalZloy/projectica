@@ -1,3 +1,7 @@
+.row {
+  padding: 0 40px;
+}
+
 .project {
   padding: 10px;
   border-bottom: 1px solid #AEAEAE;
@@ -5,7 +9,6 @@
 
 .project h2 a{
   font-size: 28px;
-  color: #27BDCC;
 }
 
 .project h3 {
@@ -40,7 +43,7 @@
 }
 
 .create-project {
-  padding: 30px;
+  padding: 20px;
   background-image: url(../img/plus-outline.png);
   background-size: contain;
   border-radius: 50%;
@@ -50,8 +53,6 @@
   display: inline-block;
   float: right;
   margin-top: 10px;
-  margin-right: 10px;
-  box-shadow: 0 0 8px rgba(0,0,0,0.5);
 }
 
 .create-project:hover {
@@ -68,8 +69,7 @@
 }
 
 .create-panel .panel-body {
-  border: 1px solid #A9A9A4;
-  border-top: 0;
+  padding-top: 10px;
 }
 
 .create-panel .panel-title {

@@ -13,7 +13,17 @@ $(document).ready(function() {
   $("textarea").donetyping(checkTextArea);	
   $("textarea").focusout(checkTextArea);	
   $('textarea').keydown(function (e) {
-	  if (e.ctrlKey && e.keyCode == 13) send();
+	  if (e.ctrlKey && e.keyCode == 13) {
+		$('textarea').val(function(i, text) {
+		  return text + '\n';
+		});
+		
+		return;
+	  }
+	  if (e.keyCode == 13) {
+		  e.preventDefault();
+		  send();
+	  }
   });
   
   
@@ -28,21 +38,20 @@ function checkTextArea() {
 	} else $(".send").show();
 }
 
-function send() {
-	
+function send() {	
 	if($("textarea").val().trim() == '') return;
 	
 	webSocket.send($("textarea").val());
-	$("textarea").val("");
-	$("send").hide();
+	$(".send").hide();
+	$("textarea").val('');
 }
 
 function scrollBarSetting() {
-	$('.dialog')[0].style.minHeight = $('.wrapper')[0].style.minHeight;
+	$('.dialog').height($(".wrapper").height()-20);
 	var generalHeight = $('.dialog').height();
 	var interlocutorHeight = $('.interlocutor').height();
 	var textareaHeight = $('textarea').height();
-	var scrollPaneHeight = generalHeight - interlocutorHeight - textareaHeight - 20;
+	var scrollPaneHeight = generalHeight - interlocutorHeight - textareaHeight - 15;
 	
 	$(".scrool-pane").mCustomScrollbar({
 	  setHeight: scrollPaneHeight,

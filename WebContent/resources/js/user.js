@@ -1,15 +1,5 @@
 var urlRegExp = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
 
-$(window).resize(changeOnlinePosition);
-
-function changeOnlinePosition(){
-  var avatarWidth = parseInt($(".avatar img").css("width"));
-  var onlineBottom = avatarWidth * 0.053;
-  var onlineRight = avatarWidth * 0.2035;
-  $(".avatar .online").css("bottom", onlineBottom + "px");
-  $(".avatar .online").css("right", onlineRight + "px");
-}
-
 function init(){
   $('.tags .close').click(function() {
     var tagName = $(this).parent()[0].innerText;    
@@ -34,7 +24,6 @@ function init(){
 }
 
 $( document ).ready(function() {
-	changeOnlinePosition();
     init();
     
     var name = surname = '';
@@ -123,7 +112,7 @@ function addTag(newTag){
 	contentType: 'text/plain',
 	type: 'PUT',
 	success: function(result) {
-		$('.tags>.panel-body').append('<div>' + newTag + '<span class="close" onclick=""></span></div>');
+		$('<div>' + newTag + '<span class="close" onclick=""></span></div>').insertBefore(".tags .add");
 		init();
 	},
 	error: function(textStatus) {

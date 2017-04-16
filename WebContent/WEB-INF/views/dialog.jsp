@@ -34,8 +34,10 @@
       <div class="row">
         <div class="col-xs-8 col-xs-offset-2 dialog">
           <div class="interlocutor">
-            <gravatar:gravatar user="${user}" size='50'/>
-            <a href='<c:url value="/users/${user.username}"/>'>${user.username}</a>
+            <div class="gravatar-wrapper">
+              <gravatar:gravatar user="${user}" size='50'/>
+            </div>
+            <p><a href='<c:url value="/users/${user.username}"/>'>${user.username}</a></p>            
           </div>
           <div class="scroll-pane mCustomScrollbar" data-mcs-theme="minimal-dark">
           	<div class="cssload-container">

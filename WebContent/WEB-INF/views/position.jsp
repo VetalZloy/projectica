@@ -33,8 +33,8 @@
         <div class="info col-xs-6">
           <h1>${position.name} 
           	<span class="status ${status.toLowerCase()}">${status}</span>
-          	<c:if test='${status eq "Free" && creator}'>
-          	  <span class="edit" onclick="openEditPanel()"></span>
+          	<c:if test='${status ne "Closed"  && creator}'>
+          	  <span class="edit" onclick="openPanel('.edit-panel')"></span>
           	</c:if>
           </h1>
           <p class="project">
@@ -46,58 +46,45 @@
 	          <gravatar:gravatar user="${position.user}"/>
               <a href='<c:url value="/users/${position.user.username}"/>'>${position.user.username}</a>
             </div>
-            <p>Hiring date: ${hiringDate}</p>
+            <p class="hiring-date">Hiring date: ${hiringDate}</p>
           </c:if>
           <c:if test='${status eq "Closed"}'>
-          	<p>Firing date: ${firingDate}</p>
+          	<p class="firing-date">Firing date: ${firingDate}</p>
           </c:if>
-          <c:if test='${status eq "Free" || status eq "Requested"}'>
-            <div class="description panel">
-              <div class="panel-title-big">Description</div>
-              <div class="panel-body">
-                <p class="description">${position.description}</p>
-              </div>
+          <c:if test='${status ne "Closed"}'>
+            <div class="description">
+              <span>Description</span>
+              <p class="description">${position.description}</p>
+            </div>
+          </c:if>
+          <c:if test='${status eq "Free" && !creator}'>
+        	<div class="request">
+          	  <p>Create request</p>
+              <div>
+            	<textarea placeholder="Your additions"></textarea>
+            	<p class="button-wrapper">
+              	  <button type="button" name="button" onclick="createRequest()">Create</button>
+            	</p>
+          	  </div>
             </div>
           </c:if>
         </div>
-        <div class="col-xs-4 col-xs-offset-2">
-          <div class="tags panel">
-            <div class="panel-title-big">
-              Tags 
-              <c:if test="${creator}">
-                <span class="add" onclick="openAddTagPanel()"></span>
-              </c:if>
-            </div>
-            <div class="panel-body">
-              <c:forEach items="${position.tags}" var="tag">
-                <div>
-                  ${tag.tag} 
-                  <c:if test="${creator}">
-                    <span class="close"></span>
-                  </c:if>
-                </div>
-              </c:forEach>
-            </div>
-          </div>
-          <c:if test='${status eq "Closed"}'>
-	          <div class="comment panel">
-	            <div class='panel-title-big ${position.estimation ? "good" : "bad"}'>
-	              Comment
-	            </div>
-	            <div class="panel-body">
-	              <p>${position.comment}</p>
-	            </div>
-	          </div>
-          </c:if>
-          <c:if test='${status eq "Free" && !creator}'>
-            <div class="request panel">
-              <div class="panel-title-big">Create request</div>
-              <div class="panel-body">
-                <textarea placeholder="Your additions..."></textarea>
-                <button type="button" name="button" onclick="createRequest()">Create</button>
+        <div class="col-xs-5 col-xs-offset-1">
+          <div class="tags">
+            <span class="title">Tags
+            <c:if test="${creator}">
+              <span class="add" onclick="openPanel('.tag-add-panel')"></span>
+            </c:if>
+            </span>
+            <c:forEach items="${position.tags}" var="tag">
+              <div>
+                ${tag.tag} 
+                <c:if test="${creator}">
+                  <span class="close"></span>
+                </c:if>
               </div>
-            </div>
-          </c:if>
+            </c:forEach>
+          </div>
           <c:if test='${status eq "Active" && creator && !creatorPosition}'>
             <div class="close-position panel">
               <div class="panel-title-big">Close position</div>
@@ -130,14 +117,21 @@
             </div>
           </c:if>
         </div>
-      </div>
+      </div>      
+      <c:if test='${status eq "Closed"}'>
+	    <div class="comment">
+              <a href='<c:url value="/positions/${position.id}"/>'>${position.name}</a>
+              <span class='${position.estimation ? "good" : "bad" }'></span>
+          	  <span class="date">${firingDate}</span>           	    
+              <p>${position.comment}</p>
+        </div>
+      </c:if>
     </div>
   </div>
 
-  <div class="edit-panel panel">
+  <div class="edit-panel panel openable">
     <div class="panel-title">
       Edit
-      <span class="close" onclick="closeEditPanel()"></span>
     </div>
     <div class="panel-body">
       <input type="text" name="name" value="${position.name}" placeholder="Posiiton name"/>
@@ -149,10 +143,9 @@
     </div>
   </div>
 
-  <div class="tag-add-panel panel">
+  <div class="tag-add-panel panel openable">
     <div class="panel-title">
       Add tag
-	  <span class="close" onclick="closeTagAddPanel()"></span>
     </div>
     <div class="panel-body">
       <input type="text" name="tagName" placeholder="Tag" autofocus>
@@ -162,6 +155,8 @@
       </p>
     </div>
   </div>
+
+  <div class="bg_layer"></div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src='<c:url value="/js/base.js" />'></script>

@@ -183,54 +183,25 @@ $(".github").mouseleave(function(){
 $('.projects').click(function(){window.location.href = '#';});
 $('.vacancies').click(function(){window.location.href = '#';});
 
-function openLogInPanel() {
-  $('.log-in')[0].style.display = 'block';
-  $('.log-in')[0].style.opacity = 0;
-  $('.wrapper')[0].style.opacity = 1;
-
-  $('.wrapper:first').fadeTo("slow", 0.3, "linear");
-  $('.log-in:first').animate({opacity: "1"}, "slow", "linear");
-  }
-
-function closeLogInPanel() {
-  $('.log-in:first').fadeTo("slow", 0, "linear", function () {
-    $('.log-in')[0].style.display = 'none'}
-  );
-  $('.wrapper:first').animate({opacity: "1"}, "slow", "linear");
+function openPanel(className) {
+  $(className).show(500);
+  
+  $('.bg_layer').css("z-index", 5);
+  $('.bg_layer').show();
+  $('.bg_layer').animate({
+      opacity: 0.8
+  }, "slow");
 }
 
-function openSignInPanel() {
-  $('.sign-up')[0].style.display = 'block';
-  $('.sign-up')[0].style.opacity = 0;
-  $('.wrapper')[0].style.opacity = 1;
-
-  $('.wrapper:first').fadeTo("slow", 0.3, "linear");
-  $('.sign-up:first').animate({opacity: "1"}, "slow", "linear");
-  }
-
-function closeSignInPanel() {
-  $('.sign-up:first').fadeTo("slow", 0, "linear", function () {
-    $('.sign-up')[0].style.display = 'none'}
-  );
-  $('.wrapper:first').animate({opacity: "1"}, "slow", "linear");
-}
+$('.bg_layer').click(function(){
+  $('.bg_layer').css("z-index", -1);
+  $('.openable, .bg_layer').hide(500);
+});
 
 function openResetPasswordPanel() {
-  $('.log-in:first').fadeTo("slow", 0, "linear", function () {
-    $('.log-in')[0].style.display = 'none'}
-  );
-
-  $('.reset-password')[0].style.display = 'block';
-  $('.reset-password')[0].style.opacity = 0;
-
-  $('.reset-password:first').animate({opacity: "1"}, "slow", "linear");
-  }
-
-function closeResetPasswordPanel() {
-  $('.reset-password:first').fadeTo("slow", 0, "linear", function () {
-    $('.reset-password')[0].style.display = 'none'}
-  );
-  $('.wrapper:first').animate({opacity: "1"}, "slow", "linear");
+  $(".log-in").hide(500, function(){
+    $(".reset-password").show(500);
+  });
 }
 
 ;(function($){

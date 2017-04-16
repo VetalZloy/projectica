@@ -108,6 +108,11 @@ public class DialogController {
 		logger.debug("dialog() method was invoked by user with username {} for messaging with user with username {}",
 				currentUsername, username);
 		
+		if("anonymousUser".equals(currentUsername)) {
+			logger.warn("Unauthorized user tries to open dialog page with user '{}'", username);
+			return "redirect:/";
+		}
+		
 		try {
 			model.addAttribute("user", userService.getByUsername(username));			
 			return "dialog";

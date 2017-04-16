@@ -42,8 +42,8 @@
           <div class="panel">
             <div class="panel-title-big">Search</div>
             <div class="panel-body">
-              <input type="text" name="search" placeholder="Username...">
-              <input type="text" name="tagName" placeholder="Tag...">
+              <input type="text" name="search" placeholder="Username">
+              <input type="text" name="tagName" placeholder="Tag">
               <div class="similar-tags"></div>          
               <div class="added-tags"></div>
               <p class="button-wrapper">

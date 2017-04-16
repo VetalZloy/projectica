@@ -1,40 +1,45 @@
 .interlocutor {
-	position: relative;
+  position: relative;
   padding: 10px 0;
   border-bottom: 1px solid #AEAEAE;
 }
 
+.interlocutor:hover {
+  background-color: #EEE;
+  cursor: pointer;
+}
+
 .interlocutor a{
   position: absolute;
-  top: 8px;
+  top: 15px;
   padding-left: 10px;
   font-size: 20px;
   font-weight: 600;
 }
 
 .interlocutor img {
-  width: 80px;
+  margin-left: 10px;
+  width: 65px;
   border-radius: 50%;
 }
 
 .interlocutor .last-message {
   position: absolute;
-  top: 40px;
-  left: 90px;
-  padding: 5px;
+  top: 50px;
+  left: 85px;
   text-align: justify;
   width: 70%;
 }
 
 .online {
-  padding: 7px;
+  padding: 5px;
   background-color: #63B175;
   font-size: 0;
   border-radius: 50%;
   position: absolute;
   border: 2px solid #fff;
-  left: 60px;
-  top: 70px;
+  left: 59px;
+  top: 59px;
 }
 
 .interlocutor .unread-by-user {

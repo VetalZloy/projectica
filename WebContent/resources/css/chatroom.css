@@ -1,5 +1,5 @@
 .container-fluid {
-  padding-top: 0;
+  padding: 0;
 }
 
 .row {
@@ -12,25 +12,26 @@
   margin-right: 20px;
   height: 300px;
   padding: 0;
-  border: 1px solid #A9A9A4;
-  border-top: 0;
+  margin-top: 10px;;
 }
 
 .participants-title {
-  background-color: #EFEFEF;
-  border-bottom: 1px solid #A9A9A4;
-  font-size: 20px;
-  font-weight: 600;
-  padding: 3px;
+  background-color: #FFF;
+  border-bottom: 1px solid #BEBEB8;
+  font-size: 17px;
+  padding: 10px 0;
+  text-align: center;
+  width: 98%;
+  margin-left: 1%;
 }
 
 .participants-list {
   height: 240px;
-  padding-left: 5px;
+  padding-left: 15px;
 }
 
-.participant:first-child {
-  padding-top: 5px;
+.participant {
+  margin-top: 5px;;
 }
 
 .participant>* {
@@ -43,20 +44,23 @@
   font-size: 16px;
   line-height: 40px;
   font-weight: 600;
+  color: #6E6E6B;
 }
 
 .dialog {
   background-color: #FFF;
-  border: 1px solid #A9A9A4;
-  border-top: 0;
   padding: 0;
+  margin-top: 10px;
 }
 
 .name {
-  padding: 3px 10px;
-  background-color: #EFEFEF;
-  border-bottom: 1px solid #A9A9A4;
-  font-size: 20px;
+  padding: 10px 0px;
+  background-color: #FFF;
+  border-bottom: 1px solid #BEBEB8;
+  font-size: 17px;
+  text-align: center;
+  width: 98%;
+  margin-left: 1%;
 }
 
 .name a{
@@ -74,14 +78,14 @@
 }
 
 textarea {
-  width: 100%;
+  width: 98%;
   height: 70px;
   border: 0;
-  border-top: 1px solid #A9A9A4;
-  padding: 5px;
-  padding-right: 40px;
-  padding-bottom: 0;
-  font-size: 20px;
+  border-top: 1px solid #BEBEB8;
+  font-size: 15px;
+  margin-left: 1%;
+  padding: 5px 18px;
+  padding-right: 50px;
 }
 
 textarea:focus {
@@ -89,18 +93,21 @@ textarea:focus {
 }
 
 .send {
+  display: none;
   padding: 15px;
   position: absolute;
-  right: 10px;
+  right: 20px;
   bottom: 20px;
   background-image: url(../img/send.png);
-  background-size: contain;
-  background-position: -2px 1px;
+  background-size: 25px;
+  background-position: 2px;
+  background-color: #16ADC1;
+  background-repeat: no-repeat;
+  border-radius: 50%;
 }
 
 .send:hover {
-  background-color: #A9A9A4;
-  border-radius: 50%;
+  background-color: #1392A3;
   cursor: pointer;
 }
 
@@ -109,7 +116,7 @@ textarea:focus {
 }
 
 .message {
-  padding-left: 10px;
+  padding-left: 25px;
   padding-bottom: 10px;
   padding-right: 30px;
 }
@@ -145,11 +152,11 @@ textarea:focus {
 .day-line span {
   padding: 5px;
   border-radius: 15px;
-  background-color: #EFEFEF;
 }
 
 .right-side .username {
   font-weight: 600;
+  color: #6E6E6B;
 }
 
 .right-side p {
