@@ -29,6 +29,7 @@
   left: 85px;
   text-align: justify;
   width: 70%;
+  padding: 5px;
 }
 
 .online {
@@ -44,7 +45,6 @@
 
 .interlocutor .unread-by-user {
   background-color: #EFEFEF;
-  border-radius: 10px;
 }
 
 .unread-by-interlocutor:after{

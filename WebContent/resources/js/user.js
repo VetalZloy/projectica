@@ -78,22 +78,6 @@ function update() {
 	  });  
 }
 
-function openTagAddPanel() {
-  $('.tag-add-panel')[0].style.display = 'block';
-  $('.tag-add-panel')[0].style.opacity = 0;
-  $('.container-fluid')[0].style.opacity = 1;
-
-  $('.container-fluid:first').fadeTo("slow", 0.1, "linear");
-  $('.tag-add-panel:first').animate({opacity: "1"}, "slow", "linear");
-}
-
-function closeTagAddPanel() {
-  $('.tag-add-panel:first').fadeTo("slow", 0, "linear", function () {
-    $('.tag-add-panel')[0].style.display = 'none'}
-  );
-  $('.container-fluid:first').animate({opacity: "1"}, "slow", "linear");
-}
-
 function addTagWrapper(){
   var newTag = $("input[name='tagName']")[0].value;
   addTag(newTag);
@@ -120,7 +104,7 @@ function addTag(newTag){
 	}
   });
 
-  closeTagAddPanel();
+  $(".bg_layer").click();
 }
 
 function getSimilarTags(){
