@@ -107,11 +107,11 @@ public class DialogMessage implements Comparable<DialogMessage> {
 	public void setRead(boolean read) {
 		this.read = read;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "DialogMessage [date=" + date + ", read=" + read + ", sender=" + sender
-				+ ", reciever=" + reciever + "]";
+		return "DialogMessage [messageId=" + messageId + ", date=" + date + ", sender=" + sender.getUsername()
+				+ ", reciever=" + reciever.getUsername() + "]";
 	}
 
 	@Override
