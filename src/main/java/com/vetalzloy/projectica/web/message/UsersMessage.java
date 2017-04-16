@@ -1,6 +1,6 @@
 package com.vetalzloy.projectica.web.message;
 
-import java.util.List;
+import java.util.Set;
 
 import com.vetalzloy.projectica.web.json.UserJson;
 
@@ -13,11 +13,11 @@ public class UsersMessage {
 	
 	private String messageType = "usersMessage";
 	
-	private List<UserJson> users;
+	private Set<UserJson> users;
 
 	public UsersMessage() {}
 	
-	public UsersMessage(List<UserJson> users) {
+	public UsersMessage(Set<UserJson> users) {
 		super();
 		this.users = users;
 	}
@@ -26,11 +26,11 @@ public class UsersMessage {
 		return messageType;
 	}
 
-	public List<UserJson> getUsers() {
+	public Set<UserJson> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<UserJson> users) {
+	public void setUsers(Set<UserJson> users) {
 		this.users = users;
 	}
 	

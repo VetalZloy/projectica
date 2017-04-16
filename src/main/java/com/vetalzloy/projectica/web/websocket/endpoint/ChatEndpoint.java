@@ -190,10 +190,10 @@ public class ChatEndpoint {
 	 */
 	private void sendUsersList(int id) {
 		
-		List<UserJson> users = chatRooms.get(id)
+		Set<UserJson> users = chatRooms.get(id)
 				  					.stream()
 				  					.map(s -> (UserJson) s.getUserProperties().get("userJson"))
-				  					.collect(Collectors.toList());
+				  					.collect(Collectors.toSet());
 		UsersMessage message = new UsersMessage(users);
 		for(Session session: chatRooms.get(id))
 			try {
