@@ -7,8 +7,7 @@ function init() {
     var positionId = parseInt(temp[temp.length-1]);
     
     $.ajax({
-	  url: getDomainPath() + '/tag/' + positionId,
-	  data: tagName,
+	  url: getDomainPath() + '/tag/' + positionId + '/' + tagName,
 	  contentType: 'text/plain',
 	  type: 'DELETE',
 	  success: function(result) {

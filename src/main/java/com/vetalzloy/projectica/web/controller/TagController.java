@@ -107,8 +107,8 @@ public class TagController {
 	 * @return OK - if tag was detached successfully, else NOT_FOUND
 	 */
 	@ResponseBody
-	@RequestMapping(method=RequestMethod.DELETE)
-	public ResponseEntity<Void> detachTagFromUser(@RequestBody String tag){
+	@RequestMapping(path="/{tag}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> detachTagFromUser(@PathVariable("tag") String tag){
 		String username = SecurityUtil.getCurrentUsername();
 		logger.debug("detachTagFromUser() method was invoked for tag '{}' by user with username '{}'", 
 						tag, username);
@@ -130,8 +130,8 @@ public class TagController {
 	 * current user is not creator of project which contain such position,<br>
 	 * else OK will be returned
 	 */
-	@RequestMapping(path="/{positionId}", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> detachTagFromPosition(@RequestBody String tag, 
+	@RequestMapping(path="/{positionId}/{tag}", method=RequestMethod.DELETE)
+	public ResponseEntity<Void> detachTagFromPosition(@PathVariable("tag") String tag, 
 													  @PathVariable("positionId") long positionId){
 		
 		String username = SecurityUtil.getCurrentUsername();

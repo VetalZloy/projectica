@@ -7,8 +7,7 @@ function init(){
 	console.log(tagName);
     //deleting tag via ajax
     $.ajax({
-  	    url: getDomainPath() + '/tag',
-  	    data: tagName,
+  	    url: getDomainPath() + '/tag/'+tagName,
   	    contentType: 'text/plain',
   	    type: 'DELETE',
   	    success: function(result) {
