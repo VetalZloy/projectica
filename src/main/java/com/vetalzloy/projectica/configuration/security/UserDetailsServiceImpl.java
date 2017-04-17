@@ -2,8 +2,6 @@ package com.vetalzloy.projectica.configuration.security;
 
 import java.util.Arrays;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,20 +23,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserService userService;
 	
-	/* Uncomment for bruteforce defending
-	@Autowired
-	private LoginAttemptService attemptService;*/
-	
-	@Autowired
-	private HttpServletRequest request;
-	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		/* Uncomment for bruteforce defending, attemptService should be changed
-		String ip = getIP();
-		if(attemptService.isBlocked(ip)){
-			throw new RuntimeException("blocked");
-		}*/
 		
 		logger.debug("Loading user information by username {}, for security providing ...", username);
 		User user = null;
@@ -57,14 +43,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		logger.info("Loggin in user with username {}", username);		
 		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), 
 				Arrays.asList(new SimpleGrantedAuthority("ROLE_USER")));
-	}
-	
-	public String getIP(){
-		String xfHeader = request.getHeader("X-Forwarded-For");
-	    if (xfHeader == null){
-	        return request.getRemoteAddr();
-	    }
-	    return xfHeader.split(",")[0];
 	}
 	
 }

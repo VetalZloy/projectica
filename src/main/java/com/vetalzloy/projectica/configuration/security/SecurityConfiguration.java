@@ -13,8 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @ComponentScan({
-				"com.vetalzloy.projectica.configuration.security"/*,
-				"com.vetalzloy.projectica.util"*/
+				"com.vetalzloy.projectica.configuration.security"
 				})
 public class SecurityConfiguration {
 	
@@ -36,31 +35,4 @@ public class SecurityConfiguration {
 		provider.setPasswordEncoder(encoder());
 		return provider;
 	}
-	
-	/* Uncomment for bruteforce defending
-	@Bean
-	public ApplicationListener<AuthenticationSuccessEvent> successListner(){
-		return new AuthenticationSuccessListener();
-	}
-	
-	@Bean
-	public ApplicationListener<AuthenticationFailureBadCredentialsEvent> failureListner(){
-		return new AuthenticationFailureListener();
-	}
-	
-	@Bean
-	public LoginAttemptService loginAttemptService(){
-		return new LoginAttemptService();
-	}
-	
-	@Bean
-	public RequestContextListener requestContextListener(){
-		return new RequestContextListener();
-	}
-	
-	@Bean
-	public  ContextLoaderListener contextLoaderListener(){
-		return new ContextLoaderListener ();
-	}*/
-	
 }

@@ -39,9 +39,6 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	public void init(AuthenticationManagerBuilder auth) throws Exception{
-		/* Uncomment for bruteforce defending
-		 * auth.authenticationEventPublisher(new DefaultAuthenticationEventPublisher(applicationEventPublisher));
-		 */
 		auth.userDetailsService(userDetailsService);
 		auth.authenticationProvider(provider);
 	}
@@ -61,18 +58,20 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
 				  .loginPage("/login")
 				  .usernameParameter("username")
 				  .passwordParameter("password")
-				  .defaultSuccessUrl("/")
+				  .successHandler(new LoginAuthorizeCookieSuccessHandler())
+				  //.defaultSuccessUrl("/") Either own successHandler or default, not both
 				  .failureUrl("/?login-error")
-				  //.successHandler(new CustomSuccessHandler())
 			.and().sessionManagement()
 				  .maximumSessions(-1)
 				  .sessionRegistry(registry)
-			.and()
-			.and().rememberMe().tokenRepository(repo)
+				  .and().invalidSessionUrl("/")
+			.and().rememberMe()
+				  .tokenRepository(repo)
+				  .authenticationSuccessHandler(new LoginAuthorizeCookieSuccessHandler())
 			.and().logout().permitAll()
 				  .logoutUrl("/logout")
-				  .logoutSuccessUrl("/")
-				  .invalidateHttpSession(true)
+				  .logoutSuccessHandler(new LogoutAuthorizeCookieSuccessHandler())
+				  //.logoutSuccessUrl("/") Either own successHandler or default, not both
 			.and().exceptionHandling().accessDeniedPage("/")
 			.and().csrf().disable()
 			.addFilterBefore(cef, UsernamePasswordAuthenticationFilter.class);

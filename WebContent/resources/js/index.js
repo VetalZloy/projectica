@@ -3,8 +3,6 @@ var emailRegExp =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
 var passwordRegExp = /([A-Za-z]|\d){5,}/;
 
 $( document ).ready(function() {
-  
-  for (var it in document.cookie) $.removeCookie(it);
 	
   if(location.href.indexOf('login-error') != -1) {
     $(".log-in .panel-body p")[0].innerText = 'ERROR';

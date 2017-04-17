@@ -3,7 +3,7 @@ $( document ).ready(function() {
   $('.wrapper')[0].style.minHeight = window.innerHeight - 55 +"px";
   $('.container-fluid')[0].style.minHeight = window.innerHeight - 100 +"px";
   
-  if($('.new-messages').length > 0) {
+  if($('.new-messages').length > 0 && $.cookie('authorized') == 'true') {
 	  refreshUnreadAmount();
 	  setInterval(refreshUnreadAmount, 30000);
   }
