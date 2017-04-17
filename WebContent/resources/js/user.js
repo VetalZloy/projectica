@@ -1,4 +1,4 @@
-var urlRegExp = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/
+var urlRegExp = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
 
 function init(){
   $('.tags .close').click(function() {
@@ -24,8 +24,6 @@ function init(){
 
 $( document ).ready(function() {
     init();
-    
-    var name = surname = '';
     
     $("input[name='cv-link']:first").donetyping(checkURL);
     $("input[name='tagName']:first").donetyping(getSimilarTags);
@@ -53,10 +51,10 @@ function update() {
     alert('FAIL');
     return;
   }
-
-  var name= $("input[name='name']")[0].value
-  var surname = $("input[name='surname']")[0].value;
-  var cvLink = $("input[name='cv-link']")[0].value;
+  
+  var name= $("input[name='name']").val();
+  var surname = $("input[name='surname']").val();
+  var cvLink = $("input[name='cv-link']").val();
   
   var body = {};
   body.name = name;
