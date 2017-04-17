@@ -23,7 +23,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 					"classpath:util.properties",
 					"classpath:util-private.properties",
 					"classpath:util-deploy.properties",
-					"classpath:util-test.properties"
+					"classpath:util-test.properties" // Maven excludes this file 
 				})
 public class UtilConfiguration {
 	
