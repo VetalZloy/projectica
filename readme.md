@@ -3,7 +3,7 @@
 Projectica is a social network, which helps young developers to find like-minded ones. Also Projectica gives you abilities to create projects(startups) by your wish and hand-pick team for such project. If you need more details, visit [About] page.
    
 ### Deploying
-Projectica requires Java 8. Here is shown deploying process for Windows, MySQL and Gmail.
+Projectica requires Java 8 and Maven. Here is shown deploying process for Windows, MySQL and Gmail.
 
 1. Clone or download Projectica
 2. Open terminal, change directory to project folder and type:
