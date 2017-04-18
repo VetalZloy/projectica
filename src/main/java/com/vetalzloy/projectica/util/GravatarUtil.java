@@ -21,7 +21,7 @@ public class GravatarUtil {
 		String url = "https://www.gravatar.com/avatar/" + 
 					  md5Hex(email) + 
 					  "/?s=" + size + 
-					  "&d=https%3A%2F%2Fprojectica.me%2Fimg%2Fgravatar.png";	
+					  "&d=https%3A%2F%2Fprojectica.me%2Fimg%2Fdefault-gravatar.png";	
 		return url;
 	}
 	
