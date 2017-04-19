@@ -13,7 +13,7 @@ h1 {
 .github {
   position: absolute;
   padding: 13px;
-  z-index: 999;
+  z-index: 10;
   background-image: url(../img/github.png);
   background-size: 26px;
   left: 15px;
@@ -24,7 +24,7 @@ h1 {
 .about {
   position: absolute;
   padding: 13px;
-  z-index: 999;
+  z-index: 10;
   background-image: url(../img/about.png);
   background-size: 26px;
   left: 50px;
