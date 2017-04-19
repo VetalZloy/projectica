@@ -22,7 +22,11 @@ public class InterlocutorJson implements Comparable<InterlocutorJson>{
 
 	public static InterlocutorJson create(Interlocutor interlocutor){
 		User u = interlocutor.getInterlocutor();
-		String m = interlocutor.getLastDialogMessage().getText();
+		String m = interlocutor.getLastDialogMessage()
+							   .getText()
+							   .replace("<", "&lt;")
+							   .replaceAll(">", "&gt;");
+		
 		LocalDateTime d = interlocutor.getLastDialogMessage().getDate();
 		if(m.length() > MAX_LENGTH) {
 			m = m.substring(0, MAX_LENGTH);
