@@ -1,9 +1,15 @@
 package com.vetalzloy.projectica.test.helper;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
 
@@ -11,40 +17,34 @@ import org.springframework.stereotype.Repository;
 @Transactional
 public class DBHelper extends JdbcDaoSupport {
 
+	private static final RowMapper<String> TABLES_ROW_MAPPER = new TablesRowMapper();
+	
 	@Autowired
 	public void init(DataSource ds){
 		setDataSource(ds);
 	}
 	
 	public void deleteAll(){
-		String baseSQL = "DELETE FROM ";
-		String interlocutorDeleteSQL = baseSQL + "interlocutor";
-		String usersTagsDeleteSQL = baseSQL + "users_tags";
-		String positionssTagsDeleteSQL = baseSQL + "positions_tags";
-		String projectDeleteSQL = baseSQL + "project";
-		String verificationTokenDeleteSQL = baseSQL + "verification_token";
-		String passwordTokenDeleteSQL = baseSQL + "password_token";
-		String userDeleteSQL = baseSQL + "user";
-		String positionDeleteSQL = baseSQL + "position";
-		String requestDeleteSQL = baseSQL + "request";
-		String tagDeleteSQL = baseSQL + "tag";
-		String dialogMessageDeleteSQL = baseSQL + "dialog_message";
-		String chatRoomDeleteSQL = baseSQL + "chat_room";
-		String chatMessageDeleteSQL = baseSQL + "chat_message";
 		
-		getJdbcTemplate().batchUpdate(interlocutorDeleteSQL,
-									  usersTagsDeleteSQL,
-									  positionssTagsDeleteSQL,
-									  chatMessageDeleteSQL,
-									  chatRoomDeleteSQL,
-									  dialogMessageDeleteSQL,
-									  tagDeleteSQL,
-									  requestDeleteSQL,
-									  positionDeleteSQL,
-									  projectDeleteSQL, 
-									  verificationTokenDeleteSQL, 
-									  passwordTokenDeleteSQL, 
-									  userDeleteSQL);
+		getJdbcTemplate().execute("SET REFERENTIAL_INTEGRITY FALSE");
+		
+		List<String> tables = getJdbcTemplate().query("SHOW TABLES", TABLES_ROW_MAPPER);
+		
+		String[] queries = tables.stream()
+								 .map(s -> "TRUNCATE TABLE " + s)
+								 .collect(Collectors.toList())
+								 .toArray(new String[]{});
+		
+		getJdbcTemplate().batchUpdate(queries);
+		
+		getJdbcTemplate().execute("SET REFERENTIAL_INTEGRITY TRUE");
+	}
+
+	private static class TablesRowMapper implements RowMapper<String>{
+		@Override
+		public String mapRow(ResultSet rs, int arg1) throws SQLException {
+			return rs.getString(1);
+		}		
 	}
 	
 }
