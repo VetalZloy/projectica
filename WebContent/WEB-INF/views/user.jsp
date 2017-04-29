@@ -47,7 +47,6 @@
               	<a href='<c:url value="/dialogs/${user.username}" />' class="send-message"></a>
               </c:if>
             </h1>
-            <p class="email">${user.email}</p>
 			<p class="full-name">${user.name} ${user.surname}</p>
 			<c:if test="${user.cvLink != null}">
 			  <a href="${user.cvLink}" class="cv-link">${user.username}'s CV</a>
