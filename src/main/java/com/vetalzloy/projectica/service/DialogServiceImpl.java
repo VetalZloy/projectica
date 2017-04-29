@@ -50,9 +50,13 @@ public class DialogServiceImpl implements DialogService {
 																	 u1.getUserId(), 
 																	 u2.getUserId());
 		
-		//If first page is executed => last message will be read any way
-		if(messages.size() > 0)
-			messages.get(0).setRead(true);
+		//If the first page is extracted and receiver 
+		//of the last message is current user => last message will be read any way
+		if(messages.size() > 0 ) {
+			String lastMessageReciever = messages.get(0).getReciever().getUsername();
+			if(currentUsername.equals(lastMessageReciever))
+				messages.get(0).setRead(true);
+		}
 		
 		return messages;
 	}
