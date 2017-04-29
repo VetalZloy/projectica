@@ -36,7 +36,7 @@ public interface RequestService {
 	 * @throws AccessDeniedException if current user have already requested 
 	 * position with such {@code id}
 	 */
-	void createRequest(long positionId, String usersAdditions) 
+	Request createRequest(long positionId, String usersAdditions) 
 			throws EntityNotFoundException, AccessDeniedException;
 	
 	/**

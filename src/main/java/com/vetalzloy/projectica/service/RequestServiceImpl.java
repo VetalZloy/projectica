@@ -44,7 +44,7 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public void createRequest(long positionId, String usersAdditions) 
+	public Request createRequest(long positionId, String usersAdditions) 
 								throws EntityNotFoundException, AccessDeniedException {
 		String currentUsername = SecurityUtil.getCurrentUsername();		
 		logger.debug("Creating request for positionId = {} and username {}", positionId, currentUsername);
@@ -68,6 +68,8 @@ public class RequestServiceImpl implements RequestService {
 		req.setUserAdditions(usersAdditions);
 		
 		requestDAO.saveOrUpdate(req);
+		
+		return req;
 	}
 	
 	@Override
