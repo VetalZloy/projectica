@@ -1,4 +1,5 @@
 var urlRegExp = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/;
+var nameRegExp = /\w{2,}-{0,}\w{0,}/;
 
 function init(){
   $('.tags .close').click(function() {
@@ -26,8 +27,10 @@ $( document ).ready(function() {
     init();
     
     $("input[name='cv-link']:first").donetyping(checkURL);
+    $("input[name='name']:first").donetyping(checkName);
+    $("input[name='surname']:first").donetyping(checkSurname);
     $("input[name='tagName']:first").donetyping(getSimilarTags);
-
+    
 });
 
 function openEditPanel() {
@@ -47,7 +50,7 @@ function closeEditPanel() {
 }
 
 function update() {
-  if(! checkURL()) {
+  if(!checkURL() || !checkName() || !checkSurname()) {
     alert('FAIL');
     return;
   }
@@ -136,5 +139,41 @@ function getSimilarTags(){
     $("input[name='cv-link']:first").next()[0].className = "valid";
     $(".update-button")[0].disabled = false;
     return true;
-  }
+  }  
 }
+ 
+function checkName() {
+  if($("input[name='name']").val() == '') {
+	$("input[name='name']:first").next()[0].className = "valid";
+	$(".update-button")[0].disabled = false;
+	return true;
+  }
+  if(! nameRegExp.test($("input[name='name']").val())){
+	$("input[name='name']:first").next()[0].className = "invalid";
+	$(".update-button")[0].disabled = true;
+	return false;
+  } else {
+	$("input[name='name']:first").next()[0].className = "valid";
+	$(".update-button")[0].disabled = false;
+	return true;
+  }  
+}
+
+function checkSurname() {
+  if($("input[name='surname']").val() == '') {
+	$("input[name='surname']:first").next()[0].className = "valid";
+	$(".update-button")[0].disabled = false;
+	return true;
+  }
+  if(! nameRegExp.test($("input[name='surname']").val())){
+	$("input[name='surname']:first").next()[0].className = "invalid";
+	$(".update-button")[0].disabled = true;
+	return false;
+  } else {
+	$("input[name='surname']:first").next()[0].className = "valid";
+	$(".update-button")[0].disabled = false;
+    return true;
+  }  
+}
+ 
+ 

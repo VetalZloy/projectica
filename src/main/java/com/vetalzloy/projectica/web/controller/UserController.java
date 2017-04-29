@@ -40,6 +40,9 @@ public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
+	private String nameRegExp = "\\w{2,}-{0,}\\w{0,}";
+	private String urlRegExp = "((([A-Za-z]{3,9}:(?:\\/\\/)?)(?:[-;:&=\\+\\$,\\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\\+\\$,\\w]+@)[A-Za-z0-9.-]+)((?:\\/[\\+~%\\/.\\w-_]*)?\\??(?:[-\\+=&;%@.\\w_]*)#?(?:[\\w]*))?)";
+	
 	@Autowired
 	private UserService userService;
 	
@@ -198,6 +201,10 @@ public class UserController {
 		logger.debug("update() method was invoked by user with username '{}; request body: '{}''",
 						SecurityUtil.getCurrentUsername(), body);
 		
+		boolean valid = validateUpdateData(body.getName(), body.getSurname(), body.getCvLink());
+		if(!valid) 
+			return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
+		
 		try {
 			userService.update(body.getName(), body.getSurname(), body.getCvLink());
 			return new ResponseEntity<Void>(HttpStatus.OK);
@@ -205,6 +212,23 @@ public class UserController {
 			logger.warn("Error happened during updating user information.", e);
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}		
+	}
+
+	private boolean validateUpdateData(String name, String surname, String cvLink) {
+		if(!cvLink.matches(urlRegExp)) {
+			logger.warn("Bad format of cv link. Username - '{}'", SecurityUtil.getCurrentUsername());
+			return false;
+		}		
+		if(!name.matches(nameRegExp)) {
+			logger.warn("Bad format of name. Username - '{}'", SecurityUtil.getCurrentUsername());
+			return false;
+		}		
+		if(!surname.matches(nameRegExp)) {
+			logger.warn("Bad format of surname. Username - '{}'", SecurityUtil.getCurrentUsername());
+			return false;
+		}		
+		
+		return true;
 	}
 	
 }
