@@ -193,7 +193,8 @@ public class UserController {
 	/**
 	 * Updates data of current user (username in path just for debug, mb deleted)
 	 * @param body- - JSON which has: new name, new surname, new cvLink will be updated
-	 * @return if current user is not registered - NOT_FOUND, else - OK
+	 * @return if data in body is invalid - {@code BAD_REQUEST},<br>
+	 * if current user is not registered - {@code NOT_FOUND},<br> else - {@code OK}
 	 */
 	@ResponseBody
 	@RequestMapping(path="/{username}", method=RequestMethod.PUT)
@@ -214,6 +215,14 @@ public class UserController {
 		}		
 	}
 
+	/**
+	 * Matches parameters with regular expressions
+	 * @param name
+	 * @param surname
+	 * @param cvLink
+	 * @return if all parameters matches to regular expressions - {@code true}, 
+	 * else - {@code false} 
+	 */
 	private boolean validateUpdateData(String name, String surname, String cvLink) {
 		if(!cvLink.matches(urlRegExp)) {
 			logger.warn("Bad format of cv link. Username - '{}'", SecurityUtil.getCurrentUsername());
