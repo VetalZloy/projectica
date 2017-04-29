@@ -179,15 +179,17 @@ public class PositionServiceImpl implements PositionService {
 											projectId + " by user with username = " + currentUsername);
 		
 		Position position = new Position(name, description, project);
-		for(String tag: tags){
-			try{
-				//if tag exists
-				position.getTags().add(tagService.getByTag(tag));
-			} catch(TagNotFoundException e) {
-				//if tag doesn't exist
-				position.getTags().add(tagService.create(tag));
-			}			
-		}
+		if(tags != null)
+			for(String tag: tags)
+				try{
+					//if tag exists
+					position.getTags().add(tagService.getByTag(tag));
+				} catch(TagNotFoundException e) {
+					//if tag doesn't exist
+					position.getTags().add(tagService.create(tag));
+				}			
+			
+		
 		
 		positionDAO.saveOrUpdate(position);
 		

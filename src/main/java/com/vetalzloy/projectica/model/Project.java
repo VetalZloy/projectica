@@ -74,10 +74,6 @@ public class Project {
 		this.creator = creator;
 	}
 
-	public Project(String name){
-		this.name = name;
-	}
-
 	public String getName() {
 		return name;
 	}
