@@ -100,7 +100,7 @@
               <div class="panel-title-big">Applicants</div>
               <div class="panel-body">              	
           		<c:if test="${position.requests.size() == 0}">
-          		  <p>There is not any requests, now.</p>
+          		  <p class="no-requests">There is not any requests, now.</p>
           		</c:if>
               	<c:forEach items="${position.requests}" var="request">
                   <div class="applicant">

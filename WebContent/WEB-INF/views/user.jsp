@@ -91,19 +91,21 @@
       </c:if>
     </div>
     
-    <div class="edit-panel panel openable">
-      <div class="panel-title">UPDATE</div>
-      <div class="panel-body edit-body">
-        <input type="text" name="username" disabled="disabled" value="${user.username}"><span class="valid"></span><br>
-        <input type="text" name="email" disabled="disabled" value="${user.email}"><span class="valid"></span><br>
-        <input type="text" name="name" placeholder="Name" value="${user.name}"><span class="valid"></span><br>
-        <input type="text" name="surname" placeholder="Surname" value="${user.surname}"><span class="valid"></span><br>
-        <input type="text" name="cv-link" placeholder="CV link" value="${user.cvLink}"><span class="valid"></span><br>
-        <p class="button-wrapper">
-          <button class="update-button" onclick="update()">Update</button>
-        </p>
+    <c:if test="${currentUser}">
+      <div class="edit-panel panel openable">
+        <div class="panel-title">UPDATE</div>
+        <div class="panel-body edit-body">
+          <input type="text" name="username" disabled="disabled" value="${user.username}"><span class="valid"></span><br>
+          <input type="text" name="email" disabled="disabled" value="${user.email}"><span class="valid"></span><br>
+          <input type="text" name="name" placeholder="Name" value="${user.name}"><span class="valid"></span><br>
+          <input type="text" name="surname" placeholder="Surname" value="${user.surname}"><span class="valid"></span><br>
+          <input type="text" name="cv-link" placeholder="CV link" value="${user.cvLink}"><span class="valid"></span><br>
+          <p class="button-wrapper">
+            <button class="update-button" onclick="update()">Update</button>
+          </p>
+        </div>
       </div>
-    </div>
+    </c:if>
     
     <div class="tag-add-panel panel openable">
       <div class="panel-title">Add tag</div>

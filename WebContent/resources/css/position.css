@@ -173,6 +173,12 @@ h1 {
   border-radius: 50%;
 }
 
+.applicants .no-requests{
+  margin-left: 15px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
 .applicant {
   border-bottom: 1px solid #A9A9A4;
   padding: 0 17px;
