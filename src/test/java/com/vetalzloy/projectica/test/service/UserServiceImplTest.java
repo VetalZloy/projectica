@@ -160,6 +160,23 @@ public class UserServiceImplTest {
 	}
 	
 	@Test
+	public void loadInterlocutors() throws UserNotFoundException{
+		User u1 = helper.createUser("u1", "email1", "111");
+		User u2 = helper.createUser("u2", "email1", "111");
+		
+		dialogService.create("message1", u1.getUsername());
+		dialogService.create("message2", u2.getUsername());
+		
+		User currentUser = userService.getByUsername(SecurityUtil.getCurrentUsername());
+		userService.loadInterlocutors(currentUser);
+		List<User> interlocutors = currentUser.getInterlocutors()
+											  .stream()
+											  .map(i -> i.getInterlocutor())
+											  .collect(Collectors.toList());
+		assertTrue((Arrays.asList(u1, u2).containsAll(interlocutors)));
+	}
+	
+	@Test
 	public void updateTest() throws UserNotFoundException{
 		String name = "Vitaly";
 		String surname = "Dumma";

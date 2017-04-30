@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.BigIntegerType;
@@ -94,6 +95,22 @@ public class PositionDAOImpl implements PositionDAO {
 		logger.info("Free positions with name like '{}' and definite tags were extracted; list size = {}",
 						namePattern, list.size());
 		return list;
+	}
+
+	@Override
+	public Position getFullById(long positionId) {
+		Position position = getById(positionId);
+		if(position == null) return null;
+		
+		logger.info("Reloading corresponding project creator for position with id = {}", positionId);
+		Hibernate.initialize(position.getProject().getCreator().getUsername());
+		
+		logger.info("Reloading corresponding tags for position with id {}", positionId);
+		Hibernate.initialize(position.getTags());
+		
+		logger.info("Reloading corresponding requests for position with id {}", positionId);
+		Hibernate.initialize(position.getRequests());
+		return position;
 	}
 	
 }

@@ -148,4 +148,10 @@ public interface UserService {
 	 */
 	boolean isExists(String valueToCheck);
 	
+	/**
+	 * Loads user's interlocutors
+	 * @param user -  user, for whom interlocutors will be loaded
+	 */
+	void loadInterlocutors(User user);
+	
 }

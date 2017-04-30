@@ -8,7 +8,6 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,8 +61,7 @@ public class UserServiceImpl implements UserService{
 		if(user == null)
 			throw new UserNotFoundException("User with username '" + currentUsername +"' doesn't exist");
 		
-		Hibernate.initialize(user.getInterlocutors());
-		
+		loadInterlocutors(user);		
 		logger.info("Interlocutors for user with username '{}' were extracted successfully; interlocutors amount = {}",
 						currentUsername, user.getInterlocutors().size());
 		
@@ -232,18 +230,10 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public User getFullByUsername(String username) throws UserNotFoundException {
 		logger.debug("Retrieving  full information for user with username {}", username);
-		User user = userDAO.getByUsername(username);
-		if(user == null) throw new UserNotFoundException("User with username " + username + " doesn't exist");
-		
-		logger.info("Reloading corresponding created projects for user with username {}", username);
-		Hibernate.initialize(user.getCreatedProjects());
-		
-		logger.info("Reloading corresponding tags for user with username {}", username);
-		Hibernate.initialize(user.getTags());
-		
-		logger.info("Reloading corresponding positions for user with username {}", username);
-		Hibernate.initialize(user.getPositions());
-		
+		User user = userDAO.getFullByUsername(username);
+		if(user == null) 
+			throw new UserNotFoundException("User with username " + username + " doesn't exist");
+				
 		return user;
 	}
 
@@ -282,6 +272,11 @@ public class UserServiceImpl implements UserService{
 			logger.debug("User with field value '{}' doesn't exist.", valueToCheck);
 			return false;
 		}
+	}
+
+	@Override
+	public void loadInterlocutors(User user) {
+		userDAO.loadInterlocutors(user);
 	}
 	
 }

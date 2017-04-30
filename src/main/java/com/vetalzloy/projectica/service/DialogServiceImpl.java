@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,9 +99,9 @@ public class DialogServiceImpl implements DialogService {
 		logger.debug("Saving dialog message {} ...", message);		
 		dialogMessageDAO.saveOrUpdate(message);
 		
-		//Initialize interlocutors for sender and reciever respectively
-		Hibernate.initialize(sender.getInterlocutors());
-		Hibernate.initialize(reciever.getInterlocutors());
+		//Initialize interlocutors for sender and receiver respectively
+		userService.loadInterlocutors(sender);
+		userService.loadInterlocutors(reciever);
 		
 		/*
 		 * Hard part. Extract interlocutors for sender: if reciever among them => return him,

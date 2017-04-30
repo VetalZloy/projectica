@@ -21,11 +21,20 @@ public interface ProjectDAO {
 	List<Project> getProjectsPage(int start, int amount);
 	
 	/**
-	 * Retrieves project with id {@code projectId}
+	 * Retrieves project with id {@code projectId}.
+	 * LAZY fields won't be loaded
 	 * @param projectId - id of necessary project
 	 * @return retrieved project or {@code null}, if it doesn't exist
 	 */
 	Project getById(int projectId);
+	
+	/**
+	 * Retrieves project with id {@code projectId}.
+	 * LAZY fields will be loaded as well.
+	 * @param projectId - id of necessary project
+	 * @return retrieved project or {@code null}, if it doesn't exist
+	 */
+	Project getFullById(int projectId);
 	
 	/**
 	 * Saves new project or updates, if it already exists

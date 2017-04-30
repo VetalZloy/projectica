@@ -31,11 +31,20 @@ public interface UserDAO {
 	List<User> getUsersPage(int start, int amount);
 	
 	/**
-	 * Retrieves user with such {@code username}
+	 * Retrieves user with such {@code username}.
+	 * LAZY fields won't be loaded.
 	 * @param username - username of necessary user
 	 * @return retrieved user or {@code null}, if he doesn't exist
 	 */
 	User getByUsername(String username);
+	
+	/**
+	 * Retrieves user with such {@code username}.
+	 * LAZY fields will be loaded, except interlocutors
+	 * @param username - username of necessary user
+	 * @return retrieved user or {@code null}, if he doesn't exist
+	 */
+	User getFullByUsername(String username);
 	
 	/**
 	 * Saves new user or updates, if he already exists
@@ -79,4 +88,11 @@ public interface UserDAO {
 	 * Deletes expired password tokens
 	 */
 	void deleteExpiredPasswordTokens();
+	
+	
+	/**
+	 * Loads user's interlocutors
+	 * @param user - user, for whom interlocutors will be loaded
+	 */
+	void loadInterlocutors(User user);
 }

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.type.BigIntegerType;
@@ -201,6 +202,29 @@ public class UserDAOImpl implements UserDAO{
 		logger.info("Users from {} to {} were extracted, result list size = {}", 
 				start, start+amount, list.size());
 		return list;
+	}
+
+	@Override
+	public void loadInterlocutors(User user) {
+		sessionFactory.getCurrentSession().refresh(user);
+		Hibernate.initialize(user.getInterlocutors());
+	}
+
+	@Override
+	public User getFullByUsername(String username) {
+		User user = getByUsername(username);
+		if(user == null) return null;
+		
+		logger.info("Reloading corresponding created projects for user with username {}", username);
+		Hibernate.initialize(user.getCreatedProjects());
+		
+		logger.info("Reloading corresponding tags for user with username {}", username);
+		Hibernate.initialize(user.getTags());
+		
+		logger.info("Reloading corresponding positions for user with username {}", username);
+		Hibernate.initialize(user.getPositions());
+		
+		return user;
 	}
 
 }

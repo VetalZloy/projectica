@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,20 +47,11 @@ public class PositionServiceImpl implements PositionService {
 	public Position getFullById(long positionId) throws PositionNotFoundException {
 		
 		logger.debug("Extracting position with id = {} ...", positionId);
-		Position position = positionDAO.getById(positionId);
+		Position position = positionDAO.getFullById(positionId);
 		
 		if(position == null){
 			throw new PositionNotFoundException("Position with id = " + positionId + " doesn't exist");
 		}
-		
-		logger.info("Reloading corresponding project creator for position with id = {}", positionId);
-		Hibernate.initialize(position.getProject().getCreator().getUsername());
-		
-		logger.info("Reloading corresponding tags for position with id {}", positionId);
-		Hibernate.initialize(position.getTags());
-		
-		logger.info("Reloading corresponding requests for position with id {}", positionId);
-		Hibernate.initialize(position.getRequests());
 		
 		return position;
 	}

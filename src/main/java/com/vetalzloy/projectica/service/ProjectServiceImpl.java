@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Hibernate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,13 +78,10 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public Project getFullById(int projectId) throws ProjectNotFoundException {
 		logger.debug("Extracting position with id = {} ...", projectId);
-		Project project = getById(projectId);
+		Project project = projectDAO.getFullById(projectId);
 		
-		logger.info("Reloading creator field for project with id {}", projectId);
-		Hibernate.initialize(project.getCreator());
-		
-		logger.info("Reloading corresponding chatrooms for project with id {}", projectId);
-		Hibernate.initialize(project.getChatRooms());
+		if(project == null)
+			throw new ProjectNotFoundException(projectId);
 		
 		return project;
 	}

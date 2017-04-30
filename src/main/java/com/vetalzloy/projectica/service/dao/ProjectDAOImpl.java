@@ -2,6 +2,7 @@ package com.vetalzloy.projectica.service.dao;
 
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -74,6 +75,20 @@ public class ProjectDAOImpl implements ProjectDAO {
 			logger.info("Project with projectName = {} was extracted succesfully. {}", projectName, p);
 		else 
 			logger.info("Project with projectName = {} doesn't exist", projectName);
+		return p;
+	}
+
+	@Override
+	public Project getFullById(int projectId) {
+		Project p = getById(projectId);
+		if(p == null) return null;
+		
+		logger.info("Reloading creator field for project with id {}", projectId);
+		Hibernate.initialize(p.getCreator());
+		
+		logger.info("Reloading corresponding chatrooms for project with id {}", projectId);
+		Hibernate.initialize(p.getChatRooms());
+		
 		return p;
 	}
 

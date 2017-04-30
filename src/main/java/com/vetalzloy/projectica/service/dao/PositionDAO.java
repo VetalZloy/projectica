@@ -12,11 +12,20 @@ import com.vetalzloy.projectica.model.Position;
 public interface PositionDAO {
 	
 	/**
-	 * Retrieves position, which has id {@code positionId}
-	 * @param positionId - id of nrequired position
+	 * Retrieves position, which has id {@code positionId}.
+	 * LAZY fields won't be loaded
+	 * @param positionId - id of required position
 	 * @return required position or null if it doesn't exist
 	 */
 	Position getById(long positionId);
+	
+	/**
+	 * Retrieves position, which has id {@code positionId}.
+	 * All LAZY fields will be loaded as well.
+	 * @param positionId - id of required position
+	 * @return required position or null if it doesn't exist
+	 */
+	Position getFullById(long positionId);
 	
 	/**
 	 * Retrieves free positions, which have name matched to {@code namePattern} 
