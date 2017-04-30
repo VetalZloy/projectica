@@ -25,7 +25,8 @@ public interface DialogService {
 	
 	/**
 	 * Retrieves and returns first page of dialog message from dialog 
-	 * between current user and user with username {@code interlocutorUsername}
+	 * between current user and user with username {@code interlocutorUsername}.
+	 * If last message is unread by current user => makes it read.
 	 * @param interlocutorUsername - message page will be retrieved from dialog 
 	 * between current user and user with such username
 	 * @return List of retrieved dialog messages ordered by sending date in descending order,
