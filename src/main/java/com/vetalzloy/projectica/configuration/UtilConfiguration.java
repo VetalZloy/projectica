@@ -13,6 +13,9 @@ import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import com.vetalzloy.projectica.util.MailUtil;
+import com.vetalzloy.projectica.util.MailUtilImpl;
+
 @Configuration
 @EnableScheduling
 @ComponentScan({
@@ -72,6 +75,11 @@ public class UtilConfiguration {
 		
 		sender.setJavaMailProperties(prop);
 		return sender;
+	}
+	
+	@Bean
+	public MailUtil mailUtil(){
+		return new MailUtilImpl();
 	}
 	
 }
