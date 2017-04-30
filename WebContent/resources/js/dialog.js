@@ -159,13 +159,17 @@ function loadPreviousPage(oldContentHeight) {
 			}
 			earliestMassageDate = date;
 			
+			var text = message.text.replace(/</g, "&lt;")
+					  			   .replace(/>/g, "&gt;")
+					  			   .replace(/\n/g, "<br>");
+			
 		    var prependableBlock = dayLine + 
 		    					   '<div class="message">'+
 				  				    '<div class="avatar"><img src='+message.gravatarUrl+'></div>'+
 				  				    '<div class="right-side">'+
 				  					  '<a href='+userUrl+' class="username">'+message.senderUsername+'</a>'+
 				  					  '<span class="date">'+hours+':'+minutes+'</span>'+
-				  					  '<div class="text"><p>'+message.text+'</p></div>'+
+				  					  '<div class="text"><p>'+text+'</p></div>'+
 				  				    '</div>'+
 				  				  '</div>';		    
 		    blocksToPrepend += prependableBlock;
