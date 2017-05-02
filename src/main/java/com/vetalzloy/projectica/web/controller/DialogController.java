@@ -68,7 +68,7 @@ public class DialogController {
 			return "dialogs";
 		} catch (UserNotFoundException e) {
 			logger.warn("Error happened during retrieving interlocutors for user with username.", e);
-			return "error";
+			return "redirect:/?login";
 		}
 	}
 	
@@ -108,7 +108,7 @@ public class DialogController {
 		
 		if("anonymousUser".equals(currentUsername)) {
 			logger.warn("Unauthorized user tries to open dialog page with user '{}'", username);
-			return "redirect:/";
+			return "redirect:/?login";
 		}
 		
 		try {
