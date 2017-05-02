@@ -23,13 +23,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserService userService;
 	
+	
+	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 		logger.debug("Loading user information by username {}, for security providing ...", username);
 		User user = null;
 		try {
-			user = userService.getByUsername(username);
+			if(username.contains("@")) // for email-based login
+				user = userService.getByEmail(username);
+			else //for username-based login
+				user = userService.getByUsername(username);
 		} catch (UserNotFoundException e) {
 			logger.warn("Error happened during extracting user.", e);
 		}

@@ -40,7 +40,7 @@
       <p></p>
     	<!-- <c:if test="${param.logout != null}">YOU'VE BEEN LOGOUT SUCCESSFULLY</c:if> -->
       <form action='<c:url value="/login" />' method="POST">
-    	<input type="text" name="username" placeholder="Username"/><br/>
+    	<input type="text" name="username" placeholder="Username or email"/><br/>
     	<input type="password" name="password" placeholder="Password"/><br/>
     	<input id="remember-me" class="css-checkbox" type="checkbox" name="remember-me" checked/>
         <label for="remember-me" class="css-label">Remember me</label><br/>
