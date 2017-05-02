@@ -6,8 +6,9 @@ $( document ).ready(function() {
 	
   if(location.href.indexOf('login-error') != -1) {
     $(".log-in .panel-body p")[0].innerText = 'ERROR';
-    openLogInPanel();
   }
+  if(location.href.indexOf('login') != -1)
+	  openPanel(".log-in");
   
   $(".sign-up button")[0].disabled = true;
   

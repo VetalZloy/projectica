@@ -118,11 +118,8 @@ public class IndexController {
 		logger.debug("registrationConfirm() method was invoked for token = {}", token);
 		
 		try {
-			userService.activateByVerificationToken(token);			
-			model.addAttribute("title", "Registration");
-			model.addAttribute("topic", "Registration complited");
-			model.addAttribute("additions", "Please, <a href='https://projectica.me'>Log in</a>");
-			return "info";
+			userService.activateByVerificationToken(token);						
+			return "registrationConfirm";
 		} catch (EntityNotFoundException | UserAlreadyExistsException e) {
 			logger.warn("Error happened during confirming registration", e);
 			return "error";
