@@ -1,0 +1,270 @@
+.container-fluid {
+  padding: 35px 48px;
+}
+
+h1 {
+  display: inline-block;
+  font-size: 28px;
+  margin-top: -15px;
+}
+
+textarea {
+  width: 100%;
+  height: 200px;
+}
+
+.info p{
+  font-size: 13px;
+  text-align: justify;
+  margin-bottom: 5px;
+}
+
+.info .creator {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.positions>div {
+  margin-bottom: 10px;
+}
+
+.participants {
+  margin-top: 30px;
+}
+
+.participants .title {
+  color: #fff;
+  background-color: #374467;
+  padding: 4px 28px;
+  font-size: 15px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.participants .body {
+  margin-top: 20px;
+  padding-left: 30px;
+}
+
+.participants a {
+  display: inline-block;
+  font-size: 20px;
+  border: 0px;
+  border-radius: 0;
+}
+
+.user p a{	
+  color: #000;
+  font-size: 16px;
+  font-weight: 100;
+  padding: 0 5px;
+  margin: 0;
+}
+
+.user .active{
+  border-top: 1px solid #B8B8B8;
+}
+
+.user-positions {
+  display: none;
+  background-color: #EEEEEE;
+  padding: 10px 15px 20px 15px;
+  margin-left: 23px;
+  margin-bottom: 10px;
+}
+
+.user-positions a{	
+  text-decoration: underline;
+  padding-bottom: 1px;
+  display: block;
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #000;
+}
+
+.reveal {
+  padding: 10px;
+  background-image: url(../img/plus.png);
+  background-size: 18px;
+  background-position: 2px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+}
+
+.reveal:hover {
+  cursor: pointer;
+}
+
+.user .cover {
+  padding: 10px;
+  background-image: url(../img/minus.png);
+  background-size: 18px;
+  background-position: 2px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 4px;
+}
+
+.cover:hover {
+  cursor: pointer;
+}
+
+.add-chatroom {
+  display: none;
+  opacity: 1;
+  width: 310px;
+  position: fixed;
+  left: 50%;
+  margin-left: -155px;
+  top: 30%;
+}
+
+.add-chatroom .panel-body {
+  border: 1px solid #A9A9A4;
+  border-top: 0;  
+  padding-top: 10px;
+}
+
+.add-chatroom input {
+  width: 100%;
+}
+
+.panel-title-big {
+  margin-bottom: -1px;
+}
+
+.create-position {
+  display: none;
+  opacity: 1;
+  width: 310px;
+  position: fixed;
+  left: 50%;
+  margin-left: -155px;
+  top: 10%;
+}
+
+.create-position .panel-body {
+  padding-top: 10px;
+}
+
+.create-position input {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.create-position textarea {
+  width: 100%;
+  min-height: 100px;
+  margin-bottom: 10px;
+}
+
+.tag-block {
+  position: relative;
+}
+
+.create-position .add-button {
+  position: absolute;
+  width: 51px;
+  height: 31px;
+  right: 0;
+  top: 0px;
+}
+
+.create-position .button-wrapper {
+  margin-top: 10px;
+}
+
+.similar-tags {
+  z-index: 100;
+  width: 100%;
+  font-weight: 600;
+  margin-top: -6px;
+  position: absolute;
+  padding-right: 51px;
+}
+
+.similar-tags p {  
+  background-color: #fff;
+  padding: 3px 5px;
+}
+
+.similar-tags p:first-child {
+  border-top: 0;
+}
+
+.similar-tags p:hover {
+  background-color: #B8B8B8;
+  cursor: pointer;
+}
+
+.added-tags div {
+  margin-top: 5px;
+  margin-left: 2px;
+  display: inline-block;
+  font-size: 16px;
+  border: 1px solid #A9A9A4;
+  padding: 0 4px;
+}
+
+.added-tags .close {
+  background-image: url(../img/close.png);
+  top: 1px;
+}
+
+.added-tags .close:hover {
+  background-color: inherit;
+}
+
+.edit {
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  padding: 16px;
+  background-image: url(../img/edit.png);
+  background-size: 17px;
+  background-color: #EEE;
+  background-repeat: no-repeat;
+  background-position: 8px;
+  border-radius: 50%;
+}
+
+.edit:hover {
+  cursor: pointer;
+  background-color: #A9A9A4;
+}
+
+.edit-panel {
+  display: none;
+  position: fixed;
+  width: 40%;
+  left: 30%;
+  top: 75px;
+  z-index: 100;
+}
+
+.edit-panel .panel-body{
+}
+
+.edit-panel input {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.edit-panel textarea {
+  width: 100%;
+  height: 300px;
+  margin-top: -1px;
+}
+
+.edit-panel button {
+  margin-top: 10px
+}
+
+.edit-panel .error {
+  font-size: 16px;
+  text-align: justify;
+}

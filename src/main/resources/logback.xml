@@ -2,7 +2,7 @@
 <!DOCTYPE configuration>
 <configuration>
 
-	<property name="LOG_DESTINATION" value="${CATALINA_HOME}/logs" />
+	<property name="LOG_DESTINATION" value="logs" />
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>

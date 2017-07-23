@@ -27,6 +27,7 @@ import com.vetalzloy.projectica.service.TagService;
 import com.vetalzloy.projectica.service.UserService;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.PositionNotFoundException;
 import com.vetalzloy.projectica.service.exception.ProjectAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.TagNotFoundException;
@@ -112,7 +113,7 @@ public class TagServiceImplTest {
 	}
 	
 	@Test
-	public void attachToPositionTest() throws UserNotFoundException, ProjectAlreadyExistsException, PositionNotFoundException, AccessDeniedException{
+	public void attachToPositionTest() throws UserNotFoundException, ProjectAlreadyExistsException, PositionNotFoundException, AccessDeniedException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("Super project", "DBA", "descr");
 		Position pos = pr.getPositions().iterator().next();
 		List<String> tags = Arrays.asList("Java", "PHP", "NO SQL");
@@ -127,7 +128,7 @@ public class TagServiceImplTest {
 	}
 	
 	@Test
-	public void detachToPositionTest() throws ProjectAlreadyExistsException, AccessDeniedException, EntityNotFoundException{
+	public void detachToPositionTest() throws ProjectAlreadyExistsException, AccessDeniedException, EntityNotFoundException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("Super project", "DBA", "descr");
 		Position pos = pr.getPositions().iterator().next();
 		List<String> tags = Arrays.asList("Java", "PHP", "NO SQL");

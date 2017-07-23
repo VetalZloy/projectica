@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title th:text="${user.username}">Username</title>
+
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" />
+  <link rel="stylesheet" th:href="@{/css/base.css}" href="../static/css/base.css" />
+  <link rel="stylesheet" th:href="@{/css/user.css}" href="../static/css/user.css" />
+</head>
+<body>
+  <a class="github" href="https://github.com/VetalZloy/projectica"></a>  
+  <a class="about" th:href="@{/about}"></a>
+  <header>
+    <a class="logo" th:href="@{/}"></a>
+    <ul>
+      <li><a class="logout" th:href="@{/logout}" ></a></li>
+      <li><a th:href="@{/users}" >Users</a></li>
+      <li><a th:href="@{/projects}" >Projects</a></li>
+      <li><a th:href="@{/positions}" >Vacancies</a></li>
+      <li><a th:href="@{/messages}" >Messages<span class="new-messages"></span></a></li>
+    </ul>
+  </header>
+
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">        
+        <div class="info col-xs-6">
+          <div class="avatar">
+            <img th:src="${T(com.vetalzloy.projectica.util.GravatarUtil).getGravatarUrl('__${user.email}__')}" src="https://www.gravatar.com/avatar" />
+          </div>
+          <div class="text">
+            <h1 th:text="${user.username}">Username</h1>
+            <span th:if="${currentUser}" class="edit" onclick="openPanel('.edit-panel')"></span>
+            <a th:if="${!currentUser and beans.securityUtil.isLoggedIn()}" th:href="@{/dialogs/__${user.username}__}" class="send-message"></a>
+			<p class="full-name" th:text="|${#objects.nullSafe(user.name,'')} ${#objects.nullSafe(user.surname, '')}|">Name Surname</p>
+			<a class="cv-link" th:if="${user.cvLink}" th:href="${user.cvLink}" th:text="|${user.username}'s CV|">Username's CV</a>
+			<div class="tags">
+          	    <div th:each="tag : ${user.tags}">
+          	  	  <span th:text="${tag.tag}">Tagname</span>
+          	  	  <span th:if="${currentUser}" class="close"></span>
+          	    </div>
+          	    <span th:if="${currentUser}" class="add" onclick="openPanel('.tag-add-panel')"></span>
+          	</div>
+          </div>
+        </div>
+        <div class="right-side col-xs-4 col-xs-offset-2">
+          <div th:if="${currentProjects.size() > 0}" class="projects">
+            <span class="title">Current projects</span>
+          	<a th:each="project : ${currentProjects}" th:href="@{/projects/__${project.id}__}" th:text="${project.name}"> Project name</a>
+          </div>
+        </div>
+      </div>
+      <div th:if="${closedPositions.size() > 0}">
+        <span class="title">Feedback</span>
+        <div class="comments">
+          <div class="comment" th:each="position : ${closedPositions}">
+            <a th:href="@{/positions/__${position.id}__}" th:text="${position.name}">Position name</a>
+            <span th:class='${position.estimation ? "good" : "bad" }' class="good" ></span>
+          	<span class="date" th:text="${#temporals.format(position.firingDate, 'dd.MM.yyyy')}">15.02.1996</span>           	    
+            <p th:text="${position.comment}">Position comment</p>
+          </div>
+         </div>
+      </div>
+    </div>
+    
+    <div th:if="${currentUser}">
+      <div class="edit-panel panel openable">
+        <div class="panel-title">UPDATE</div>
+        <div class="panel-body edit-body">
+          <input type="text" name="username" disabled="disabled" th:value="${user.username}" /><span class="valid"></span><br/>
+          <input type="text" name="email" disabled="disabled" th:value="${user.email}" /><span class="valid"></span><br/>
+          <input type="text" name="name" placeholder="Name" th:value="${user.name}" /><span class="valid"></span><br/>
+          <input type="text" name="surname" placeholder="Surname" th:value="${user.surname}" /><span class="valid"></span><br/>
+          <input type="text" name="cv-link" placeholder="CV link" th:value="${user.cvLink}" /><span class="valid"></span><br/>
+          <p class="button-wrapper">
+            <button class="update-button" onclick="update()">Update</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="tag-add-panel panel openable">
+      <div class="panel-title">Add tag</div>
+      <div class="panel-body">
+        <input type="text" name="tagName" placeholder="Tag" autofocus="autofocus" />
+        <div class="similar-tags"></div>
+        <p class="button-wrapper">
+          <button class="add-button" onclick="addTagWrapper()">Add</button>
+        </p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg_layer"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script th:src="@{/js/jquery.cookie.js}" src="../static/js/jquery.cookie.js"></script>  
+  <script th:src="@{/js/base.js}" src="../static/js/base.js"></script>
+  <script th:src="@{/js/user.js}" src="../static/js/user.js"></script>
+
+</body>
+</html>

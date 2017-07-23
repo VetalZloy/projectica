@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title th:text="${interlocutor.username}">Username</title>
+
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" />
+  <link rel="stylesheet" th:href="@{/css/base.css}" href="../static/css/base.css" />
+  <link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}" href="../static/css/jquery.mCustomScrollbar.min.css" />
+  <link rel="stylesheet" th:href="@{/css/dialog.css}" href="../static/css/dialog.css" />
+  <link rel="stylesheet" th:href="@{/css/double-torus.css}" href="../static/css/double-torus.css" />
+</head>
+<body>
+  <header>
+    <a class="logo" th:href="@{/}"></a>
+    <ul>
+      <li><a class="logout" th:href="@{/logout}" ></a></li>
+      <li><a th:href="@{/users}" >Users</a></li>
+      <li><a th:href="@{/projects}" >Projects</a></li>
+      <li><a th:href="@{/positions}" >Vacancies</a></li>
+      <li><a th:href="@{/messages}" >Messages<span class="new-messages"></span></a></li>
+    </ul>
+  </header>
+  
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2 dialog">
+          <div class="interlocutor">
+            <div class="gravatar-wrapper">
+              <img th:src="${T(com.vetalzloy.projectica.util.GravatarUtil).getGravatarUrl('__${interlocutor.email}__, 50')}" src="https://www.gravatar.com/avatar" />
+            </div>
+            <p><a th:href="@{/users/__${interlocutor.username}__}" th:text="${interlocutor.username}">Username</a></p>            
+          </div>
+          <div class="scroll-pane mCustomScrollbar" data-mcs-theme="minimal-dark">
+          	<div class="cssload-container">
+			  <div class="cssload-double-torus"></div>
+			</div>
+          </div>
+          <div class="send-area">
+            <textarea placeholder="Type message..."></textarea>
+            <span class="send" onclick="send()"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="invisible">
+  	<div class="user">
+  		<p class="userId" th:text="${user.userId}">ID</p>
+  		<p class="username" th:text="${user.username}">Username</p>
+  		<img th:src="${T(com.vetalzloy.projectica.util.GravatarUtil).getGravatarUrl('__${user.email}__')}" src="https://www.gravatar.com/avatar" />
+  	</div>
+  	<div class="user">
+  		<p class="userId" th:text="${interlocutor.userId}">ID</p>
+  		<p class="username" th:text="${interlocutor.username}">Username</p>
+  		<img th:src="${T(com.vetalzloy.projectica.util.GravatarUtil).getGravatarUrl('__${interlocutor.email}__')}" src="https://www.gravatar.com/avatar" />
+  	</div>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script th:src="@{/js/jquery.cookie.js}" src="../static/js/jquery.cookie.js"></script>
+  <script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}" src="../static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script th:src="@{/js/socket.io.js}" src="../static/js/socket.io.js"></script>
+  <script th:src="@{/js/base.js}" src="../static/js/base.js"></script>
+  <script th:src="@{/js/dialog.js}" src="../static/js/dialog.js"></script>
+
+</body>
+</html>

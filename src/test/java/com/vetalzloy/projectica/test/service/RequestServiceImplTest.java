@@ -25,6 +25,7 @@ import com.vetalzloy.projectica.service.ProjectService;
 import com.vetalzloy.projectica.service.RequestService;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.ProjectAlreadyExistsException;
 import com.vetalzloy.projectica.test.configuration.ServiceConfiguration;
 import com.vetalzloy.projectica.test.helper.DBHelper;
@@ -59,7 +60,7 @@ public class RequestServiceImplTest {
 	}
 	
 	@Test
-	public void createRequestTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException{
+	public void createRequestTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("Super project", "base", "desc");
 		Position pos = positionService.createPosition(pr.getId(), "DBA", "desc", null);
 		
@@ -76,7 +77,7 @@ public class RequestServiceImplTest {
 	}
 	
 	@Test
-	public void getByPositionIdAndUsernameTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException{
+	public void getByPositionIdAndUsernameTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("Super project", "base", "desc");
 		Position pos = positionService.createPosition(pr.getId(), "DBA", "desc", null);
 		

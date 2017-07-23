@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300&subset=cyrillic-ext,latin-ext');
+
+.container-fluid {
+  padding-top: 40px;
+}
+
+h1 {
+  font-size: 23px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+/* HEADER BEGIN */
+.github {
+  position: absolute;
+  padding: 13px;
+  z-index: 10;
+  background-image: url(../img/github.png);
+  background-size: 26px;
+  left: 15px;
+  top: 15px;
+  background-repeat: no-repeat;
+}
+
+.about {
+  position: absolute;
+  padding: 13px;
+  z-index: 10;
+  background-image: url(../img/about.png);
+  background-size: 26px;
+  left: 50px;
+  top: 15px;
+  background-repeat: no-repeat;
+}
+/* HEADER END*/
+
+.wrapper {
+  position: absolute;
+  top: 55px;
+  width: 100%;
+  min-width: 960px;
+  min-height: 100%;
+  padding: 0 12%;
+  background-color: #EFEFEF;
+}
+
+.row {
+  margin-bottom: 30px;
+}
+
+.avatar {
+  height: 0;
+}
+
+.avatar img {
+  width: 100px;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.info .text {
+  padding-left: 120px;
+}
+
+.online {
+  padding: 7px;
+  background-color: #63B175;
+  font-size: 0;
+  border-radius: 50%;
+  top: 73px;
+  left: 73px;
+  position: relative;
+  border: 2px solid #fff;
+}
+
+.info .edit {  
+  display: inline-block;
+  position: relative;
+  top: 7px;
+  padding: 15px;  
+  background-color: #EEEEEE;
+  background-image: url(../img/edit.png);
+  background-size: 15px;  
+  background-position: 7px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+.info .edit:hover {
+  cursor: pointer;
+  background-color: #A9A9A4;
+}
+
+.info>.row>div {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.info .send-message {
+  background-color: #16ADC1;
+  padding: 15px;
+  display: inline-block;
+  background-image: url(../img/send-message-white.png);
+  background-size: 17px;
+  background-position: 7px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: relative;
+  top: 7px;
+}
+
+.info .send-message:hover {
+  background-color: #1398A9;
+}
+
+.info p {
+  font-size: 15px;
+  margin: 0;
+}
+
+.info a {
+  font-weight: 600;
+}
+
+.right-side>div {
+	margin-bottom: 10px;
+}
+
+.tags {
+  margin-top: 10px;
+}
+
+.tags>div{
+  margin-top: 9px;
+  margin-right: 7px;
+  display: inline-block;
+  font-size: 12px;
+  background-color: #EEEEEE;
+  padding: 2px 5px 3px 8px;
+}
+
+.tags .close {
+  background-image: url(../img/close.png);
+  background-size: 7px;
+  background-position: 2.5px;
+  top: 2.5px;
+  min-width: 12px;
+  min-height: 12px;
+}
+
+.tags .close:hover {
+  background-color: #A9A9A4;
+}
+
+.add {
+  float: initial;
+  display: inline-block;
+  background-color: #fff;
+  top: 2px;
+  padding: 7px;
+  background-size: 11px;
+  background-position: 1.5px;
+}
+
+.add:hover {
+  background-color: #A9A9A4;
+  cursor: pointer;
+}
+
+.comments {
+  width: 570px;
+}
+
+.comment {
+  padding: 10px 40px 10px 25px;
+  background-color: #EEEEEE;
+  margin-bottom: 10px;
+  color: #000;
+  border-left: 4px solid #374467;
+}
+
+.comment a{
+  display: inline-block;
+  color: #374467;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.comment .bad {
+  background-image: url(../img/bad.png);
+  padding: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  margin-left: 5px;
+}
+
+.comment .good {
+  background-image: url(../img/good.png);
+  padding: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  margin-left: 5px;
+}
+
+.comment .date {
+  float: right;
+  padding: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374467;
+  margin-top: 7px;
+}
+
+.comment p {
+  font-size: 13px;
+}
+
+.projects a {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.edit-panel {
+  display: none;
+  width: 50%;
+  position: fixed;
+  left: 25%;
+  top: 75px;
+  z-index: 100;
+}
+
+.edit-panel .panel-body {
+  padding-top: 10px;
+}
+
+.update {
+  position: absolute;
+  height: 30px;
+  line-height: 30px;
+  padding: 0 10px;
+  font-size: 20px;
+  font-weight: 400;
+  background-color: #308042;
+  color: #fff;
+}
+
+.update:hover {
+  cursor: pointer;
+  color: #000;
+  font-weight: 500;
+}
+
+.edit-body input {
+  width: 100%;
+}
+
+.edit-body .valid, .invalid {
+  position: absolute;
+  display: inline-block;
+  margin-top: 12px;
+  margin-left: -20px;
+  float: right;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.valid {
+  background-color: #63B175;
+}
+
+.invalid {
+  background-color: #B22F2F;
+}
+
+/*.update-button {
+  float: right;
+  top: 5px;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 0px 10px;
+  font-weight: 600;
+  position: relative;
+  border: 3px solid #308042;
+  background-color: #EFEFEF;
+}
+
+.update-button:hover {
+  background-color: #B8B8B8;
+}
+
+.update-button:disabled {
+  cursor: default;
+  background-color: #EFEFEF;
+}*/
+
+.tag-add-panel {
+  display: none;
+  position: fixed;
+  width: 310px;
+  left: 37%;
+  top: 75px;
+  z-index: 100;
+}
+
+.tag-add-panel input {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.add-button {
+  width: 90px;
+  height: 28px;
+  margin-top: 10px;
+}
+
+.similar-tags {
+  color: #6B6B6B;
+  font-size: 15px;
+  margin-top: -7px;
+  font-weight: 600;
+  position: absolute;
+  width: 100%;
+  padding-right: 32px;
+}
+
+.similarTag {
+  background-color: #fff;
+  padding: 5px;
+}
+
+.similarTag:hover {
+  cursor: pointer;
+  background-color: #B8B8B8;
+}
+
+.title {
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: inline-block;
+}

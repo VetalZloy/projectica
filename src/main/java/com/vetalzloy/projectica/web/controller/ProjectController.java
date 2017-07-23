@@ -28,6 +28,7 @@ import com.vetalzloy.projectica.model.User;
 import com.vetalzloy.projectica.service.ProjectService;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.ProjectAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.ProjectNotFoundException;
 import com.vetalzloy.projectica.service.exception.UserNotFoundException;
@@ -155,6 +156,8 @@ public class ProjectController {
 		
 		if(currentUsername.equals(project.getCreator().getUsername()))
 			model.addAttribute("creator", true);
+		else
+			model.addAttribute("creator", false);
 		
 		boolean participant = currentPositions
 							  .stream()
@@ -189,7 +192,7 @@ public class ProjectController {
 		try {
 			Project project = projectService.createProject(name, creatorPosition, description);
 			return "redirect:/projects/" + project.getId();
-		} catch (UserNotFoundException | ProjectAlreadyExistsException e) {
+		} catch (UserNotFoundException | ProjectAlreadyExistsException | ExternalResourceAccessException e) {
 			logger.warn("Error happened during extracting user.", e);
 			return "error";
 		}		

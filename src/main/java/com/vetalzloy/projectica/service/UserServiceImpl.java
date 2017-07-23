@@ -3,10 +3,7 @@ package com.vetalzloy.projectica.service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
-
-import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.vetalzloy.projectica.model.Interlocutor;
 import com.vetalzloy.projectica.model.PasswordToken;
 import com.vetalzloy.projectica.model.User;
 import com.vetalzloy.projectica.model.VerificationToken;
@@ -26,16 +23,12 @@ import com.vetalzloy.projectica.service.exception.UserNotFoundException;
 import com.vetalzloy.projectica.service.exception.VerificationTokenNotFoundException;
 import com.vetalzloy.projectica.util.MailUtil;
 import com.vetalzloy.projectica.util.SecurityUtil;
-import com.vetalzloy.projectica.web.json.UserJson;
 
 @Service
 @Transactional
 public class UserServiceImpl implements UserService{
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-	
-	@Autowired
-	private DialogService dialogService;
 	
 	@Autowired
 	@Qualifier("applicationAddress")
@@ -49,24 +42,6 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private MailUtil mailUtil;
-
-	@Override
-	public Set<Interlocutor> getInterlocutors() throws UserNotFoundException {
-		String currentUsername = SecurityUtil.getCurrentUsername();
-		
-		logger.debug("Extracting interlocutors for user with username '{}'...", 
-						currentUsername);
-		
-		User user = userDAO.getByUsername(currentUsername);
-		if(user == null)
-			throw new UserNotFoundException("User with username '" + currentUsername +"' doesn't exist");
-		
-		loadInterlocutors(user);		
-		logger.info("Interlocutors for user with username '{}' were extracted successfully; interlocutors amount = {}",
-						currentUsername, user.getInterlocutors().size());
-		
-		return user.getInterlocutors();
-	}
 	
 	@Override
 	public List<User> getSimilars(String usernamePattern, List<String> tags) {
@@ -99,7 +74,7 @@ public class UserServiceImpl implements UserService{
 		User user = userDAO.getByEmail(email);
 		if(user == null) throw new UserNotFoundException("User with email " + email + " is not found.");
 		
-		return userDAO.getByEmail(email);
+		return user;
 	}
 
 	@Override
@@ -138,7 +113,7 @@ public class UserServiceImpl implements UserService{
 		String passwordTokenString = UUID.randomUUID().toString();
 		PasswordToken token = new PasswordToken(user, passwordTokenString);
 		token.setExpireDate(LocalDateTime.now().plusHours(24));
-		user.setPasswordToken(token);
+		user.getPasswordTokens().add(token);
 		userDAO.saveOrUpdate(user);
 		
 		String text = "For changing password go to: \n" + 
@@ -181,7 +156,7 @@ public class UserServiceImpl implements UserService{
 		LocalDateTime ldt = LocalDateTime.now().plusHours(24);
 		
 		VerificationToken vt = new VerificationToken(tokenString, ldt, user);
-		user.setVerificationToken(vt);
+		user.getVerificationTokens().add(vt);
 		
 		userDAO.saveOrUpdate(user);
 		
@@ -215,8 +190,8 @@ public class UserServiceImpl implements UserService{
 		user.setEnabled(true);
 		userDAO.saveOrUpdate(user);
 		
-		//Send message from admin
-		dialogService.sendAfterRegistrationMessage(user.getUsername());
+		// TODO Send message from admin
+		
 		
 	}
 
@@ -238,25 +213,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public UserJson getCurrentUserJson() throws UserNotFoundException {
-		String username = SecurityUtil.getCurrentUsername();
-		return getUserJsonByUsername(username);		
-	}
-
-	@Override
-	public UserJson getUserJsonByUsername(String username) throws UserNotFoundException {
-		int gravatarSize = 40;
-		
-		logger.debug("Retreiving user with username '{}'", username);
-		User user = userDAO.getByUsername(username);
-		
-		if(user == null)
-			throw new UserNotFoundException("User with username '" + username +  "' doesn't exist");
-		
-		return UserJson.create(user, gravatarSize);
-	}
-
-	@Override
 	public boolean isExists(String valueToCheck) {
 		logger.debug("Checking value '{}' for existence.", valueToCheck);
 		
@@ -275,8 +231,12 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void loadInterlocutors(User user) {
-		userDAO.loadInterlocutors(user);
+	public User getById(long userId) throws UserNotFoundException {
+		logger.debug("Retrieving user by id = {} ...", userId);
+		User user = userDAO.getById(userId);
+		if(user == null) throw new UserNotFoundException("User with id = '" + userId + "' is not found.");
+		
+		return user;
 	}
 	
 }

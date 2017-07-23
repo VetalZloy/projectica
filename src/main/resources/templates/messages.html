@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Messages</title>
+
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="bootstrap.css" />
+  <link rel="stylesheet" th:href="@{/css/base.css}" href="base.css" />
+  <link rel="stylesheet" th:href="@{/css/messages.css}" href="messages.css" />
+</head>
+<body>
+  <a class="github" href="https://github.com/VetalZloy/projectica"></a>  
+  <a class="about" th:href="@{/about}"></a>
+  <header>
+    <a class="logo" th:href="@{/}"></a>
+    <ul>
+      <li><a class="logout" th:href="@{/logout}" ></a></li>
+      <li><a th:href="@{/users}" >Users</a></li>
+      <li><a th:href="@{/projects}" >Projects</a></li>
+      <li><a th:href="@{/positions}" >Vacancies</a></li>
+      <li class="active"><a th:href="@{/messages}" >Messages<span class="new-messages"></span></a></li>
+    </ul>
+  </header>
+
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-6 messages">
+          <!-- 
+          <div th:each="interlocutor : ${interlocutors}" class="message">
+            <img th:src="${T(com.vetalzloy.projectica.util.GravatarUtil).getGravatarUrl('__${interlocutor.user.email}__', 80)}" src="https://www.gravatar.com/avatar" />
+            <a th:href="@{/dialogs/__${interlocutor.user.username}__}" th:text="${interlocutor.user.username}">Username</a>
+            <p class="last-message" th:class='|last-message ${interlocutor.status}|' th:text="${interlocutor.message}">Message</p>
+          </div>          
+          <div th:each="interlocutor : ${interlocutors}" class="message chat">
+            <div class='letter'>M</div>
+            <a th:href="@{/dialogs/__${interlocutor.user.username}__}" th:text="${interlocutor.user.username}">Projectica: Main chatroom</a>
+            <p class="last-message" th:class='|last-message ${interlocutor.status}|' th:text="${interlocutor.message}">Message</p>
+          </div>
+           -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script th:src="@{/js/jquery.cookie.js}" src="../static/js/jquery.cookie.js"></script>
+  <script th:src="@{/js/moment.js}" src="../static/js/moment.js"></script>   
+  <script th:src="@{/js/base.js}" src="base.js"></script>
+  <script th:src="@{/js/messages.js}" src="../static/js/messages.js"></script>
+
+</body>
+</html>

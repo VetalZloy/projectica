@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -40,15 +42,6 @@ public class IndexController {
 	
 	@Autowired
 	private UserService userService;
-	
-	/**
-	 * Handles favicon requests
-	 * @return favicon.ico url
-	 */
-	@RequestMapping("favicon.ico")
-	public String favicon(){		
-		return "forward:/img/favicon.ico";
-	}
 	
 	/**
 	 * Handles request to get home page and returns name of .jsp file will be displayed
@@ -101,6 +94,8 @@ public class IndexController {
 		} catch(Exception e){
 			//May be error happened during mail sending
 			logger.warn("Some error happened during registration process", e);
+			
+			//TODO instead of 'error' view send to 'info' view with corresponds title and topic
 			return "error";
 		}
 	}
@@ -129,6 +124,16 @@ public class IndexController {
 	@RequestMapping("/about")
 	public String about(){
 		return "about";
+	}
+	
+	/**
+	 * Extends session expiration time
+	 * @return OK always
+	 */
+	@RequestMapping(path="/session", method=RequestMethod.PUT, produces="application/json")
+	public ResponseEntity<Void> extendSession(){
+		logger.debug("Session for user '{}' was extended", SecurityUtil.getCurrentUsername());
+		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	
 	/**

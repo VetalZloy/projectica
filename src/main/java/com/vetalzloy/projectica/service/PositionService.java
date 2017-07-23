@@ -5,6 +5,7 @@ import java.util.List;
 import com.vetalzloy.projectica.model.Position;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.PositionNotFoundException;
 
 /**
@@ -58,11 +59,12 @@ public interface PositionService {
 	 * @param positionId - id of position to which user will be set
 	 * @param username - username of user, who will be set to position
 	 * @throws EntityNotFoundException if user with such {@code username} is not registered 
-	 * or if position with such {@code positionId} doesn't exist
+	 * or if position with such {@code positionId} or related project doesn't exist
 	 * @throws AccessDeniedException if current user is not creator of project 
 	 * which consists position with such {@code positionId}
+	 * @throws ExternalResourceAccessException - if error occurs in messaging system
 	 */
-	void putUser(long positionId, String username) throws EntityNotFoundException, AccessDeniedException;
+	void putUser(long positionId, String username) throws EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException;
 	
 	/**
 	 * Sets estimation and comment to active position => makes it closed.
@@ -70,11 +72,12 @@ public interface PositionService {
 	 * @param estimation - estimation of user's work 
 	 * ({@code true} - good job, {@code false} - bad job)
 	 * @param comment - comment about user's job
-	 * @throws EntityNotFoundException if position with such {@code positionId} doesn't exist
+	 * @throws EntityNotFoundException if position with such {@code positionId} or related project doesn't exist
 	 * @throws AccessDeniedException if current user is not creator of project 
 	 * which consists position with such {@code positionId} or if this position is already has executive
+	 * @throws ExternalResourceAccessException - if error occurs in messaging system
 	 */
-	void close(long positionId, boolean estimation, String comment) throws EntityNotFoundException, AccessDeniedException;
+	void close(long positionId, boolean estimation, String comment) throws EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException;
 	
 	/**
 	 * Creates new position and, if it was created successfully, returns it. Else throws an exception.

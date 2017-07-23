@@ -58,6 +58,13 @@ public interface UserDAO {
 	 * @return retrieved user or {@code null}, if he doesn't exist
 	 */
 	User getByEmail(String email);
+
+	/**
+	 * Retrieves user with such {@code userId}
+	 * @param userId - id of necessary user
+	 * @return retrieved user or {@code null}, if he doesn't exist
+	 */
+	User getById(long userId);
 	
 	/**
 	 * Retrieves user with such {@code verificationToken}
@@ -89,10 +96,4 @@ public interface UserDAO {
 	 */
 	void deleteExpiredPasswordTokens();
 	
-	
-	/**
-	 * Loads user's interlocutors
-	 * @param user - user, for whom interlocutors will be loaded
-	 */
-	void loadInterlocutors(User user);
 }

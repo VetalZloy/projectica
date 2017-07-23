@@ -4,19 +4,20 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.vetalzloy.projectica.model.ChatRoom;
 import com.vetalzloy.projectica.model.Position;
 import com.vetalzloy.projectica.model.Project;
 import com.vetalzloy.projectica.model.User;
 import com.vetalzloy.projectica.service.dao.PositionDAO;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.PositionNotFoundException;
 import com.vetalzloy.projectica.service.exception.TagNotFoundException;
 import com.vetalzloy.projectica.service.exception.UserNotFoundException;
@@ -33,6 +34,9 @@ public class PositionServiceImpl implements PositionService {
 	
 	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private ChatService chatService;
 	
 	@Autowired
 	private TagService tagService;
@@ -89,7 +93,7 @@ public class PositionServiceImpl implements PositionService {
 
 	@Override
 	public void putUser(long positionId, String username) 
-							throws EntityNotFoundException, AccessDeniedException {
+							throws EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException {
 		logger.debug("Checking data validity...");
 		
 		//checking request existence
@@ -119,11 +123,15 @@ public class PositionServiceImpl implements PositionService {
 		p.setUser(user);
 		p.setHiringDate(LocalDateTime.now());
 		positionDAO.saveOrUpdate(p);
+		
+		Project project = projectService.getFullById(p.getProject().getId());
+		for(ChatRoom room: project.getChatRooms())
+			chatService.addUsersToChatRoom(room, p.getUser());
 	}
 
 	@Override
 	public void close(long positionId, boolean estimation, String comment) 
-							throws AccessDeniedException, PositionNotFoundException {
+							throws AccessDeniedException, EntityNotFoundException, ExternalResourceAccessException {
 		logger.debug("Closing position {}...", positionId);
 		
 		Position position = positionDAO.getById(positionId);
@@ -148,6 +156,11 @@ public class PositionServiceImpl implements PositionService {
 		position.setEstimation(estimation);
 		position.setComment(comment);
 		positionDAO.saveOrUpdate(position);
+		
+		Project project = projectService.getFullById(position.getProject().getId());
+		for(ChatRoom room: project.getChatRooms())
+			chatService.removeUsersFromChatRoom(room, position.getUser());
+
 	}
 
 	@Override

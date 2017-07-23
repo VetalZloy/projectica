@@ -10,12 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.vetalzloy.projectica.service.MessagingService;
 import com.vetalzloy.projectica.service.dao.UserDAO;
 import com.vetalzloy.projectica.service.dao.UserDAOImpl;
+import com.vetalzloy.projectica.test.stub.MessagingServiceImplStub;
 
 @Configuration
 @ComponentScan(
@@ -27,6 +29,11 @@ public class ServiceConfiguration {
 	@Bean
 	public UserDAO userDAO(){
 		return new UserDAOImpl();
+	}
+	
+	@Bean
+	public MessagingService messagingService(){
+		return new MessagingServiceImplStub();
 	}
 	
 	@Bean

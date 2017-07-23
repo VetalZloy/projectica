@@ -2,18 +2,17 @@ package com.vetalzloy.projectica.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 import com.vetalzloy.projectica.util.LocalDateTimeAttributeConverter;
 
@@ -27,10 +26,9 @@ import com.vetalzloy.projectica.util.LocalDateTimeAttributeConverter;
 public class VerificationToken {
 	
 	@Id
-	@GeneratedValue(generator="gen")
-	@GenericGenerator(name="gen", strategy="foreign", parameters=@Parameter(name="property", value="user"))
-	@Column(name="user_id")
-	private long userId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="verification_token_id")
+	private int id;
 	
 	@Column(name="token")
 	private String token;
@@ -39,9 +37,13 @@ public class VerificationToken {
 	@Convert(converter=LocalDateTimeAttributeConverter.class)
 	private LocalDateTime expireDate;
 	
-	@OneToOne(fetch=FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	private User user;	
+	/**
+	 * Actually @OneToOne
+	 * @see com.vetalzloy.projectica.model.User
+	 */
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
+	private User user;
 	
 	public VerificationToken() {}
 	
@@ -56,14 +58,15 @@ public class VerificationToken {
 		this.expireDate = expireDate;
 		this.user = user;
 	}
-
-	public long getUserId() {
-		return userId;
+	
+	public int getId() {
+		return id;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
+
 	public String getToken() {
 		return token;
 	}

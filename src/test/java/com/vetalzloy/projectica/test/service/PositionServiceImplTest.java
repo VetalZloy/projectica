@@ -27,6 +27,7 @@ import com.vetalzloy.projectica.service.ProjectService;
 import com.vetalzloy.projectica.service.RequestService;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.ProjectAlreadyExistsException;
 import com.vetalzloy.projectica.test.configuration.ServiceConfiguration;
 import com.vetalzloy.projectica.test.helper.DBHelper;
@@ -61,7 +62,7 @@ public class PositionServiceImplTest {
 	}
 	
 	@Test
-	public void getByIdTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException {
+	public void getByIdTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException {
 		Project pr = projectService.createProject("name", "DBA", "desc");
 		Position pos1 = positionService.createPosition(pr.getId(), 
 													  "Designer", 
@@ -81,7 +82,7 @@ public class PositionServiceImplTest {
 	}
 	
 	@Test
-	public void getFullByIdTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException {
+	public void getFullByIdTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException {
 		List<String> tags = Arrays.asList("Java", "Spring", "Hibernate");
 		Project pr = projectService.createProject("name", "DBA", "desc");
 		Position pos1 = positionService.createPosition(pr.getId(), 
@@ -107,7 +108,7 @@ public class PositionServiceImplTest {
 	}
 	
 	@Test
-	public void getVacanciesPageTest() throws EntityNotFoundException, AccessDeniedException, ProjectAlreadyExistsException{
+	public void getVacanciesPageTest() throws EntityNotFoundException, AccessDeniedException, ProjectAlreadyExistsException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("name", "DBA", "desc");
 		List<Position> positions = new ArrayList<>();
 		
@@ -137,7 +138,7 @@ public class PositionServiceImplTest {
 	}
 	
 	@Test
-	public void getSimilarVacanciesTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException{
+	public void getSimilarVacanciesTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("name", "DBA", "desc");		
 
 		List<String> tags = Arrays.asList("Java", "MySQL");
@@ -163,7 +164,7 @@ public class PositionServiceImplTest {
 	}
 	
 	@Test
-	public void putUserTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException{
+	public void putUserTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("name", "DBA", "desc");
 		Position pos = positionService.createPosition(pr.getId(), "name", "desc", null);	
 		
@@ -179,7 +180,7 @@ public class PositionServiceImplTest {
 	}
 	
 	@Test
-	public void closeTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException{
+	public void closeTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("name", "DBA", "desc");
 		Position pos = positionService.createPosition(pr.getId(), "name", "desc", null);	
 		
@@ -196,7 +197,7 @@ public class PositionServiceImplTest {
 	}
 	
 	@Test
-	public void createPosition() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException {
+	public void createPosition() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException {
 		Project pr = projectService.createProject("name", "DBA", "desc");
 		List<Position> positions = new ArrayList<>();
 		
@@ -213,7 +214,7 @@ public class PositionServiceImplTest {
 	}
 	
 	@Test
-	public void updateTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException{
+	public void updateTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException{
 		Project pr = projectService.createProject("name", "DBA", "desc");
 		Position pos = positionService.createPosition(pr.getId(), "name", "desc", null);	
 		String newName = "newName";

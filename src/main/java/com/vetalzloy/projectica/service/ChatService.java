@@ -1,13 +1,11 @@
 package com.vetalzloy.projectica.service;
 
-import java.util.List;
-
-import com.vetalzloy.projectica.model.ChatMessage;
 import com.vetalzloy.projectica.model.ChatRoom;
+import com.vetalzloy.projectica.model.User;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.ChatRoomAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.ChatRoomNotFoundException;
-import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.ProjectNotFoundException;
 
 /**
@@ -37,46 +35,24 @@ public interface ChatService {
 	 * @throws ProjectNotFoundException if project with such {@code projectId} doesn't exist
 	 * @throws ChatRoomAlreadyExistsException if chatroom with such {@code name} 
 	 * exists in project with such {@code projectId}
+	 * @throws ExternalResourceAccessException - if error occurs in messaging system
 	 */
-	ChatRoom createChatRoom(int projectId, String name) throws AccessDeniedException, ProjectNotFoundException, ChatRoomAlreadyExistsException;
+	ChatRoom createChatRoom(int projectId, String name) throws AccessDeniedException, ProjectNotFoundException, ChatRoomAlreadyExistsException, ExternalResourceAccessException;
 	
 	/**
-	 * Create chat message. If it was created successfully, returns it. Else throws an exception.
-	 * @param chatRoomId - id of chatRoom for which message should be created
-	 * @param text - text of message
-	 * @return instance of created {@code ChatMessage} (never {@code null})
-	 * @throws AccessDeniedException if current user doesn't belong to project, 
-	 * which contain chatroom with such <b>{@code chatRoomId}</b>
-	 * @throws EntityNotFoundException if current user is not registered 
-	 * or if chatroom with such {@code chatRoomId} doesn't exist
+	 * Adds users to chatroom
+	 * @param room - chatroom which will contain new users
+	 * @param users - array of users will be added to chatroom
+	 * @throws ExternalResourceAccessException - if some error happened in messaging system
 	 */
-	ChatMessage createMessage(int chatRoomId, String text) throws AccessDeniedException, EntityNotFoundException;
+	void addUsersToChatRoom(ChatRoom room, User... users ) throws ExternalResourceAccessException;
 	
 	/**
-	 * Returns the first page of chat messages from chatroom with such {@code chatRoomId}. 
-	 * Amount of messages is managed by implementation.
-	 * @param chatRoomId - id of chatroom for which messages should be retrieved
-	 * @return List of retrieved messages ordered by sending date in descending order,
-	 * can be empty, but never {@code null}
-	 * @throws AccessDeniedException if current user doesn't belong to project, 
-	 * which contain chatroom with such <b>{@code chatRoomId}</b>
-	 * @throws ChatRoomNotFoundException if chatroom with such {@code chatRoomId} doesn't exist
+	 * Removes users from chatroom
+	 * @param room - chatroom from which users will be removed
+	 * @param users - array of users will be removed from chatroom
+	 * @throws ExternalResourceAccessException - if some error happened in messaging system
 	 */
-	List<ChatMessage> getFirstPage(int chatRoomId)  throws AccessDeniedException, ChatRoomNotFoundException;
-	
-	/**
-	 * Returns page of chat messages which have ids lower than {@code earliestId} 
-	 * from chatroom with such {@code chatRoomId}. 
-	 * Amount of messages is managed by implementation.
-	 * @param earliestId - id which must be higher than all ids in retrieved messages 
-	 * and must be the closest to them.
-	 * @param chatRoomId - id of chatroom for which messages should be retrieved 
-	 * @return List of retrieved messages ordered by sending date in descending order,
-	 * can be empty, but never {@code null}
-	 * @throws AccessDeniedException if current user doesn't belong to project, 
-	 * which contain chatroom with such <b>{@code chatRoomId}</b>
-	 * @throws ChatRoomNotFoundException if chatroom with such {@code chatRoomId} doesn't exist
-	 */
-	List<ChatMessage> getPageBeforeEarliest(long earliestId, int chatRoomId)  throws AccessDeniedException, ChatRoomNotFoundException;
+	void removeUsersFromChatRoom(ChatRoom room, User... users ) throws ExternalResourceAccessException;
 	
 }

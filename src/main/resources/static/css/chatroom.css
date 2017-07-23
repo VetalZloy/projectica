@@ -1,0 +1,172 @@
+.container-fluid {
+  padding: 0;
+}
+
+.row {
+  margin-bottom: 0;
+  background-color: #EFEFEF;
+}
+
+.participants {
+  background-color: #fff;
+  margin-right: 20px;
+  height: 300px;
+  padding: 0;
+  margin-top: 10px;;
+}
+
+.participants-title {
+  background-color: #FFF;
+  border-bottom: 1px solid #BEBEB8;
+  font-size: 17px;
+  padding: 10px 0;
+  text-align: center;
+  width: 98%;
+  margin-left: 1%;
+}
+
+.participants-list {
+  height: 240px;
+  padding-left: 15px;
+}
+
+.participant {
+  margin-top: 5px;;
+}
+
+.participant>* {
+  display: inline-block;
+}
+
+.participant .username {
+  margin-left: 5px;
+  vertical-align: top;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 600;
+  color: #374467;
+}
+
+.dialog {
+  background-color: #FFF;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.name {
+  padding: 10px 0px;
+  background-color: #FFF;
+  border-bottom: 1px solid #BEBEB8;
+  font-size: 17px;
+  text-align: center;
+  width: 98%;
+  margin-left: 1%;
+}
+
+.name a{
+  font-weight: 600;
+}
+
+.scroll-pane {
+  width: 100%;
+  height: 300px;
+  background-color: #fff;
+}
+
+.mCSB_dragger_bar {
+  background-color: #EFEFEF;
+}
+
+textarea {
+  width: 98%;
+  height: 70px;
+  border: 0;
+  border-top: 1px solid #BEBEB8;
+  font-size: 15px;
+  margin-left: 1%;
+  padding: 5px 18px;
+  padding-right: 50px;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.send {
+  display: none;
+  padding: 15px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-image: url(../img/send.png);
+  background-size: 25px;
+  background-position: 2px;
+  background-color: #16ADC1;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+.send:hover {
+  background-color: #1392A3;
+  cursor: pointer;
+}
+
+.message:first-child {
+  margin-top: 5px;
+}
+
+.message {
+  padding-left: 25px;
+  padding-bottom: 10px;
+  padding-right: 30px;
+}
+
+.message .avatar {
+  position: absolute;
+  display: inline-block;
+}
+
+.avatar img {
+  border-radius: 50%;
+  width: 40px;
+}
+
+.right-side {
+  margin-left: 50px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 20px;
+}
+
+.date {
+  margin-left: 5px;
+  font-weight: 100;
+  color: #A9A9A4;
+}
+
+.day-line {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.day-line span {
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.right-side .username {
+  font-weight: 600;
+  color: #374467;
+}
+
+.right-side p {
+  margin-top: 5px;
+}
+
+.message .text {
+  font-size: 16px;
+}
+
+.messageId {
+	display: none;
+}

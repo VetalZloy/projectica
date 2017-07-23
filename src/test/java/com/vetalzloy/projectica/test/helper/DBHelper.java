@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.sql.DataSource;
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vetalzloy.projectica.model.User;
 import com.vetalzloy.projectica.service.dao.UserDAO;

@@ -1,9 +1,7 @@
 package com.vetalzloy.projectica.service;
 
 import java.util.List;
-import java.util.Set;
 
-import com.vetalzloy.projectica.model.Interlocutor;
 import com.vetalzloy.projectica.model.PasswordToken;
 import com.vetalzloy.projectica.model.User;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
@@ -11,7 +9,6 @@ import com.vetalzloy.projectica.service.exception.PasswordTokenNotFoundException
 import com.vetalzloy.projectica.service.exception.UserAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.UserNotFoundException;
 import com.vetalzloy.projectica.service.exception.VerificationTokenNotFoundException;
-import com.vetalzloy.projectica.web.json.UserJson;
 
 /**
  * This interface provides methods for working with users
@@ -68,14 +65,6 @@ public interface UserService {
 	User getByEmail(String email)  throws UserNotFoundException;
 	
 	/**
-	 * Retrieves interlocutors of current user
-	 * @return set of users, who had dialog with current user
-	 * @throws UserNotFoundException if current user is not registered
-	 * @see Interlocutor
-	 */
-	Set<Interlocutor> getInterlocutors() throws UserNotFoundException;
-	
-	/**
 	 * Updates information about current user.
 	 * @param name - name of current username, which will be updated
 	 * @param surname - surname of current username, which will be updated
@@ -126,32 +115,18 @@ public interface UserService {
 	void activateByVerificationToken(String token) throws EntityNotFoundException, UserAlreadyExistsException;
 	
 	/**
-	 * Retrieve current user and, if it exists, create {@code UserJson} instance. Else throws exception
-	 * @return {@code UserJson} instance related to current user (never {@code null})
-	 * @throws UserNotFoundException if current user is not registered
-	 */
-	UserJson getCurrentUserJson() throws UserNotFoundException;
-	
-	/**
-	 * Retrieve user by username and, if it exists, create {@code UserJson} instance. 
-	 * Else throws exception
-	 * @param username - username of requested user
-	 * @return {@code UserJson} instance related to requested user (never {@code null})
-	 * @throws UserNotFoundException if user with such {@code username} doesn't exist
-	 */
-	UserJson getUserJsonByUsername(String username) throws UserNotFoundException;
-	
-	/**
 	 * Checks existence of user
 	 * @param valueToCheck - username or email for checking
 	 * @return {@code true} if user exists, else {@code false}
 	 */
 	boolean isExists(String valueToCheck);
-	
+
 	/**
-	 * Loads user's interlocutors
-	 * @param user -  user, for whom interlocutors will be loaded
+	 * Retrieves user by {@code userId}
+	 * @param userId - id of necessary user
+	 * @return user, who has such a {@code userId}
+	 * @throws UserNotFoundException - if user with such {@code userId} doesn't exist
 	 */
-	void loadInterlocutors(User user);
+	User getById(long userId) throws UserNotFoundException;
 	
 }

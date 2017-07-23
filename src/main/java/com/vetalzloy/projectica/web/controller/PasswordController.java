@@ -64,6 +64,7 @@ public class PasswordController {
 		
 		model.addAttribute("passwordToken", passwordToken);
 		
+		//TODO change .css for this view
 		return "changePassword";
 	}
 	

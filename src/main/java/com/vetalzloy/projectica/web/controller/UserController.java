@@ -50,32 +50,38 @@ public class UserController {
 	private OnlineUtil onlineUtil;
 	
 	/**
-	 * Retrieves user by {@code username}, fill model and return name of .jsp file will be displayed
-	 * @param username - username of necessary user
+	 * Retrieves user by username or ID, fill model and return name of .jsp file will be displayed
+	 * @param usernameOrId - username or ID of necessary user 
 	 * @param model - {@code Model} instance will be filled
-	 * @return "error" - if user with such username doesn't exist, else - "user"
+	 * @return "error" - if user with such username or ID doesn't exist, else - "user"
 	 */
-	@RequestMapping(path="/{username}", method=RequestMethod.GET)
-	public String user(@PathVariable("username") String username, Model model){
+	@RequestMapping(path="/{usernameOrId}", method=RequestMethod.GET, produces="text/html")
+	public String user(@PathVariable("usernameOrId") String usernameOrId, Model model){
 		
 		String currentUsername = SecurityUtil.getCurrentUsername();
-		logger.debug("user() method was invoked for username {}, by user with username '{}'",
-						username, currentUsername);		
+		logger.debug("user() method was invoked for '{}', by user with username '{}'",
+						usernameOrId, currentUsername);		
 		
-		if(username.equals(currentUsername)) model.addAttribute("currentUser", true);
-		else {
-			model.addAttribute("online", onlineUtil.isOnline(username));
-			model.addAttribute("currentUser", false);
-		}
-		
-		User user;
+		User user = null;
 		try {
-			user = userService.getFullByUsername(username);
+			if(isLong(usernameOrId)){
+				long id = Long.parseLong(usernameOrId);
+				user = userService.getById(id);
+				user = userService.getFullByUsername(user.getUsername());
+			} else
+				user = userService.getFullByUsername(usernameOrId);
 		} catch (UserNotFoundException e) {
 			logger.warn("Error happened during user extraction.", e);
 			return "error";
 		}
 		model.addAttribute("user", user);
+		
+		if(user.getUsername().equals(currentUsername)) 
+			model.addAttribute("currentUser", true);
+		else {
+			model.addAttribute("online", onlineUtil.isOnline(user.getUsername()));
+			model.addAttribute("currentUser", false);
+		}
 		
 		List<Position> closedPositions = user.getPositions()
 											 .stream()
@@ -90,9 +96,46 @@ public class UserController {
 													.collect(Collectors.toSet());
 		model.addAttribute("currentProjects", currentProjects);
 		
-		model.addAttribute("tags", user.getTags());
-		
 		return "user";
+	}
+	
+	/**
+	 * Retrieves user by username or ID
+	 * @param usernameOrId - username or ID of necessary user
+	 * @return if such user doesn't exist - BAD_REQUEST, else - JSON of retrieved user
+	 */
+	@ResponseBody
+	@RequestMapping(path="/{usernameOrId}", method=RequestMethod.GET, produces="application/json")
+	public ResponseEntity<UserJson> user(@PathVariable("usernameOrId") String usernameOrId){
+		logger.debug("json user() method was invoked for '{}' by '{}'", 
+						usernameOrId, SecurityUtil.getCurrentUsername());
+		try {
+			User u = null;
+			if(isLong(usernameOrId)) {
+				long id = Long.parseLong(usernameOrId);
+				u = userService.getById(id);
+			} else 
+				u = userService.getByUsername(usernameOrId);
+			
+			return new ResponseEntity<UserJson>(UserJson.create(u), HttpStatus.OK);
+		} catch(UserNotFoundException e) {
+			logger.warn("Error happened during retreiving user.", e);
+			return new ResponseEntity<UserJson>(HttpStatus.BAD_REQUEST);
+		}
+	}
+	
+	/**
+	 * Checks whether string is a long
+	 * @param s - string will be checked
+	 * @return {@code true} if string is a long value. Else - {@code false}
+	 */
+	private boolean isLong(String s){
+		try{
+			Long.parseLong(s);
+			return true;
+		} catch(NumberFormatException e) {
+			return false;
+		}
 	}
 	
 	/**
@@ -134,7 +177,7 @@ public class UserController {
 			return getUsersPage(page);
 		else if("".equals(usernamePattern) && tags == null) // all parameter is empty
 			return new ResponseEntity<List<UserJson>>(HttpStatus.BAD_REQUEST);
-		else //will retrieve vacancies which coincide to this parameters
+		else //will retrieve users which coincide to this parameters
 			return getSimilarUsers(usernamePattern, tags);		
 	}
 	
@@ -199,7 +242,7 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(path="/{username}", method=RequestMethod.PUT)
 	public ResponseEntity<Void> update(@RequestBody UpdateUserJson body) {
-		logger.debug("update() method was invoked by user with username '{}; request body: '{}''",
+		logger.debug("update() method was invoked by user with username '{}; request body: '{}'",
 						SecurityUtil.getCurrentUsername(), body);
 		
 		boolean valid = validateUpdateData(body.getName(), body.getSurname(), body.getCvLink());
@@ -223,16 +266,17 @@ public class UserController {
 	 * @return if all parameters matches to regular expressions - {@code true}, 
 	 * else - {@code false} 
 	 */
-	private boolean validateUpdateData(String name, String surname, String cvLink) {
-		if(!cvLink.matches(urlRegExp)) {
+	private boolean validateUpdateData(String name, String surname, String cvLink) {		
+		
+		if(!cvLink.matches(urlRegExp) && !cvLink.equals("")) {
 			logger.warn("Bad format of cv link. Username - '{}'", SecurityUtil.getCurrentUsername());
 			return false;
 		}		
-		if(!name.matches(nameRegExp)) {
+		if(!name.matches(nameRegExp)  && !name.equals("")) {
 			logger.warn("Bad format of name. Username - '{}'", SecurityUtil.getCurrentUsername());
 			return false;
 		}		
-		if(!surname.matches(nameRegExp)) {
+		if(!surname.matches(nameRegExp)  && !surname.equals("")) {
 			logger.warn("Bad format of surname. Username - '{}'", SecurityUtil.getCurrentUsername());
 			return false;
 		}		

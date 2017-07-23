@@ -1,0 +1,164 @@
+.container-fluid {
+  padding: 0;
+}
+
+.row {
+  margin-bottom: 0;
+  background-color: #EFEFEF;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.dialog {
+  background-color: #FFF;
+  border-top: 0;
+  padding: 0;
+}
+
+.interlocutor {
+  padding: 3px 10px;
+  border-bottom: 1px solid #BEBEB8;
+  margin-left: 1%;
+  width: 98%;
+  height: 57px;
+}
+
+.interlocutor p {
+  text-align: center;
+  margin-top: 10px;
+  margin-left: 50px;
+}
+
+.interlocutor .gravatar-wrapper {
+  position: relative;
+  float: right;
+}
+
+.interlocutor img{
+  width: 40px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.interlocutor .online {
+  padding: 4px;
+  background-color: #63B175;
+  font-size: 0;
+  border-radius: 50%;
+  position: absolute;
+  border: 2px solid #FFF;
+  left: 34px;
+  top: 34px;;
+}
+
+.interlocutor a {
+  font-size: 20px;
+  font-weight: 600;
+  top: 3px;
+  position: relative;
+}
+
+.scroll-pane {
+  width: 100%;
+  height: 300px;
+  background-color: #fff;
+}
+
+.mCSB_dragger_bar {
+  background-color: #EFEFEF;
+}
+
+textarea {
+  width: 98%;
+  height: 70px;
+  border: 0;
+  border-top: 1px solid #BEBEB8;
+  padding: 5px 18px;
+  padding-right: 50px;
+  padding-bottom: 0;
+  font-size: 15px;
+  margin-left: 1%;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+.send {
+  display: none;
+  padding: 15px;
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  background-image: url(../img/send.png);
+  background-size: 25px;
+  background-position: 2px;
+  background-color: #16ADC1;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+.send:hover {
+  background-color: #1392A3;
+  cursor: pointer;
+}
+
+.message:first-child {
+  margin-top: 10px;
+}
+
+.message {
+  padding-left: 25px;
+  padding-bottom: 10px;
+  padding-right: 30px;
+}
+
+.message .avatar {
+  position: absolute;
+  display: inline-block;
+}
+
+.message .avatar img {
+  width: 40px;
+  border-radius: 50%;
+}
+
+.right-side {
+  margin-left: 50px;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 20px;
+}
+
+.date {
+  margin-left: 5px;
+  font-weight: 100;
+  color: #A9A9A4;
+}
+
+.day-line {
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.day-line span {
+  padding: 5px;
+  border-radius: 15px;
+}
+
+.right-side .username {
+  font-weight: 600;
+  color: #374467;
+}
+
+.right-side p {
+  margin-top: 5px;
+}
+
+.message .text {
+  font-size: 16px;
+}
+
+.message .messageId {
+	display: none;
+}

@@ -87,7 +87,7 @@ public class RegistrationValidator implements Validator{
 			
 			//if user exists
 			errors.rejectValue("username", "valid.userExist");
-			logger.debug("User with username '{}' doesn't exist.", username);
+			logger.debug("User with username '{}' already exists.", username);
 		} catch (UserNotFoundException e) {
 			//if user doesn't exist
 			logger.debug("User with username '{}' doesn't exist.", username);

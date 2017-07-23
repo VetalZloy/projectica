@@ -85,19 +85,9 @@ public class UserDAOImpl implements UserDAO{
 		return user;
 	}
 
-	/*
-	 * This method has some complicated logic, because it's a single way to check 
-	 * and <b>SAVE</b> properties ({@code passwordToken}, {@code verificationToken})
-	 * @see com.vetalzloy.projectica.model.User
-	 */
 	@Override
 	public void saveOrUpdate(User user) {
-		if(user.getPasswordToken() != null)
-			sessionFactory.getCurrentSession().saveOrUpdate(user.getPasswordToken());
-		else if(user.getVerificationToken() != null)
-			sessionFactory.getCurrentSession().saveOrUpdate(user.getVerificationToken());
-		else sessionFactory.getCurrentSession().saveOrUpdate(user);
-		
+		sessionFactory.getCurrentSession().saveOrUpdate(user);		
 		logger.info("User {} was saved or updated succesfully", user);
 	}
 
@@ -114,13 +104,28 @@ public class UserDAOImpl implements UserDAO{
 			logger.info("User with email {} was extracted successfully. {}",
 							email, user);
 		return user;
+	}	
+
+	@Override
+	public User getById(long userId) {
+		Session session = sessionFactory.getCurrentSession();
+		User user = (User) session.createQuery("FROM User WHERE userId = :userId")
+								  .setParameter("userId", userId)
+								  .uniqueResult();
+		
+		if(user == null)
+			logger.info("User with id = '{}' not exist", userId);
+		else		
+			logger.info("User with id = '{}' was extracted successfully. {}",
+						userId, user);
+		return user;
 	}
 
 	@Override
 	public User getByVerificationToken(String token) {
 		Session session = sessionFactory.getCurrentSession();
 		User user = (User) session.createQuery("FROM User WHERE userId = "
-												+ "(SELECT userId "
+												+ "(SELECT user.userId "
 												 + "FROM VerificationToken "
 												 + "WHERE token = :token)")
 								  .setParameter("token", token)
@@ -138,7 +143,7 @@ public class UserDAOImpl implements UserDAO{
 	public User getByPasswordToken(String token) {
 		Session session = sessionFactory.getCurrentSession();
 		User user = (User) session.createQuery("FROM User WHERE userId = "
-											 + "(SELECT userId "
+											 + "(SELECT user.userId "
 											  + "FROM PasswordToken "
 											  + "WHERE passwordToken = :token)")
 								  .setParameter("token", token)
@@ -157,7 +162,7 @@ public class UserDAOImpl implements UserDAO{
 		Session session = sessionFactory.getCurrentSession();
 		int amount = session.createQuery("DELETE FROM User "
 									   + "WHERE enabled = FALSE "
-									   + "AND userId IN (SELECT userId "
+									   + "AND userId IN (SELECT user.userId "
 										 			  + "FROM VerificationToken "
 										 			  + "WHERE expireDate < :now)")
 							.setParameter("now", LocalDateTime.now())
@@ -173,7 +178,7 @@ public class UserDAOImpl implements UserDAO{
 	@Override
 	public void deletePasswordToken(User u) {
 		sessionFactory.getCurrentSession()
-					  .createQuery("DELETE FROM PasswordToken WHERE userId = :id")
+					  .createQuery("DELETE FROM PasswordToken WHERE user.userId = :id")
 					  .setParameter("id", u.getUserId())
 					  .executeUpdate();
 		logger.info("Password token for user {} was deleted", u);
@@ -202,12 +207,6 @@ public class UserDAOImpl implements UserDAO{
 		logger.info("Users from {} to {} were extracted, result list size = {}", 
 				start, start+amount, list.size());
 		return list;
-	}
-
-	@Override
-	public void loadInterlocutors(User user) {
-		sessionFactory.getCurrentSession().refresh(user);
-		Hibernate.initialize(user.getInterlocutors());
 	}
 
 	@Override

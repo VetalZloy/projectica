@@ -1,0 +1,440 @@
+
+p {
+  font-size: 20px;
+}
+
+a {
+  font-weight: 600;
+}
+
+h1 {
+  display: inline-block;
+  margin-bottom: 0px;
+  font-size: 28px;
+}
+
+.status {
+  position: absolute;
+  font-size: 12px;
+  padding: 2px 6px;
+  color: #fff;
+  font-weight: 600;
+  top: -4px;
+  margin-left: -34px;
+}
+
+.free {
+  background-color: #37D187;
+}
+
+.requested {
+  background-color: #16ADC1;
+}
+.active {
+  background-color: #F9B233;
+  margin-left: -40px;
+}
+
+.closed {
+  background-color: #FF4D4D;
+}
+
+.participant {
+  position: relative;
+}
+
+.hiring-date {
+  margin-top: 10px;
+}
+
+.hiring-date, .firing-date {
+  font-size: 15px;
+}
+
+.participant img {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.participant .online {
+  padding: 5px;
+  background-color: #63B175;
+  font-size: 0;
+  border-radius: 50%;
+  position: absolute;
+  border: 2px solid #fff;
+  left: 36px;
+  top: 36px;
+}
+
+.participant a {
+  position: absolute;
+  font-size: 25px;
+  margin-top: 6px;
+  margin-left: 5px;
+}
+
+.description {
+  padding: 10px 23px;
+  margin-top: 30px;
+  text-align: justify;
+  border-left: solid 4px #374467;
+}
+
+.description span {
+  color: #3B3B3A;
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.description p {
+  font-size: 13px;
+  padding: 0;
+  border: 0;
+  margin-top: 13px;
+}
+
+.project {
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.tags {
+  margin-bottom: 20px;
+}
+
+.tags .title {
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: block;
+}
+
+.tags .title .add {
+  float: initial;
+  display: inline-block;
+  background-color: #fff;
+  top: 2px;
+  margin-left: 5px;
+  padding: 7px;
+  background-size: 11px;
+  background-position: 1.5px;
+}
+
+.tags .title .add:hover {
+  background-color: #A9A9A4;
+}
+
+.tags>div{
+  margin-top: 9px;
+  margin-right: 7px;
+  display: inline-block;
+  font-size: 12px;
+  background-color: #EEEEEE;
+  padding: 2px 5px 3px 8px;
+}
+
+.tags .close {
+  background-image: url(../img/close.png);
+  background-size: 7px;
+  background-position: 2.5px;
+  top: 2.5px;
+  min-width: 12px;
+  min-height: 12px;
+}
+
+.tags .close:hover {
+  background-color: #A9A9A4;
+}
+
+.applicants .panel-body {
+  padding: 0;
+}
+
+.applicants p{	
+  font-size: 15px;
+}
+
+.applicants a{	
+  display: inline-block;
+  color: #27BDCC;
+  border-radius: 0;
+  border: 0;
+  font-size: 20px;
+}
+
+.applicant a:hover {
+  background-color: #EFEFEF;
+}
+
+.applicants img {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.applicants .no-requests{
+  margin-left: 15px;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.applicant {
+  border-bottom: 1px solid #A9A9A4;
+  padding: 0 17px;
+  position: relative;
+}
+
+.applicant:last-child {
+  border-bottom: 0;
+}
+
+.applicant .online {
+  padding: 4px;
+  background-color: #63B175;
+  font-size: 0;
+  border-radius: 50%;
+  position: absolute;
+  border: 2px solid #EFEFEF;
+  left: 47px;
+  top: 47px;
+}
+
+.applicant .user {
+  margin-bottom: 15px;
+}
+
+.send-message {
+  background-color: #CCC;
+  padding: 15px;
+  display: inline-block;
+  background-image: url(../img/send-message.png);
+  background-size: 17px;
+  background-position: 7px;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+  position: relative;
+  top: 7px;
+}
+
+.send-message:hover {
+  background-color: #A9A9A4;
+}
+
+.applicant button {
+  float: right;
+  margin-top: 13px;
+}
+
+.user-additions {
+  text-align: justify;
+  padding-bottom: 10px;
+}
+
+.close-position .panel-body {
+  padding-bottom: 40px;
+}
+
+.close-position textarea {
+  width: 100%;
+  margin-bottom: 10px;  
+  height: 150px;
+}
+
+.close-position button {
+  color: #fff;
+  font-weight: 600;
+}
+
+.like {
+  float: right;
+  background-color: #37D187;
+}
+
+.like:hover {
+  background-color: #2EAF71;
+}
+
+.dislike {
+  float: left;
+  background-color: #FF4D4D;
+}
+
+.dislike:hover {
+  background-color: #CA3D3D;
+}
+
+.request {
+  margin-top: 20px;
+}
+
+.request p {
+  font-size: 15px;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 7px 0;
+}
+
+.request button {
+  width: 140px;
+  font-weight: 100;
+}
+
+.request textarea {
+  width: 100%;
+  height: 75px;
+  background-color: #EEEEEE;
+  border: 1px solid #BEBEBD;
+  margin-bottom: 0;
+}
+
+.comment {
+  width: 50%;
+  padding: 10px 40px 10px 25px;
+  background-color: #EEEEEE;
+  margin-bottom: 10px;
+  color: #000;
+  border-left: 4px solid #374467;
+}
+
+.comment a{
+  display: inline-block;
+  color: #374467;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.comment .bad {
+  background-image: url(../img/bad.png);
+  padding: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  margin-left: 5px;
+}
+
+.comment .good {
+  background-image: url(../img/good.png);
+  padding: 13px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  top: 8px;
+  margin-left: 5px;
+}
+
+.comment .date {
+  float: right;
+  padding: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #374467;
+  margin-top: 7px;
+}
+
+.comment p {
+  font-size: 13px;
+}
+
+.tag-add-panel {
+  display: none;
+  position: fixed;
+  width: 310px;
+  left: 50%;
+  margin-left: -155px;
+  top: 75px;
+  z-index: 100;
+}
+
+.tag-add-panel .panel-body {
+  padding-top: 10px;
+}
+
+.tag-add-panel input {
+  width: 100%;
+}
+
+.tag-add-panel button {
+}
+
+.tag-add-panel .panel-body {
+}
+
+.tag-add-panel .button-wrapper {
+  margin-top: 10px;
+}
+
+.similar-tags {
+  z-index: 100;
+  width: 100%;
+  font-weight: 600;
+  margin-top: -6px;
+  position: absolute;
+  padding-right: 30px;
+}
+
+.similar-tags p {  
+  background-color: #fff;
+  padding: 3px 5px;
+  font-size: 15px;
+}
+
+.similar-tags p:first-child {
+  border-top: 0;
+}
+
+.similar-tags p:hover {
+  background-color: #B8B8B8;
+  cursor: pointer;
+}
+
+.edit {
+  position: relative;
+  top: 3px;
+  display: inline-block;
+  padding: 15px;
+  background-image: url(../img/edit.png);
+  background-size: 15px;
+  background-color: #EEE;
+  background-repeat: no-repeat;
+  background-position: 7px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.edit:hover {
+	cursor: pointer;
+	background-color: #A9A9A4;
+}
+
+.edit-panel {
+  display: none;
+  position: fixed;
+  width: 40%;
+  left: 30%;
+  top: 75px;
+  z-index: 100;
+}
+
+.edit-panel .panel-body{
+  padding-top: 10px;
+}
+
+.edit-panel input {
+  width: 100%;
+}
+
+.edit-panel textarea {
+  width: 100%;
+  height: 300px;
+  margin-top: -1px;
+}
+.edit-panel .error {
+  font-size: 16px;
+  text-align: justify;
+}

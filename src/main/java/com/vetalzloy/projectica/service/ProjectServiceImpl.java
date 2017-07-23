@@ -4,12 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.vetalzloy.projectica.model.ChatRoom;
 import com.vetalzloy.projectica.model.Position;
@@ -18,6 +17,7 @@ import com.vetalzloy.projectica.model.User;
 import com.vetalzloy.projectica.service.dao.ProjectDAO;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.ProjectAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.ProjectNotFoundException;
 import com.vetalzloy.projectica.service.exception.UserNotFoundException;
@@ -34,6 +34,9 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ChatService chatService;
 	
 	@Override
 	public List<Project> getProjectsPage(int page) {
@@ -53,7 +56,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public Project createProject(String name, String creatorPosition, String description) 
-										throws UserNotFoundException, ProjectAlreadyExistsException {
+										throws UserNotFoundException, ProjectAlreadyExistsException, ExternalResourceAccessException {
 		
 		if(isExist(name)) 
 			throw new ProjectAlreadyExistsException("Project with name '" + name + "' already exists");
@@ -68,16 +71,19 @@ public class ProjectServiceImpl implements ProjectService {
 		pos.setHiringDate(LocalDateTime.now());
 		project.getPositions().add(pos);
 		
-		project.getChatRooms().add(new ChatRoom("Main chatroom", project));
+		ChatRoom room = new ChatRoom("Main chatroom", project);
+		project.getChatRooms().add(room);
 		
 		projectDAO.saveOrUpdate(project);
+		
+		chatService.addUsersToChatRoom(room, user);
 		
 		return project;
 	}
 
 	@Override
 	public Project getFullById(int projectId) throws ProjectNotFoundException {
-		logger.debug("Extracting position with id = {} ...", projectId);
+		logger.debug("Extracting project with id = {} ...", projectId);
 		Project project = projectDAO.getFullById(projectId);
 		
 		if(project == null)

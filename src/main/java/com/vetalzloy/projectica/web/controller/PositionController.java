@@ -22,6 +22,7 @@ import com.vetalzloy.projectica.model.Position;
 import com.vetalzloy.projectica.service.PositionService;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.PositionNotFoundException;
 import com.vetalzloy.projectica.util.SecurityUtil;
 import com.vetalzloy.projectica.web.json.ClosePositionJson;
@@ -142,6 +143,7 @@ public class PositionController {
 		}		
 		model.addAttribute("position", position);		
 		
+		//TODO remove this block and update view
 		if(position.getUser() != null) {// if it's not free (not vacancy)
 			
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
@@ -158,7 +160,10 @@ public class PositionController {
 		String creatorUsername = position.getProject().getCreator().getUsername();
 		if(currentUsername.equals(creatorUsername))
 			model.addAttribute("creator", true);
+		else
+			model.addAttribute("creator", false);
 		
+		model.addAttribute("creatorPosition", false);
 		if(position.getUser() != null){
 			String positionOwnerUsername = position.getUser().getUsername();
 			if(creatorUsername.equals(positionOwnerUsername))
@@ -252,12 +257,12 @@ public class PositionController {
 	@ResponseBody
 	public ResponseEntity<Void> putUserToPosition(@PathVariable("positionId") long positionId,
 												  @PathVariable("username") String username){
-		logger.debug("setUserToPosition() method was invoked for username = {} and positionID = {}",
+		logger.debug("putUserToPosition() method was invoked for username = {} and positionID = {}",
 						username, positionId);
 		try {
 			positionService.putUser(positionId, username);
 			return new ResponseEntity<Void>(HttpStatus.OK);
-		} catch (EntityNotFoundException | AccessDeniedException e) {
+		} catch (EntityNotFoundException | AccessDeniedException | ExternalResourceAccessException e) {
 			logger.warn("Error happened during setting user into position.", e);
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}		
@@ -282,7 +287,7 @@ public class PositionController {
 		try {
 			positionService.close(positionId, body.isEstimation(), body.getComment());
 			return new ResponseEntity<>(HttpStatus.OK);
-		} catch (AccessDeniedException | EntityNotFoundException e) {
+		} catch (AccessDeniedException | EntityNotFoundException | ExternalResourceAccessException e) {
 			logger.warn("Error happened during closing position.", e);
 			return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
 		}		

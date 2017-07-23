@@ -23,6 +23,7 @@ import com.vetalzloy.projectica.service.PositionService;
 import com.vetalzloy.projectica.service.ProjectService;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.ProjectAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.ProjectNotFoundException;
 import com.vetalzloy.projectica.service.exception.UserNotFoundException;
@@ -52,7 +53,7 @@ public class ProjectServiceImplTest {
 	}
 	
 	@Test
-	public void getByIdTest() throws UserNotFoundException, ProjectAlreadyExistsException, ProjectNotFoundException{
+	public void getByIdTest() throws UserNotFoundException, ProjectAlreadyExistsException, ProjectNotFoundException, ExternalResourceAccessException{
 		
 		String projectName = "Just name";
 		Project p1 = projectService.createProject(projectName, "boss", "11");
@@ -66,7 +67,7 @@ public class ProjectServiceImplTest {
 	}
 	
 	@Test
-	public void getProjectsPageTest() throws UserNotFoundException, ProjectAlreadyExistsException {
+	public void getProjectsPageTest() throws UserNotFoundException, ProjectAlreadyExistsException, ExternalResourceAccessException {
 		String projectName = "Project #";
 		List<Project> createdProjects = new ArrayList<>();
 		for(int i = 0; i < 30; i++) {
@@ -79,7 +80,7 @@ public class ProjectServiceImplTest {
 	}
 	
 	@Test
-	public void getFullByIdTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException {
+	public void getFullByIdTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException {
 		String currentUsername = SecurityUtil.getCurrentUsername();
 		Project p1 = projectService.createProject("Project #1", "Java developer", "description");
 		
@@ -99,7 +100,7 @@ public class ProjectServiceImplTest {
 	}
 	
 	@Test
-	public void getSimilarTest() throws UserNotFoundException, ProjectAlreadyExistsException {
+	public void getSimilarTest() throws UserNotFoundException, ProjectAlreadyExistsException, ExternalResourceAccessException {
 		String namePattern = "Project #";
 		List<Project> projectsWithPattern = new ArrayList<>();
 		for(int i = 0; i < 5; i++) {
@@ -115,19 +116,19 @@ public class ProjectServiceImplTest {
 	}
 	
 	@Test(expected=ProjectAlreadyExistsException.class)
-	public void createProjectTest() throws UserNotFoundException, ProjectAlreadyExistsException {
+	public void createProjectTest() throws UserNotFoundException, ProjectAlreadyExistsException, ExternalResourceAccessException {
 		Project p = projectService.createProject("name", "Java developer", "description");
 		projectService.createProject(p.getName(), "DBA", "desc");
 	}
 	
 	@Test
-	public void isExistsTest() throws UserNotFoundException, ProjectAlreadyExistsException {
+	public void isExistsTest() throws UserNotFoundException, ProjectAlreadyExistsException, ExternalResourceAccessException {
 		Project p = projectService.createProject("name", "Java developer", "description");
 		assertTrue(projectService.isExist(p.getName()));
 	}
 	
 	@Test
-	public void updateTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException {
+	public void updateTest() throws ProjectAlreadyExistsException, EntityNotFoundException, AccessDeniedException, ExternalResourceAccessException {
 		Project p1 = projectService.createProject("name", "Java developer", "description");
 		
 		String newName = "newName";

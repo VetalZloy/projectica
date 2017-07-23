@@ -22,10 +22,10 @@ import com.vetalzloy.projectica.model.PasswordToken;
 import com.vetalzloy.projectica.model.Position;
 import com.vetalzloy.projectica.model.Project;
 import com.vetalzloy.projectica.model.User;
-import com.vetalzloy.projectica.service.DialogService;
 import com.vetalzloy.projectica.service.ProjectService;
 import com.vetalzloy.projectica.service.TagService;
 import com.vetalzloy.projectica.service.UserService;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.PasswordTokenNotFoundException;
 import com.vetalzloy.projectica.service.exception.ProjectAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.UserAlreadyExistsException;
@@ -46,9 +46,6 @@ public class UserServiceImplTest {
 	
 	@Autowired
 	private ProjectService projectService;
-	
-	@Autowired
-	private DialogService dialogService;
 	
 	@Autowired
 	private DBHelper helper;
@@ -103,6 +100,14 @@ public class UserServiceImplTest {
 	}
 	
 	@Test
+	public void getByIdTest() throws UserNotFoundException{
+		User u1 = helper.createUser("u1", "email", "111");
+		User u2 = userService.getById(u1.getUserId());
+		
+		assertTrue(u1.equals(u2));
+	}
+	
+	@Test
 	public void getByUsernameTest() throws UserNotFoundException{
 		User u1 = helper.createUser("u1", "email", "111");
 		for(int i = 0; i < 5; i++)
@@ -113,7 +118,7 @@ public class UserServiceImplTest {
 	}
 	
 	@Test
-	public void getFullByUsername() throws UserNotFoundException, ProjectAlreadyExistsException{
+	public void getFullByUsername() throws UserNotFoundException, ProjectAlreadyExistsException, ExternalResourceAccessException{
 		User u1 = helper.createUser("u1", "email", "111");
 		setCurrentUsername(u1.getUsername());
 		Project pr = projectService.createProject("Super project", "DBA", "description");
@@ -142,38 +147,6 @@ public class UserServiceImplTest {
 		
 		User u2 = userService.getByEmail(u1.getEmail());
 		assertTrue(u1.equals(u2));
-	}
-	
-	@Test
-	public void getInterlocutors() throws UserNotFoundException{		
-		User u1 = helper.createUser("u1", "email1", "111");
-		User u2 = helper.createUser("u2", "email1", "111");
-		
-		dialogService.create("message1", u1.getUsername());
-		dialogService.create("message2", u2.getUsername());
-		
-		List<User> interlocutors = userService.getInterlocutors()
-											  .stream()
-											  .map(i -> i.getInterlocutor())
-											  .collect(Collectors.toList());
-		assertTrue((Arrays.asList(u1, u2).containsAll(interlocutors)));
-	}
-	
-	@Test
-	public void loadInterlocutors() throws UserNotFoundException{
-		User u1 = helper.createUser("u1", "email1", "111");
-		User u2 = helper.createUser("u2", "email1", "111");
-		
-		dialogService.create("message1", u1.getUsername());
-		dialogService.create("message2", u2.getUsername());
-		
-		User currentUser = userService.getByUsername(SecurityUtil.getCurrentUsername());
-		userService.loadInterlocutors(currentUser);
-		List<User> interlocutors = currentUser.getInterlocutors()
-											  .stream()
-											  .map(i -> i.getInterlocutor())
-											  .collect(Collectors.toList());
-		assertTrue((Arrays.asList(u1, u2).containsAll(interlocutors)));
 	}
 	
 	@Test

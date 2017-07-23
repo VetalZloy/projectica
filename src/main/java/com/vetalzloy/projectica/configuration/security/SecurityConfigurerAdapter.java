@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,18 +14,16 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+import com.vetalzloy.projectica.service.UserService;
 
 @Configuration
-@EnableWebSecurity
-public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{	
-	
-	/* Uncomment for bruteforce defending
-	@Autowired
-    private ApplicationEventPublisher applicationEventPublisher;
-	*/
+public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
+	
+	@Autowired
+	private UserService userService;
 	
 	@Autowired
 	private SessionRegistry registry;
@@ -58,7 +55,7 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
 				  .loginPage("/login")
 				  .usernameParameter("username")
 				  .passwordParameter("password")
-				  .successHandler(new LoginAuthorizeCookieSuccessHandler())
+				  .successHandler(new CustomAuthenticationSuccessHandler(userService))
 				  //.defaultSuccessUrl("/") Either own successHandler or default, not both
 				  .failureUrl("/?login-error")
 			.and().sessionManagement()
@@ -67,10 +64,10 @@ public class SecurityConfigurerAdapter extends WebSecurityConfigurerAdapter{
 				  .and().invalidSessionUrl("/")
 			.and().rememberMe()
 				  .tokenRepository(repo)
-				  .authenticationSuccessHandler(new LoginAuthorizeCookieSuccessHandler())
+				  .authenticationSuccessHandler(new CustomAuthenticationSuccessHandler(userService))
 			.and().logout().permitAll()
 				  .logoutUrl("/logout")
-				  .logoutSuccessHandler(new LogoutAuthorizeCookieSuccessHandler())
+				  .logoutSuccessHandler(new CustomLogoutSuccessHandler())
 				  //.logoutSuccessUrl("/") Either own successHandler or default, not both
 			.and().exceptionHandling().accessDeniedPage("/")
 			.and().csrf().disable()

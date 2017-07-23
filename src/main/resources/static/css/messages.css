@@ -1,0 +1,77 @@
+.message {
+  position: relative;
+  padding: 10px 0;
+  border-bottom: 1px solid #AEAEAE;
+}
+
+.message:hover {
+  background-color: #EEE;
+  cursor: pointer;
+}
+
+.message a{
+  position: absolute;
+  top: 15px;
+  padding-left: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.message.chat a{
+  padding-left: 0px;
+  margin-left: 84px;
+}
+
+.message img {
+  margin-left: 10px;
+  width: 65px;
+  border-radius: 50%;
+}
+
+.message .letter {
+  margin-left: 10px;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  font-size: 40px;
+  font-weight: 600;
+  text-align: center;
+  background-color: #FF6F6C;
+  color: #fff;
+  line-height: 65px;
+}
+
+.message .last-message {
+  position: absolute;
+  top: 50px;
+  left: 85px;
+  text-align: justify;
+  width: 70%;
+  padding: 5px;
+}
+
+.online {
+  padding: 5px;
+  background-color: #63B175;
+  font-size: 0;
+  border-radius: 50%;
+  position: absolute;
+  border: 2px solid #fff;
+  left: 59px;
+  top: 59px;
+}
+
+.message .unread-by-user {
+  background-color: #EFEFEF;
+}
+
+.unread-by-interlocutor:after{
+  content: "";
+  padding: 5px;
+  background-color: #A9A9A4;
+  font-size: 0;
+  position: absolute;
+  right: -12px;
+  top: 12px;
+  border-radius: 50%;
+}

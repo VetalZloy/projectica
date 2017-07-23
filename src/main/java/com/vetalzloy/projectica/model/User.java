@@ -16,30 +16,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyToOne;
-import org.hibernate.annotations.LazyToOneOption;
-import org.hibernate.bytecode.internal.javassist.FieldHandled;
-import org.hibernate.bytecode.internal.javassist.FieldHandler;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vetalzloy.projectica.util.LocalDateTimeAttributeConverter;
 
 /**
  * Entity class for table {@code user}.
- * Highlights:
- * <ol>
- * 	<li> class implements {@code FieldHandled}
- * 	<li> class holds {@code FieldHandler}
- * 	<li> class has {@code @LazyToOne(LazyToOneOption.NO_PROXY)} annotation 
- * 		under {@code @OneToOne} annotation ({@code passwordToken, verificationToken})
- * </ol>
- * It's necessary for fooling Hibernate, here work of bytecode instrumention is simulated,
- * ergo, Hibernate doesn't load entities marked as {@code @OneToOne}, and these entities {@code null} always.
- * In my case it's not catastrofically, but it demands some special actions for saving and deleting,
- * details are in dao implementation.
+ * Highlights: {@code verificationTokens} and {@code passwordTokens} are actually @OneToOne,
+ * but they annotated as @OneToMany to achieve lazy loading. It affects HQL queries in 
+ * {@link com.vetalzloy.projectica.service.dao.UserDAOImpl}
  * 
  * This class checks equality by usernames.
  * @author Vetal
@@ -47,9 +32,7 @@ import com.vetalzloy.projectica.util.LocalDateTimeAttributeConverter;
  */
 @Entity
 @Table(name="user")
-public class User  implements FieldHandled{
-	
-	private FieldHandler fieldHandler;
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -62,7 +45,6 @@ public class User  implements FieldHandled{
 	@Column(name="email")
 	private String email;
 	
-	@JsonIgnore
 	@Column(name="password")
 	private String password;
 	
@@ -82,13 +64,17 @@ public class User  implements FieldHandled{
 	@Column(name="cv_link")
 	private String cvLink;
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
-	@LazyToOne(LazyToOneOption.NO_PROXY)
-	private VerificationToken verificationToken;
+	/**
+	 * Actually @OneToOne
+	 */
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+	private Set<VerificationToken> verificationTokens = new HashSet<>();
 	
-	@OneToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
-	@LazyToOne(LazyToOneOption.NO_PROXY)
-	private PasswordToken passwordToken;
+	/**
+	 * Actually @OneToOne
+	 */
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+	private Set<PasswordToken> passwordTokens = new HashSet<>();
 	
 	@OneToMany(mappedBy="creator", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private Set<Project> createdProjects = new HashSet<>();
@@ -101,9 +87,6 @@ public class User  implements FieldHandled{
 				joinColumns=@JoinColumn(name="user_id"),
 				inverseJoinColumns=@JoinColumn(name="tag_id"))
 	private Set<Tag> tags = new HashSet<>();
-	
-	@OneToMany(mappedBy="subject", cascade=CascadeType.ALL)
-	private Set<Interlocutor> interlocutors = new HashSet<>();
 	
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	private Set<Request> requests = new HashSet<>();
@@ -121,20 +104,20 @@ public class User  implements FieldHandled{
 		this.userId = userId;
 	}
 	
-	public PasswordToken getPasswordToken() {
-		return passwordToken;
+	public Set<VerificationToken> getVerificationTokens() {
+		return verificationTokens;
 	}
 
-	public void setPasswordToken(PasswordToken passwordToken) {
-		this.passwordToken = passwordToken;
+	public void setVerificationTokens(Set<VerificationToken> verificationTokens) {
+		this.verificationTokens = verificationTokens;
 	}
 
-	public VerificationToken getVerificationToken() {
-		return verificationToken;
+	public Set<PasswordToken> getPasswordTokens() {
+		return passwordTokens;
 	}
 
-	public void setVerificationToken(VerificationToken verificationToken) {
-		this.verificationToken = verificationToken;
+	public void setPasswordTokens(Set<PasswordToken> passwordTokens) {
+		this.passwordTokens = passwordTokens;
 	}
 
 	public String getUsername() {
@@ -232,14 +215,6 @@ public class User  implements FieldHandled{
 	public void setRequests(Set<Request> requests) {
 		this.requests = requests;
 	}
-	
-	public Set<Interlocutor> getInterlocutors() {
-		return interlocutors;
-	}
-
-	public void setInterlocutors(Set<Interlocutor> interlocutors) {
-		this.interlocutors = interlocutors;
-	}
 
 	@Override
 	public String toString() {
@@ -267,16 +242,6 @@ public class User  implements FieldHandled{
 		} else if (!username.equals(other.username))
 			return false;
 		return true;
-	}
-
-	@Override
-	public void setFieldHandler(FieldHandler fieldHandler) {
-		this.fieldHandler = fieldHandler;
-	}
-
-	@Override
-	public FieldHandler getFieldHandler() {
-		return fieldHandler;
 	}
 	
 }

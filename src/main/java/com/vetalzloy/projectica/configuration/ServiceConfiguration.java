@@ -1,17 +1,23 @@
 package com.vetalzloy.projectica.configuration;
 
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 
-/**
- * This class configures service layer. All service classes are annotated as <b>@Service</b>
- * and placed in <b>com.vetalzloy.projectica.service</b> package
- * @author VetalZloy
- *
- */
+import com.vetalzloy.projectica.service.MessagingService;
+import com.vetalzloy.projectica.service.MessagingServiceImpl;
+
 @Configuration
-@ComponentScan({ 
-	"com.vetalzloy.projectica.service"
-	})
+@PropertySource(
+		ignoreResourceNotFound = true,
+		value = {
+				 "classpath:messaging.properties",
+				 "classpath:messaging-private.properties"
+				})
 public class ServiceConfiguration {
+	
+	@Bean
+	public MessagingService messagingService(){
+		return new MessagingServiceImpl();
+	}
 }

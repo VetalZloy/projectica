@@ -5,6 +5,7 @@ import java.util.List;
 import com.vetalzloy.projectica.model.Project;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.ProjectAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.ProjectNotFoundException;
 import com.vetalzloy.projectica.service.exception.UserNotFoundException;
@@ -59,8 +60,9 @@ public interface ProjectService {
 	 * @return created project (never {@code null})
 	 * @throws UserNotFoundException if current user is not registered
 	 * @throws ProjectAlreadyExistsException  if project with such {@code name} already exists
+	 * @throws ExternalResourceAccessException - if some error happened in messaging service
 	 */
-	Project createProject(String name, String creatorPosition, String description) throws UserNotFoundException, ProjectAlreadyExistsException;
+	Project createProject(String name, String creatorPosition, String description) throws UserNotFoundException, ProjectAlreadyExistsException, ExternalResourceAccessException;
 	
 	/**
 	 * Returns value which present existence of project with such {@code projectName}

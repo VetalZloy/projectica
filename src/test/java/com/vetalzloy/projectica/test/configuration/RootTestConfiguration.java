@@ -11,7 +11,9 @@ import com.vetalzloy.projectica.test.stub.MailUtilStub;
 import com.vetalzloy.projectica.util.MailUtil;
 
 @Configuration
-@ComponentScan(basePackages="com.vetalzloy.projectica.test.helper")
+@ComponentScan(basePackages={
+		"com.vetalzloy.projectica.test.helper"
+})
 public class RootTestConfiguration {
 	
 	@Bean

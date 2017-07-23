@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title th:text="${project.name}">Project name</title>
+
+  <link rel="stylesheet" th:href="@{/css/bootstrap.css}" href="../static/css/bootstrap.css" />
+  <link rel="stylesheet" th:href="@{/css/base.css}" href="../static/css/base.css" />
+  <link rel="stylesheet" th:href="@{/css/project.css}" href="../static/css/project.css" />
+</head>
+<body>
+  <a class="github" href="https://github.com/VetalZloy/projectica"></a>  
+  <a class="about" th:href="@{/about}"></a>
+  <header>
+    <a class="logo" th:href="@{/}"></a>
+    <ul>
+      <li><a class="logout" th:href="@{/logout}" ></a></li>
+      <li><a th:href="@{/users}" >Users</a></li>
+      <li><a th:href="@{/projects}" >Projects</a></li>
+      <li><a th:href="@{/positions}" >Vacancies</a></li>
+      <li><a th:href="@{/messages}" >Messages<span class="new-messages"></span></a></li>
+    </ul>
+  </header>
+
+  <div class="wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="info col-xs-6">
+          <h1 th:text="${project.name}">Project name</h1>
+          <span th:if="${creator}" class="edit" onclick="openPanel('.edit-panel')"></span>
+          <p class="creator">
+            Creator: 
+            <a th:href="@{/users/__${project.creator.username}__}" th:text="${project.creator.username}">Creator username</a>
+          </p>
+          <p th:text="${project.description}">Project description</p>
+          <div class="participants">
+            <span class="title">Participants</span>
+            <div class="body">          	
+          	  <div class="user" th:each="entry : ${participants}">
+          	    <p>          	        
+          	      <span class="reveal"></span>
+          	      <a th:href="@{/users/__${entry.key.username}__}" th:text="${entry.key.username}">Username</a>
+          	  	</p>
+          	  	<div class="user-positions">
+          	  	  <div th:each="position : ${entry.value}">
+          	  	    <a th:href="@{/positions/__${position.id}__}" th:text="${position.name}">Position name</a>
+          	  	    <p th:text="${position.description}">Position description</p>
+          	  	  </div>
+          	    </div>
+          	  </div>
+            </div>
+          </div>
+        </div>
+        <div class="positions col-xs-5 col-xs-offset-1">
+          <div class="chatrooms panel" th:if="${creator or participant}">
+            <div class="panel-title-big">
+              Chatrooms
+              <span th:if="${creator}" class="add" onclick="openPanel('.add-chatroom')"></span>
+            </div>
+            <div class="panel-body">          	
+          	  <a th:each="chatRoom : ${project.chatRooms}" th:href="@{/chatrooms/__${chatRoom.id}__}" th:text="${chatRoom.name}">Chat room name</a>
+			</div>
+          </div>
+          <div class="free-positions panel">
+            <div class="panel-title-big">
+              Free positions
+              <span th:if="${creator}" class="add" onclick="openPanel('.create-position')"></span>
+            </div>
+            <div class="panel-body">
+                <a th:each="position : ${openPositions}" th:href="@{/positions/__${position.id}__}" th:text="${position.name}">Position name</a>
+            </div>
+          </div>
+          <div class="closed-positions panel">
+            <div class="panel-title-big">
+              Closed positions
+            </div>
+            <div class="panel-body">
+              <a th:each="position : ${closedPositions}" th:href="@{/positions/__${position.id}__}" th:text="${position.name}">Position name</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-chatroom panel openable">
+    <div class="panel-title">Add chatroom</div>
+    <div class="panel-body">
+      <input type="text" name="chatroomName" placeholder="New chatroom" />
+      <p class="button-wrapper">
+        <button type="button" name="button" onclick="addChatroom()">Add</button>
+      </p>      
+    </div>
+  </div>
+
+  <div class="create-position panel openable">
+    <div class="panel-title">Add position</div>
+    <div class="panel-body">
+      <input type="text" name="positionName" placeholder="Position" />
+      <textarea name="position-description" placeholder="Description"></textarea>
+      <div class="tag-block">
+        <input class="tag-input" type="text" name="tagName" placeholder="Tag" />
+        <button class="add-button" type="button" name="button" onclick="addTagWrapper()">Add</button>
+        <div class="similar-tags"></div>
+      </div>
+      <div class="added-tags"></div>
+      <p class="button-wrapper">
+        <button type="button" name="button" onclick="createPosition()">Create</button>
+      </p>      
+    </div>
+  </div>
+  
+  <div class="edit-panel panel openable">
+    <div class="panel-title">Edit</div>
+    <div class="panel-body">
+      <input type="text" name="name" th:value="${project.name}" placeholder="Project name"/>
+      <textarea name="description" placeholder="Description" th:text="${project.description}">Project description</textarea>
+      <p class="error"></p>
+      <p class="button-wrapper">
+        <button type="button" name="button" onclick="edit()">Edit</button>
+      </p>
+    </div>
+  </div>
+
+  <div class="bg_layer"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script th:src="@{/js/jquery.cookie.js}" src="../static/js/jquery.cookie.js"></script>  
+  <script th:src="@{/js/base.js}" src="../static/js/base.js"></script>
+  <script th:src="@{/js/project.js}" src="../static/js/project.js"></script>
+
+</body>
+</html>

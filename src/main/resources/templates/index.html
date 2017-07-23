@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Projectica</title>
+  <link rel="stylesheet" th:href="@{/css/index.css}" href="../static/css/index.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="left">
+      <div class="login" onclick="openPanel('.log-in')">
+        <p>Log in</p>
+      </div>
+      <div class="signup" onclick="openPanel('.sign-up')">
+        <p>Sign up</p>
+      </div>
+    </div>
+    <div class="right">
+      <div class="projects" onclick="location.href = '/projects'">
+        <p>Projects</p>
+      </div>
+      <div class="vacancies" onclick="location.href = '/positions'">
+        <p>Vacancies</p>
+      </div>
+    </div>
+    <img class="logo" th:src="@{/img/logo-main.png}" src="../static/img/logo-main.png" alt="Projectica" />
+    <a class="github" href="https://github.com/VetalZloy/projectica"></a>
+    <a class="about" href="@{/about}"></a>
+  </div>
+
+  <div class="log-in panel openable">
+    <div class="panel-title-big">Log in</div>
+    <div class="panel-body">
+      <p></p>
+      <form th:action="@{/login}" method="POST">
+    	<input type="text" name="username" placeholder="Username or email"/><br/>
+    	<input type="password" name="password" placeholder="Password"/><br/>
+    	<input id="remember-me" class="css-checkbox" type="checkbox" name="remember-me" checked="checked"/>
+        <label for="remember-me" class="css-label">Remember me</label><br/>
+    	  <!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+    	<input type="submit" value="Log in"/>
+        <a onclick="openResetPasswordPanel()">Forgot password</a>
+      </form>
+    </div>    
+  </div>
+
+  <div class="sign-up panel openable">
+    <div class="panel-title-big">Sign up</div>
+    <div class="panel-body">
+      <form method="POST" th:object="${registrationForm}">
+		<input type="text" th:field="*{username}" placeholder="Username" /><span class="invalid"></span>	
+		<input type="text" th:field="*{email}" placeholder="Email" /><span class="invalid"></span>
+		<input type="password" th:field="*{password}" placeholder="Password" /><span class="invalid"></span>		
+		<input type="password" th:field="*{passwordConf}" placeholder="Confirmation" /><span class="invalid"></span>		
+		<button type="submit" value="Submit" disabled="disabled">Sign up</button><br />
+		<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Error</p>
+		<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error</p>
+		<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Error</p>
+		<p th:if="${#fields.hasErrors('passwordConf')}" th:errors="*{passwordConf}">Error</p>
+	  </form>
+    </div>
+  </div>
+
+  <div class="reset-password panel openable">
+    <div class="panel-title-big">Reset password</div>
+    <div class="panel-body">
+      <form th:action="@{/reset-password}" method="post">
+        <input type="text" name="username" placeholder="Username ..." />
+        <p><input type="submit" value="Reset" /></p>
+      </form>
+    </div>
+  </div>
+
+  <div class="bg_layer"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script th:src="@{/js/index.js}" src="../static/js/index.js"></script>
+
+</body>
+</html>

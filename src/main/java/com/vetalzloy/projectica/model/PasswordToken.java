@@ -8,13 +8,11 @@ import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 import com.vetalzloy.projectica.util.LocalDateTimeAttributeConverter;
 
@@ -28,10 +26,9 @@ import com.vetalzloy.projectica.util.LocalDateTimeAttributeConverter;
 public class PasswordToken {
 	
 	@Id
-	@GeneratedValue(generator="gen")
-	@GenericGenerator(name="gen", strategy="foreign", parameters=@Parameter(name="property", value="user"))
-	@Column(name="user_id")
-	private long userId;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="password_token_id")
+	private int id;
 	
 	@Column(name="password_token")
 	private String passwordToken;	
@@ -40,8 +37,12 @@ public class PasswordToken {
 	@Convert(converter=LocalDateTimeAttributeConverter.class)
 	private LocalDateTime expireDate;
 	
-	@OneToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@PrimaryKeyJoinColumn
+	/**
+	 * Actually @OneToOne
+	 * @see com.vetalzloy.projectica.model.User
+	 */
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@JoinColumn(name="user_id")
 	private User user;
 	
 	public PasswordToken() {}
@@ -72,14 +73,13 @@ public class PasswordToken {
 	public void setPasswordToken(String passwordToken) {
 		this.passwordToken = passwordToken;
 	}
-	
 
-	public long getUserId() {
-		return userId;
+	public int getId() {
+		return id;
 	}
 
-	public void setUserId(long userId) {
-		this.userId = userId;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	@Override

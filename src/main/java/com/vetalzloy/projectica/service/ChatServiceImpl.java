@@ -1,25 +1,19 @@
 package com.vetalzloy.projectica.service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-import javax.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.vetalzloy.projectica.model.ChatMessage;
 import com.vetalzloy.projectica.model.ChatRoom;
 import com.vetalzloy.projectica.model.Project;
 import com.vetalzloy.projectica.model.User;
-import com.vetalzloy.projectica.service.dao.ChatMessageDAO;
 import com.vetalzloy.projectica.service.dao.ChatRoomDAO;
 import com.vetalzloy.projectica.service.exception.AccessDeniedException;
 import com.vetalzloy.projectica.service.exception.ChatRoomAlreadyExistsException;
 import com.vetalzloy.projectica.service.exception.ChatRoomNotFoundException;
-import com.vetalzloy.projectica.service.exception.EntityNotFoundException;
+import com.vetalzloy.projectica.service.exception.ExternalResourceAccessException;
 import com.vetalzloy.projectica.service.exception.ProjectNotFoundException;
 import com.vetalzloy.projectica.util.SecurityUtil;
 
@@ -33,13 +27,10 @@ public class ChatServiceImpl implements ChatService {
 	private ChatRoomDAO chatRoomDAO;
 	
 	@Autowired
-	private ChatMessageDAO chatMessageDAO;
-	
-	@Autowired
-	private UserService userService;
-	
-	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private MessagingService messagingService;
 	
 	@Override
 	public ChatRoom getById(int id) throws AccessDeniedException, ChatRoomNotFoundException {
@@ -69,7 +60,7 @@ public class ChatServiceImpl implements ChatService {
 	}
 
 	@Override
-	public ChatRoom createChatRoom(int projectId, String name) throws AccessDeniedException, ProjectNotFoundException, ChatRoomAlreadyExistsException {
+	public ChatRoom createChatRoom(int projectId, String name) throws AccessDeniedException, ProjectNotFoundException, ChatRoomAlreadyExistsException, ExternalResourceAccessException {
 		String currentUsername = SecurityUtil.getCurrentUsername();
 		Project project = projectService.getById(projectId);
 		
@@ -81,7 +72,7 @@ public class ChatServiceImpl implements ChatService {
 															  " in project with id = " + projectId + 
 															  " already exists.");
 		
-		//checking whether current user is creator of appropriate project
+		//checking whether current user is the creator of appropriate project
 		if(! project.getCreator().getUsername().equals(currentUsername))
 			throw new AccessDeniedException("Trying to create chatroom for project with id = "
 											+ projectId + " by user with username = " + currentUsername);
@@ -89,48 +80,24 @@ public class ChatServiceImpl implements ChatService {
 		ChatRoom room = new ChatRoom(name, project);
 		chatRoomDAO.saveOrUpdate(room);
 		
+		User[] users = project.getPositions()
+								.stream()
+								.filter(p -> p.getFiringDate() == null && 
+											 p.getHiringDate() != null)
+								.map(p -> p.getUser())
+								.toArray(User[]::new);
+		messagingService.addUsersToChatRoom(room, users);
 		return room;
 	}
-	
+
 	@Override
-	public ChatMessage createMessage(int chatRoomId, String text) throws AccessDeniedException, EntityNotFoundException {
-		String currentUsername = SecurityUtil.getCurrentUsername();
-		logger.debug("Trying to create message by user with username '{}' for chat with id = {}",
-				currentUsername, chatRoomId);
-		
-		ChatRoom room = getById(chatRoomId);
-		User user = userService.getByUsername(currentUsername);
-		
-		ChatMessage message = new ChatMessage(text, LocalDateTime.now(), user, room);
-		chatMessageDAO.saveOrUpdate(message);
-		
-		return message;
+	public void addUsersToChatRoom(ChatRoom room, User... users) throws ExternalResourceAccessException {
+		messagingService.addUsersToChatRoom(room, users);
 	}
 
 	@Override
-	public List<ChatMessage> getFirstPage(int chatId) throws ChatRoomNotFoundException, AccessDeniedException {
-		String currentUsername = SecurityUtil.getCurrentUsername();
-		logger.debug("Retrieving first page of chat messages from chat with id = {} for user with username = '{}'",
-							chatId, currentUsername);
-		
-		//existence and access cheking
-		getById(chatId);
-		
-		int amount = 20;		
-		return chatMessageDAO.getFirstPage(amount, chatId);
-	}
-
-	@Override
-	public List<ChatMessage> getPageBeforeEarliest(long earliestId, int chatId) throws ChatRoomNotFoundException, AccessDeniedException {
-		String currentUsername = SecurityUtil.getCurrentUsername();
-		logger.debug("Retrieving page of chat messages before earlieestId = {} from chat with id = {} for user with username = '{}'",
-				earliestId, chatId, currentUsername);
-
-		//existence and access cheking
-		getById(chatId);
-		
-		int amount = 20;
-		return chatMessageDAO.getPageBeforeEarliest(earliestId, amount, chatId);
+	public void removeUsersFromChatRoom(ChatRoom room, User... users) throws ExternalResourceAccessException {
+		messagingService.removeUsersFromChatRoom(room, users);
 	}
 	
 }
