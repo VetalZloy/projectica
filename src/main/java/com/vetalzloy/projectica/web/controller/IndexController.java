@@ -1,16 +1,10 @@
 package com.vetalzloy.projectica.web.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -134,24 +128,6 @@ public class IndexController {
 	public ResponseEntity<Void> extendSession(){
 		logger.debug("Session for user '{}' was extended", SecurityUtil.getCurrentUsername());
 		return new ResponseEntity<Void>(HttpStatus.OK);
-	}
-	
-	/**
-	 * This method is never invoked, IDK why i need it
-	 * @param req
-	 * @param res
-	 * @return
-	 */
-	@RequestMapping(path="/logout")
-	public String logout(HttpServletRequest req, HttpServletResponse res){
-		String name = SecurityUtil.getCurrentUsername();
-		logger.info("Logout for user {}", name);
-		
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if(auth != null) 
-			new SecurityContextLogoutHandler().logout(req, res, auth);
-		
-		return "index";
 	}
 	
 }

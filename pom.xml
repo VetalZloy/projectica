@@ -4,27 +4,34 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.vetalzloy.projectica</groupId>
-	<artifactId>ProjecticaBoot</artifactId>
+	<artifactId>projectica</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
+	
 
-	<name>ProjecticaBoot</name>
+	<name>Projectica</name>
 	<description>Social network</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.3.RELEASE</version>
+		<version>1.5.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
+		<start-class>com.vetalzloy.projectica.ProjecticaApplication</start-class>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
 		<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -33,39 +40,7 @@
 		    <groupId>org.thymeleaf.extras</groupId>
 		    <artifactId>thymeleaf-extras-java8time</artifactId>
 		</dependency>
-        
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-mail</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		
-		<dependency>
-		    <groupId>org.springframework.boot</groupId>
-		    <artifactId>spring-boot-starter-data-redis</artifactId>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework.session</groupId>
-		    <artifactId>spring-session</artifactId>
-		</dependency>
-	
-		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
-        </dependency>
-	
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -89,26 +64,29 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>javax.websocket</groupId>
-		    <artifactId>javax.websocket-api</artifactId>
-		    <version>1.0</version>
-		    <scope>provided</scope>
-		</dependency>
-		<dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-websocket</artifactId>
-		</dependency>        
-        <dependency>
-		    <groupId>javax.json</groupId>
-		    <artifactId>javax.json-api</artifactId>
-		    <version>1.0</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.session</groupId>
+		    <artifactId>spring-session</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>				
+		</dependency>						
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -122,6 +100,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<finalName>Projectica</finalName>
+				</configuration>
 			</plugin>
 		</plugins>
 		<testResources>
@@ -135,7 +116,7 @@
 			</testResource>
 		</testResources>
 		<resources>
-			<resource>
+			<resource>				
 				<filtering>true</filtering>
 		        <directory>src/main/resources</directory>
 		        <excludes>
@@ -145,5 +126,6 @@
 		      </resource>
       	</resources>
 	</build>
+
 
 </project>

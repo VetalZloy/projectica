@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -18,6 +19,7 @@ import com.vetalzloy.projectica.web.form.RegistrationForm;
  * @author VetalZloy
  *
  */
+@Component
 public class RegistrationValidator implements Validator{
 
 	private static final Logger logger = LoggerFactory.getLogger(RegistrationValidator.class);
