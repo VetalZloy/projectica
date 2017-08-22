@@ -1,6 +1,6 @@
 # [Projectica]
 
-Projectica is a social network, which helps young developers to find like-minded ones. Also Projectica gives you abilities to create projects(startups) by your wish and hand-pick team for such a project. Unfortunally, now Projectica is offline.
+Projectica is a social network, which helps young developers to find like-minded ones. Also Projectica gives you abilities to create projects(startups) by your wish and hand-pick team for such a project. 
 
 ## Important
 Projectica uses [messaging] to provide communication to users.

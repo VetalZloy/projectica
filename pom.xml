@@ -103,8 +103,15 @@
 				<configuration>
 					<executable>true</executable>
 					<finalName>Projectica</finalName>
-				</configuration>
+				</configuration>				
 			</plugin>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <configuration>
+		        	<nonFilteredFileExtensions>ico</nonFilteredFileExtensions>
+		        </configuration>
+		    </plugin>
 		</plugins>
 		<testResources>
 			<testResource>
@@ -124,7 +131,7 @@
 		          <exclude>**/logback-test.xml</exclude>
 		          <exclude>**/*-test.properties</exclude>
 		        </excludes>
-		      </resource>
+		    </resource>
       	</resources>
 	</build>
 

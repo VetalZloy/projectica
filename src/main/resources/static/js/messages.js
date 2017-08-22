@@ -62,13 +62,16 @@ function createChatBlock(mes) {
 	var chatUrl = getDomainPath() + '/chatrooms/' + mes.chatId;
 	var fullChatName = mes.chat.projectName + ': ' + mes.chat.name;
 	var unread = '';
+	var text = mes.text;
+	if(mes.text.length > 15)
+		text = mes.text.substring(0, 15) + '...';
 	if(mes.read == false)
 		unread = 'unread-by-user';
 	
 	var block = '<div class="message chat">'+
 					'<div class="letter">' + mes.chat.name[0] + '</div>'+
         			'<a href="'+chatUrl+'">' + fullChatName + '</a>'+
-        			'<p class="last-message ' + unread + '">' + mes.text + '</p>'+
+        			'<p class="last-message ' + unread + '">' + text + '</p>'+
         		'</div>';
 	return block;
 }
@@ -76,6 +79,9 @@ function createChatBlock(mes) {
 function createDialogBlock(mes) {
 	var interlocutorUrl = getDomainPath() + '/dialogs/' + mes.interlocutor.username;
 	var unread = '';
+	var text = mes.text;
+	if(mes.text.length > 15)
+		text = mes.text.substring(0, 15) + '...';
 	if(mes.read == false)
 		if(mes.senderId == mes.interlocutorId)
 			unread = 'unread-by-user';
@@ -85,7 +91,7 @@ function createDialogBlock(mes) {
 	var block = '<div class="message">'+
 					'<img src="'+mes.interlocutor.gravatarUrl+'" />'+
         			'<a href="'+interlocutorUrl+'">' + mes.interlocutor.username + '</a>'+
-        			'<p class="last-message ' + unread + '">' + mes.text + '</p>'+
+        			'<p class="last-message ' + unread + '">' + text + '</p>'+
         		'</div>';
 	return block;
 }
