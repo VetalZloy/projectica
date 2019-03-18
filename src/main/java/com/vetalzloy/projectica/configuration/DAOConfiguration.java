@@ -84,6 +84,45 @@ public class DAOConfiguration {
 		return lsfb;
 	}
 	
+@Bean
+	@Autowired
+	public LocalSessionFactoryBean sessionFactory1(DataSource ds){
+        String a = "";
+
+		LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
+		
+		Properties p = new Properties();
+		p.setProperty("log4j.logger.org.hibernate", 
+					  env.getProperty("log4j.logger.org.hibernate"));
+		
+		p.setProperty("hibernate.dialect", 
+					  env.getProperty("hibernate.dialect"));
+		
+		p.setProperty("hibernate.hbm2ddl.auto", 
+					  env.getProperty("hibernate.hbm2ddl.auto"));
+		
+		p.setProperty("hibernate.show_sql", 
+					  env.getProperty("hibernate.show_sql"));
+		
+		p.setProperty("hibernate.format_sql", 
+					  env.getProperty("hibernate.format_sql"));
+		
+		p.setProperty("hibernate.use_sql_comments", 
+					  env.getProperty("hibernate.use_sql_comments"));
+		
+		p.setProperty("hibernate.jdbc.fetch_size", 
+					  env.getProperty("hibernate.jdbc.fetch_size"));
+		
+		p.setProperty("hibernate.enable_lazy_load_no_trans", 
+					  env.getProperty("hibernate.enable_lazy_load_no_trans"));
+		
+		lsfb.setDataSource(ds);
+		lsfb.setPackagesToScan("com.vetalzloy.projectica.model");
+		lsfb.setHibernateProperties(p);
+		
+		return lsfb;
+	}
+
 	 @Autowired
 	 @Bean(name = "transactionManager")
 	 public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
