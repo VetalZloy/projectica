@@ -48,6 +48,8 @@ public class DAOConfiguration {
 	@Bean
 	@Autowired
 	public LocalSessionFactoryBean sessionFactory(DataSource ds){
+        String a = "";
+
 		LocalSessionFactoryBean lsfb = new LocalSessionFactoryBean();
 		
 		Properties p = new Properties();
